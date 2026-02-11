@@ -112,6 +112,22 @@ function startTimer() {
     }, 1000);
 }
 
+// Alle Zwischensummen aller Preis-Seiten speichern
+let angebotSummen = JSON.parse(localStorage.getItem("angebotSummen") || "{}");
+
+function saveSeitenSumme(seitenId, summe) {
+    angebotSummen[seitenId] = summe;
+    localStorage.setItem("angebotSummen", JSON.stringify(angebotSummen));
+}
+
+function getGesamtAngebotssumme() {
+    let total = 0;
+    for (let key in angebotSummen) {
+        total += parseFloat(angebotSummen[key]) || 0;
+    }
+    return total;
+}
+
 // Funktion zur Prüfung der Pflichteingaben auf Seite 5
 function submitPage5() {
     const fields = [
@@ -252,34 +268,29 @@ function calcRowPage14(input, preisWert, index) {
 }
 
 function berechneGesamt14() {
-
     let sum = 0;
 
-    document.querySelectorAll("#page-14 .col-e")
-        .forEach(el => {
+    document.querySelectorAll("#page-14 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
 
-            const wert =
-                parseFloat(
-                    el.innerText
-                        .replace("€","")
-                        .replace(".","")
-                        .replace(",",".")
-                        .trim()
-                ) || 0;
+    // Zwischensumme für Seite 14 speichern
+    saveSeitenSumme("page-14", sum);
 
-            sum += wert;
-        });
-
-    const gesamtDiv =
-        document.getElementById("gesamtSumme14");
-
+    // Gesamtsumme über alle Seiten
+    const gesamtDiv = document.getElementById("gesamtSumme14");
     if (gesamtDiv) {
         gesamtDiv.innerText =
-            "Gesamtsumme: " +
-            sum.toLocaleString("de-DE",
-                {minimumFractionDigits:2}) + " €";
+            "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
+
 // -----------------------------
 // SEITE 14.3 – ROTH (ndf3.csv)
 // -----------------------------
@@ -399,14 +410,15 @@ function berechneGesamt143() {
     sum += wert;
   });
 
-  const gesamtDiv = document.getElementById("gesamtSumme143");
+    // Zwischensumme für Seite 14 speichern
+    saveSeitenSumme("page-14", sum);
 
-  if (gesamtDiv) {
-    gesamtDiv.innerText =
-      "Gesamtsumme: " +
-      sum.toLocaleString("de-DE",{minimumFractionDigits:2}) +
-      " €";
-  }
+    // Gesamtsumme über alle Seiten
+    const gesamtDiv = document.getElementById("gesamtSumme14");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
 }
 
 document.body.addEventListener("mousemove", () => remaining = 600);
