@@ -410,11 +410,11 @@ function berechneGesamt143() {
     sum += wert;
   });
 
-    // Zwischensumme für Seite 14 speichern
-    saveSeitenSumme("page-14", sum);
+    // Zwischensumme für Seite 14.3 speichern
+    saveSeitenSumme("page-14-3", sum);
 
     // Gesamtsumme über alle Seiten
-    const gesamtDiv = document.getElementById("gesamtSumme14");
+    const gesamtDiv = document.getElementById("gesamtSumme143");
     if (gesamtDiv) {
         gesamtDiv.innerText =
             "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
