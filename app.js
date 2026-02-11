@@ -356,13 +356,7 @@ function loadPage143() {
                 Gesamtsumme: 0,00 €
                </div>`;
 
-      html += `<div class="button-bar">
-                <button onclick="showPage('page-14-1')">Zurück</button>
-                <button onclick="showPage('page-18')">Weiter</button>
-                <button onclick="showPage('page-40')">Direkt zum Angebot</button>
-               </div>`;
-
-      container.innerHTML = html;
+     container.innerHTML = html;
 
       berechneGesamt143();
     });
