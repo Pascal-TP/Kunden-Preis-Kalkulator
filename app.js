@@ -28,6 +28,10 @@ function showPage(id) {
 if (id === "page-14-3") {
         loadPage143();
     }
+// Seite 40: Kostenvoranschlag
+    if (id === "page-40") {
+        loadPage40();
+    }
 }
 
 function login() {
@@ -502,6 +506,25 @@ function loadPage40() {
                 "Angebotspreis: " + gesamt.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
         });
     });
+
+function direktZumAngebot() {
+    const fields = [
+        "pj-contact", "pj-number", "shk-name", "shk-contact",
+        "shk-email", "shk-phone", "site-address", "execution-date"
+    ];
+
+    const alleAusgefüllt = fields.every(id => {
+        const val = document.getElementById(id)?.value?.trim();
+        return val && val.length > 0;
+    });
+
+    if (alleAusgefüllt) {
+        showPage("page-40"); // Seite Kostenvoranschlag
+    } else {
+        showPage("page-41"); // Seite Hinweis, dass Eingaben fehlen
+    }
+}
+
 
     // Allgemeine Hinweise aus ndf4.csv laden
     fetch("ndf4.csv")
