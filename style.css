@@ -60,47 +60,28 @@ button:hover {
     font-size: 14px;
 }
 /* ================================
-   PREIS-TABELLE (Seite 14)
+   TITEL / UNTERTITEL / ZWISCHENTITEL – global
 ================================ */
+.title { font-weight: bold; font-size: 24px; margin-top: 25px; }
+.subtitle { font-weight: bold; font-size: 18px; margin-top: 20px; }
+.midtitle { font-weight: bold; font-size: 16px; margin-top: 15px; }
 
-/* Container */
-#page14-content {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Titel / Untertitel / Zwischentitel und Gesamtsumme */
-#page14-content .title {
-    font-weight: bold;
-    font-size: 24px;
-    margin-top: 25px;
-    text-align: center;
-}
-
-#page14-content .subtitle {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-#page14-content .midtitle {
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: 15px;
-    text-align: center;
-}
-
-/* Gesamtsumme zentrieren */
+/* ================================
+   Seite 14 – zentrierte Überschriften und Gesamtsumme
+================================ */
+#page14-content .title,
+#page14-content .subtitle,
+#page14-content .midtitle,
 #gesamtSumme14 {
     text-align: center;
-    font-weight: normal;
-    font-size: 16px;
-    margin-top: 30px;
 }
 
-/* Zeilen als Grid – links/rechts wie gehabt */
+#gesamtSumme14 {
+    font-weight: normal;  /* keine Fettschrift */
+    font-size: 1em;       /* normale Größe */
+}
+
+/* Alle Zeilen mit Preisen bleiben links/rechts wie gehabt */
 #page14-content .row {
     display: grid;
     grid-template-columns: 160px 4fr 100px 100px 120px 120px;
@@ -116,15 +97,39 @@ button:hover {
 #page14-content .col-e { text-align: right; }
 #page14-content .col-e { font-weight: bold; }
 
-/* Eingabefelder */
-input.menge-input {
-    background-color: #fff8dc;
-    padding: 5px;
-    width: 80px;
+/* ================================
+   Seite 14.3 – Zeilen wie Seite 14, Überschriften mittig
+================================ */
+#content-14-3 .title,
+#content-14-3 .subtitle,
+#content-14-3 .midtitle,
+#gesamtSumme143 {
     text-align: center;
 }
 
-/* Projektweite Smartphone */
+#content-14-3 .row {
+    display: grid;
+    grid-template-columns: 160px 4fr 100px 100px 120px 120px;
+    gap: 15px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+#content-14-3 .col-a { text-align: left; font-weight: bold; }
+#content-14-3 .col-b { text-align: left; padding-left: 5px; }
+#content-14-3 .col-c,
+#content-14-3 .col-d,
+#content-14-3 .col-e { text-align: right; }
+#content-14-3 .col-e { font-weight: bold; }
+
+#gesamtSumme143 {
+    font-weight: normal;  /* keine Fettschrift */
+    font-size: 1em;       /* normale Größe */
+}
+
+/* ================================
+   Smartphone – global für alle Seiten
+================================ */
 @media (max-width: 600px) {
     .row { display: block; }
 
@@ -137,42 +142,4 @@ input.menge-input {
     }
 
     input.menge-input { width: 100%; }
-}
-
-/* ================================
-   PREIS-TABELLE (Seite 14.3)
-================================ */
-#content-14-3 {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Zeilen als Grid */
-#content-14-3 .row {
-    display: grid;
-    grid-template-columns: 160px 4fr 100px 100px 120px 120px;
-    gap: 15px;
-    margin-bottom: 12px;
-    align-items: center;
-}
-
-#content-14-3 .col-a {
-    text-align: left;
-    font-weight: bold;
-}
-
-#content-14-3 .col-b {
-    text-align: left;
-    padding-left: 5px;
-}
-
-#content-14-3 .col-c,
-#content-14-3 .col-d,
-#content-14-3 .col-e {
-    text-align: right;
-}
-
-#content-14-3 .col-e {
-    font-weight: bold;
 }
