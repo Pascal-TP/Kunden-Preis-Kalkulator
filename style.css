@@ -66,25 +66,13 @@ button:hover {
 .subtitle { font-weight: bold; font-size: 18px; margin-top: 20px; }
 .midtitle { font-weight: bold; font-size: 16px; margin-top: 15px; }
 
-/* ================================
-   SEITE 14 – TACKERSYSTEM
-================================ */
-#page14-content {
+.price-table {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
 
-/* Überschriften */
-#page14-content .title { text-align: center; font-weight: bold; font-size: 24px; margin-top: 25px; }
-#page14-content .subtitle { text-align: center; font-weight: bold; font-size: 18px; margin-top: 20px; }
-#page14-content .midtitle { text-align: center; font-weight: bold; font-size: 16px; margin-top: 15px; }
-
-/* Gesamtsumme */
-#gesamtSumme14 { text-align: center; font-weight: normal; font-size: 14px; margin-top: 25px; }
-
-/* Zeilen-Grid */
-#page14-content .row {
+.price-table .row {
     display: grid;
     grid-template-columns: 160px 4fr 100px 100px 120px 120px;
     gap: 15px;
@@ -92,73 +80,18 @@ button:hover {
     align-items: center;
 }
 
-/* Spalten */
-#page14-content .col-a { text-align: left; font-weight: bold; }
-#page14-content .col-b { text-align: left; padding-left: 5px; }
-#page14-content .col-c,
-#page14-content .col-d,
-#page14-content .col-e { text-align: right; }
-#page14-content .col-d,
-#page14-content .col-e { font-weight: normal; }
+.price-table .col-a { text-align: left; font-weight: bold; }
+.price-table .col-b { text-align: left; padding-left: 5px; }
+.price-table .col-c,
+.price-table .col-d,
+.price-table .col-e { text-align: right; }
 
-/* Eingabefelder */
-#page14-content input.menge-input { background-color: #fff8dc; padding: 5px; width: 80px; text-align: center; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    #page14-content .row { display: block; }
-    #page14-content .row > div,
-    #page14-content .row > input { display: block; width: 100%; text-align: left; margin-bottom: 5px; }
-    #page14-content input.menge-input { width: 100%; }
-    #gesamtSumme14 { text-align: center; }
+.price-table input.menge-input {
+    background-color: #fff8dc;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
 }
-/* ================================
-   SEITE 14.3 – ROTH
-================================ */
-#content-14-3 {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-/* Überschriften */
-#content-14-3 .title { text-align: center; font-weight: bold; font-size: 24px; margin-top: 25px; }
-#content-14-3 .subtitle { text-align: center; font-weight: bold; font-size: 18px; margin-top: 20px; }
-#content-14-3 .midtitle { text-align: center; font-weight: bold; font-size: 16px; margin-top: 15px; }
-
-/* Gesamtsumme */
-#gesamtSumme143 { text-align: center; font-weight: normal; font-size: 14px; margin-top: 25px; }
-
-/* Zeilen-Grid */
-#content-14-3 .row {
-    display: grid;
-    grid-template-columns: 160px 4fr 100px 100px 120px 120px;
-    gap: 15px;
-    margin-bottom: 12px;
-    align-items: center;
-}
-
-/* Spalten */
-#content-14-3 .col-a { text-align: left; font-weight: bold; }
-#content-14-3 .col-b { text-align: left; padding-left: 5px; }
-#content-14-3 .col-c,
-#content-14-3 .col-d,
-#content-14-3 .col-e { text-align: right; }
-#content-14-3 .col-d,
-#content-14-3 .col-e { font-weight: normal; }
-
-/* Eingabefelder */
-#content-14-3 input.menge-input { background-color: #fff8dc; padding: 5px; width: 80px; text-align: center; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    #content-14-3 .row { display: block; }
-    #content-14-3 .row > div,
-    #content-14-3 .row > input { display: block; width: 100%; text-align: left; margin-bottom: 5px; }
-    #content-14-3 input.menge-input { width: 100%; }
-    #gesamtSumme143 { text-align: center; }
-}
-
 /* ================================
    Smartphone – global für alle Seiten
 ================================ */

@@ -50,7 +50,7 @@ function login() {
 
     currentUser = u;
     startTimer();
-    showPage("page-select");
+    showPage("page-3");
 }
 
 function forgotPassword() {
