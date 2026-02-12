@@ -161,10 +161,7 @@ function submitPage5() {
 
     errorDiv.innerText = "";
 
-    // Daten können hier gespeichert oder weitergeleitet werden
-    // z.B. localStorage, JSON-Objekt oder später für PDF/Email
-
-    alert("Daten gespeichert! Weiter zu Seite 6.");
+    savePage5Data();
     
     showPage("page-4");
 }
@@ -432,6 +429,17 @@ function berechneGesamt143() {
     }
 }
 
+function savePage5Data() {
+    const ids = [
+        "pj-contact", "pj-number", "shk-name", "shk-contact",
+        "shk-email", "shk-phone", "site-address", "execution-date"
+    ];
+
+    const obj = {};
+    ids.forEach(id => obj[id] = (document.getElementById(id)?.value || "").trim());
+
+    localStorage.setItem("page5Data", JSON.stringify(obj));
+}
 
 async function loadPage40() {
 
@@ -440,6 +448,40 @@ async function loadPage40() {
     if (titleEl) {
         titleEl.innerText = (angebotTyp === "anfrage") ? "Anfrage" : "Kostenvoranschlag";
     }
+
+// Anfrage-Daten anzeigen (nur wenn angebotTyp === "anfrage")
+const anfrageBox = document.getElementById("anfrage-daten");
+const anfrageContent = document.getElementById("anfrage-daten-content");
+
+if (angebotTyp === "anfrage") {
+    const p5 = JSON.parse(localStorage.getItem("page5Data") || "{}");
+
+    const labels = {
+        "pj-contact": "Ansprechpartner bei PJ",
+        "pj-number": "SHK – PJ-Kunden-Nr.",
+        "shk-name": "SHK Name/Firma",
+        "shk-contact": "SHK Ansprechpartner",
+        "shk-email": "SHK E-Mail",
+        "shk-phone": "SHK Telefon-Nr.",
+        "site-address": "Adresse Baustelle",
+        "execution-date": "Gewünschter Ausführungstermin"
+    };
+
+    let html = "";
+    Object.keys(labels).forEach(id => {
+        const val = (p5[id] || "").trim();
+        if (val) {
+            html += `<div style="margin:6px 0;"><strong>${labels[id]}:</strong> ${val}</div>`;
+        }
+    });
+
+    if (anfrageBox && anfrageContent) {
+        anfrageContent.innerHTML = html || "<div>Keine Anfrage-Daten vorhanden.</div>";
+        anfrageBox.style.display = "block";
+    }
+} else {
+    if (anfrageBox) anfrageBox.style.display = "none";
+}
 
     const container = document.getElementById("summary-content");
     const hinweiseContainer = document.getElementById("hinweise-content");
@@ -546,6 +588,7 @@ function direktZumAngebot() {
     });
 
     if (alleAusgefüllt) {
+        savePage5Data();
         localStorage.setItem("angebotTyp", "anfrage");
         showPage("page-40");
     } else {
