@@ -142,3 +142,25 @@ button:active {
     text-align: right;
 }
 
+/* ================================
+   Allgemeine Hinweise (ndf4.csv)
+================================ */
+#hinweise-content {
+    text-align: left;
+}
+
+#hinweise-content .title,
+#hinweise-content .subtitle,
+#hinweise-content .midtitle {
+    text-align: left;
+}
+
+#hinweise-content .hinweis-row {
+    text-align: left;
+    margin: 6px 0;
+    line-height: 1.5;
+}
+#hinweise-content {
+    max-width: 1000px;
+    margin: 30px auto;
+}
