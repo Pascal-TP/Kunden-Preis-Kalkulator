@@ -497,7 +497,7 @@ async function loadPage40() {
                 gesamt += menge * preis;
             }
         });
-
+}
 const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
 
 const titelElement = document.getElementById("page40-title");
@@ -507,8 +507,6 @@ if (angebotTyp === "anfrage") {
 } else {
     titelElement.innerText = "Kostenvoranschlag";
 }
-
-    }
 
     document.getElementById("angebotspreis").innerText =
         "Angebotspreis: " +
@@ -541,6 +539,7 @@ try {
 
 } catch (e) {
     console.error("Fehler beim Laden der Hinweise (ndf4.csv):", e);
+}
 }
 
 function direktZumAngebot() {
