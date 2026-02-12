@@ -571,8 +571,8 @@ function printPage40() {
 }
 
 function sendMailPage40() {
-    const subject = `Kostenvoranschlag Peter Jensen - NDF - ${new Date().toLocaleDateString("de-DE")}`;
-     const body = encodeURIComponent(document.getElementById("page-40").innerText);
+    const subject = `Schon Kostenvoranschlag NDF - ${new Date().toLocaleDateString("de-DE")}`;
+    const body = encodeURIComponent(document.getElementById("page-40").innerText);
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
