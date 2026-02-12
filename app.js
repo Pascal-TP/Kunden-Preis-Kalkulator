@@ -577,9 +577,6 @@ function sendMailPage40() {
 }
 
 
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-}
-
 function clearInputs() {
 
     // Alles aus LocalStorage löschen
