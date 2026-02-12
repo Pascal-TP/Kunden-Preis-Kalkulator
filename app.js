@@ -34,6 +34,9 @@ function showPage(id) {
     if (id === "page-14-2") {
         loadPage142();
     }
+    if (id === "page-8") {
+        loadPage8();
+    }
 }
 
 function login() {
@@ -665,6 +668,7 @@ function clearInputs() {
         "page14-content",
         "content-14-3",
         "content-14-2",
+        "content-8",
         "summary-content",
         "hinweise-content"
     ];
@@ -685,6 +689,9 @@ function clearInputs() {
 
     const sum142 = document.getElementById("gesamtSumme142");
     if (sum142) sum142.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum8 = document.getElementById("gesamtSumme8");
+    if (sum8) sum8.innerText = "Gesamtsumme Angebot: 0,00 €";
 
     // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
     page14Loaded = false;
@@ -812,6 +819,128 @@ function berechneGesamt142() {
     saveSeitenSumme("page-14-2", sum);
 
     const gesamtDiv = document.getElementById("gesamtSumme142");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+// -----------------------------
+// SEITE 8 – Fräsen (ndf6.csv)
+// -----------------------------
+function loadPage8() {
+
+    const container = document.getElementById("content-8");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("ndf6.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+
+            const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page8Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                        <div class="row">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                            <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow8(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme8" class="gesamt">
+                        Gesamtsumme: 0,00 €
+                     </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt8();
+        });
+}
+function calcRow8(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page8Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page8Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt8();
+}
+function berechneGesamt8() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-8 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-8", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme8");
     if (gesamtDiv) {
         gesamtDiv.innerText =
             "Gesamtsumme Angebot: " +
