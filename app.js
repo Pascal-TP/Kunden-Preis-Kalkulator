@@ -435,6 +435,12 @@ function berechneGesamt143() {
 
 async function loadPage40() {
 
+    const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+    const titleEl = document.getElementById("page40-title");
+    if (titleEl) {
+        titleEl.innerText = (angebotTyp === "anfrage") ? "Anfrage" : "Kostenvoranschlag";
+    }
+    
     const container = document.getElementById("summary-content");
     const hinweiseContainer = document.getElementById("hinweise-content");
 
@@ -508,14 +514,17 @@ if (angebotTyp === "anfrage") {
         "Angebotspreis: " +
         gesamt.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
 
-    // Hinweise laden
+    // Hinweise laden (ndf4.csv)
+try {
+    const hinweiseContainer = document.getElementById("hinweise-content");
+    if (!hinweiseContainer) return;
+
     const hinweisRes = await fetch("ndf4.csv");
     const hinweisText = await hinweisRes.text();
-    const lines = hinweisText.split("\n").slice(1);
+    const hinweisLines = hinweisText.split("\n").slice(1);
 
     let html = "";
-
-    lines.forEach(line => {
+    hinweisLines.forEach(line => {
         if (!line.trim()) return;
 
         const cols = line.split(";");
@@ -529,6 +538,9 @@ if (angebotTyp === "anfrage") {
     });
 
     hinweiseContainer.innerHTML = html;
+
+} catch (e) {
+    console.error("Fehler beim Laden der Hinweise (ndf4.csv):", e);
 }
 
 function direktZumAngebot() {
@@ -610,15 +622,42 @@ function sendMailPage40() {
 
 function clearInputs() {
 
-    // Alles aus LocalStorage löschen
+    // localStorage komplett löschen
     localStorage.clear();
 
-    // Alle Inputfelder im Dokument leeren
-    document.querySelectorAll("input").forEach(input => {
-        input.value = "";
+    // Eingabefelder im DOM leeren
+    document.querySelectorAll("input").forEach(inp => inp.value = "");
+
+    // Dynamische Inhalte leeren (damit nichts „stehen bleibt“)
+    const idsToClear = [
+        "page14-content",
+        "content-14-3",
+        "summary-content",
+        "hinweise-content"
+    ];
+    idsToClear.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = "";
     });
 
-    // Zurück zu Startseite
+    // Summen-Anzeige zurücksetzen
+    const angebotspreis = document.getElementById("angebotspreis");
+    if (angebotspreis) angebotspreis.innerText = "Angebotspreis: 0,00 €";
+
+    const sum14 = document.getElementById("gesamtSumme14");
+    if (sum14) sum14.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum143 = document.getElementById("gesamtSumme143");
+    if (sum143) sum143.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
+    page14Loaded = false;
+    // Seite 14.3 hat kein Flag, daher reicht Container leeren
+
+    // Angebots-Summen Objekt zurücksetzen (falls du es im RAM nutzt)
+    angebotSummen = {};
+
+    // zurück
     showPage("page-3");
 }
 
