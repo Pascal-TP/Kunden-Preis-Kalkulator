@@ -164,9 +164,9 @@ function submitPage5() {
     // Daten können hier gespeichert oder weitergeleitet werden
     // z.B. localStorage, JSON-Objekt oder später für PDF/Email
 
-    alert("Daten gespeichert! Weiter zu Seite 6 oder KV-Berechnung.");
-    // Beispiel: Weiterleitung auf Seite 6
-    // showPage("page-6");
+    alert("Daten gespeichert! Weiter zu Seite 6.");
+    
+    showPage("page-4");
 }
 /* ===================================
    SEITE 14 – CSV LADEN + SPEICHERN
