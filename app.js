@@ -539,16 +539,31 @@ function direktZumAngebot() {
 
 
 function printPage40() {
-    const printContents = document.getElementById("page-40").cloneNode(true);
-    // Buttons entfernen
-    printContents.querySelectorAll("button").forEach(b => b.remove());
 
-    const w = window.open("", "PRINT", "height=600,width=800");
-    w.document.write("<html><head><title>Kostenvoranschlag</title>");
-    w.document.write('<link rel="stylesheet" href="style.css">');
-    w.document.write("</head><body>");
-    w.document.write(printContents.innerHTML);
-    w.document.write("</body></html>");
+    const original = document.getElementById("page-40").cloneNode(true);
+
+    // Buttons entfernen
+    original.querySelectorAll("button").forEach(b => b.remove());
+
+    // Logo hinzufügen (falls es global oben liegt)
+    const logo = document.querySelector(".logo");
+    const logoHTML = logo ? logo.outerHTML : "";
+
+    const w = window.open("", "PRINT", "height=800,width=1000");
+
+    w.document.write(`
+        <html>
+        <head>
+            <title>Kostenvoranschlag</title>
+            <link rel="stylesheet" href="style.css">
+        </head>
+        <body>
+            ${logoHTML}
+            ${original.innerHTML}
+        </body>
+        </html>
+    `);
+
     w.document.close();
     w.focus();
     w.print();
@@ -556,18 +571,32 @@ function printPage40() {
 }
 
 function sendMailPage40() {
-    const subject = `Schon Kostenvoranschlag NDF - ${new Date().toLocaleDateString("de-DE")}`;
-    const body = encodeURIComponent(document.getElementById("page-40").innerText);
+    const subject = `Kostenvoranschlag Peter Jensen - NDF - ${new Date().toLocaleDateString("de-DE")}`;
+     const content = document.getElementById("page-40").innerHTML;
+
+    const body = encodeURIComponent(`
+        <html>
+        <body>
+            <h2>Kostenvoranschlag NDF</h2>
+            ${content}
+        </body>
+        </html>
+    `);
+
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
 function clearInputs() {
-    // Alle Eingaben löschen
-    localStorage.removeItem("page14Data");
-    localStorage.removeItem("page142Data");
-    localStorage.removeItem("page143Data");
-    localStorage.removeItem("angebotSummen");
-    // Zurück zu Seite 3
+
+    // Alles aus LocalStorage löschen
+    localStorage.clear();
+
+    // Alle Inputfelder im Dokument leeren
+    document.querySelectorAll("input").forEach(input => {
+        input.value = "";
+    });
+
+    // Zurück zu Startseite
     showPage("page-3");
 }
 
