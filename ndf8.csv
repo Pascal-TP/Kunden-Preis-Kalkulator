@@ -1,33 +1,54 @@
 ﻿EDV-Nr./Bezeichnung;Beschreibung;Preiseinheit;Preis
-Titel;Flächen-Warmwasser-Fußbodenheizung - Roth;;
-Untertitel;als Tackersystem liefern und montieren;;
-;- Roth System-Verbundfaltplatte (diverse Wärmeleitgruppen);;
-;- Roth Heizrohr PERTEX S5 17 mm;;
-;- Tackernadeln für Heizrohr 14-17 mm | Hausmarke;;
-;- concept | Roth-Randdämmstreifen 10/160 | selbstklebend | 25 m / Rolle (4 Rollen /Sack);;
-;- Klebeband extrem reißfest | 50 mm breit | Rolle = 66 m | Hausmarke;;
-;- Klemmverschraubung Universal 17 mm | Roth;;
-;- Kupplung PressCheck 17 mm;;
-;- Winkelspangen, Kunststoff schwarz, Rohrführung zum Umlenken der Heizrohre im Verteilerbereich, für Rohre 14-18 mm;;
-;- Dehnfugenschutzrohr zum Isolieren der Vor-/Rückläufe;;
-;- Dehnfugenschutzrohr geschlitzt für Rohr bis 20 mm im Bereich der Dehnfugen | ca. 300 mm lang | Hausmarke;;
-;- Estrichmessstellenmarkierung | Hausmarke;;
-;- Baustelleneinrichtung, Müllentsorgung, Bauleitung, Heizflächenauslegung und Abdrücken der Fußbodenheizung mit Luft sind im Preis enthalten;;
-;- Montageleistung Tacker-Systemrohr (nicht enthalten: Montage der Verteiler, Schränke, Klemmleisten, Stellantriebe, Raumthermostate;;
+Titel;Verteiler;;
+Untertitel;Heizkreisverteiler;;
+;- Lieferung und Montage;;
+;- jeder Heizkreisverteiler mit Anschluss-Set;;
 ;;;
-100BHW046;Verbundplatte 20-2 mm WLG 035;€/m²;31,9
-100BHW047;Verbundplatte 20-2 mm WLG 040;€/m²;31,2
-100BHW048;Verbundplatte 30-2 mm WLG 040;€/m²;32,1
-100BHW049;Verbundplatte 30-3 mm WLG 045;€/m²;31,8
+H54NO1000 01;HKV-D 2;€/Stk.;343
+H54NO1005 01;HKV-D 3;€/Stk.;348,7
+H54NO1010 01;HKV-D 4;€/Stk.;374,8
+H54NO1015 01;HKV-D 5;€/Stk.;404
+H54NO1020 01;HKV-D 6;€/Stk.;431,7
+H54NO1025 01;HKV-D 7;€/Stk.;455
+H54NO1030 01;HKV-D 8;€/Stk.;476,3
+H54NO1035 01;HKV-D 9;€/Stk.;503,1
+H54NO1040 01;HKV-D 10;€/Stk.;437,4
+H54NO1045 01;HKV-D 11;€/Stk.;563,8
+H54NO1050 01;HKV-D 12;€/Stk.;591,3
 ;;;
-Zwischentitel;wir vor, jedoch mit Systemplatte Flipfix;;
-100BHW045;2 mm Hohlkammer-Platte;€/m²;30,4
-100BHW050;nur Rohr, Dämmung komplett bauseits;€/m²;21,7
+Untertitel;Verteilerschränke;;
+;- Lieferung und Montage;;
 ;;;
-Titel;Mehrpreise für Rohrvarianten;;
-Untertitel;Für die Verlegung eines anderen Roth-Heizrohrs;;
-100BHW051;X-PERT S5+ 17 mm;€/m²;1,3
-100BHW052;DUOPEX S5 17 mm;€/m²;1,8
+Untertitel;Aufputz;;
+H54NO1100 01;2 - 3 HK;€/Stk.;268,3
+H54NO1105 01;4 - 5 HK;€/Stk.;277,4
+H54NO1110 01;6 - 8 HK;€/Stk.;292,1
+H54NO1115 01;9 - 11 HK;€/Stk.;305
+H54NO1120 01;12 HK;€/Stk.;328,8
 ;;;
-Untertitel;Engerer Verlegeabstand des Heizrohres, zum Beispiel für Kühlfunktion;;
-100BHW053;Verlegeabstand 100 mm;€/m²;3,5
+Untertitel;Unterputz;;
+H54NO1200 01;2 - 3 HK;€/Stk.;271,2
+H54NO1205 01;4 - 5 HK;€/Stk.;280,5
+H54NO1210 01;6 / 8 HK;€/Stk.;295,6
+H54NO1215 01;9 - 11 HK;€/Stk.;308,3
+H54NO1220 01;12 HK;€/Stk.;332,9
+;;;
+Untertitel;Lieferung und Montage bei Beauftragung von Verteilermontage:;;
+;;;
+Untertitel;Regelklemmleiste 230 V + 24 V von bis zu 6 Zonen;;
+;- Verbindung von bis zu max. 12 Stellantrieben | Hausmarke;;
+100BIE017;Regelklemmleiste bis zu 6 Zonen;€/Stk.;75,5
+;;;
+Untertitel;Regelklemmleiste 230 V von bis zu 10 Zonen;;
+;- Verbindung von bis zu max. 18 Stellantrieben | Hausmarke;;
+100BIE018;Regelklemmleiste bis zu 10 Zonen;€/Stk.;145,4
+;;;
+Untertitel;Stellantrieb Premium;;
+;- Stromlos geschlossen | Hausmarke;;
+100BIE019;Stellantrieb Premium 230 V 2,5 W;€/Stk.;17,9
+100BIE020;Stellantrieb Premium 24 V;€/Stk.;23,7
+;;;
+Untertitel;Raumthermostat;;
+;- 230 V | Hausmarke;;
+100BIE021;Raumthermostat - Aufputz / Analog;€/Stk.;17,9
+100BIE022;Raumthermostat - LCD-Display Standard;€/Stk.;55,2
