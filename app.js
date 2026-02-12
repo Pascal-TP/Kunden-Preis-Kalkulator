@@ -682,6 +682,9 @@ function clearInputs() {
     const sum143 = document.getElementById("gesamtSumme143");
     if (sum143) sum143.innerText = "Gesamtsumme Angebot: 0,00 €";
 
+    const sum142 = document.getElementById("gesamtSumme142");
+    if (sum142) sum142.innerText = "Gesamtsumme Angebot: 0,00 €";
+
     // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
     page14Loaded = false;
     // Seite 14.3 hat kein Flag, daher reicht Container leeren
