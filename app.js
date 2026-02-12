@@ -664,6 +664,7 @@ function clearInputs() {
     const idsToClear = [
         "page14-content",
         "content-14-3",
+        "content-14-2",
         "summary-content",
         "hinweise-content"
     ];
