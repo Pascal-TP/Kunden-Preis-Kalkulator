@@ -610,7 +610,7 @@ function sendMailPage40() {
         subject = "Anfrage Peter Jensen";
         mailAdresse = "info@ndf-gmbh.de";
     } else {
-        subject = `Schon Kostenvoranschlag NDF - ${new Date().toLocaleDateString("de-DE")}`;
+        subject = `Kostenvoranschlag Peter Jensen - NDF - ${new Date().toLocaleDateString("de-DE")}`;
         mailAdresse = "";
     }
 
