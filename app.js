@@ -3253,6 +3253,7 @@ window.berechneGesamt33 = berechneGesamt33;
 window.loadPage13 = loadPage13;
 window.calcRow13 = calcRow13;
 window.berechneGesamt13 = berechneGesamt13;
+window.onAuthStateChanged = onAuthStateChanged;
 
 
 
