@@ -196,12 +196,11 @@ async function forgotPassword() {
 }
 
 function goToChange() {
-    if (!loginUser.value.trim()) {
-        loginError.innerText = "Nutzername bitte eingeben.";
-        return;
-    }
-    currentUser = loginUser.value.trim();
-    showPage("page-change");
+  if (!auth.currentUser) {
+    loginError.innerText = "Bitte erst anmelden.";
+    return;
+  }
+  showPage("page-change");
 }
 
 async function savePassword() {
@@ -3193,6 +3192,7 @@ window.savePassword = savePassword;
 window.exportLoginLog = exportLoginLog;
 window.showPage = showPage;
 window.clearInputs = clearInputs;
+window.goToChange = goToChange;
 
 
 
