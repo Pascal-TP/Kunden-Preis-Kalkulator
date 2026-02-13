@@ -32,6 +32,21 @@ const fbApp = initializeApp(firebaseConfig);
 const auth = getAuth(fbApp);
 const db = getFirestore(fbApp);
 
+onAuthStateChanged(auth, user => {
+  const info = document.getElementById("login-info");
+
+  if (user) {
+    if (info) {
+      info.innerText = "Angemeldet als: " + user.email;
+    }
+
+    updateAdminUI_();
+  } else {
+    if (info) {
+      info.innerText = "";
+    }
+  }
+});
 
 
 function showPage(id) {
@@ -151,6 +166,9 @@ async function logout() {
     // optional: Login-Felder leeren
     loginPass.value = "";
     // loginUser.value = ""; // nur wenn du auch die Mail leeren willst
+
+    const info = document.getElementById("login-info");
+    if (info) info.innerText = "";
 
     showPage("page-login");
     loginError.innerText = "Erfolgreich abgemeldet.";
@@ -3168,5 +3186,101 @@ window.goToChange = goToChange;
 window.logout = logout;
 window.submitPage5 = submitPage5;
 window.direktZumAngebot = direktZumAngebot;
+window.calcRow8 = calcRow8;
+window.printPage40 = printPage40;
+window.sendMailPage40 = sendMailPage40;
+window.calcRowPage14 = calcRowPage14;
+window.saveSeitenSumme = saveSeitenSumme;
+window.getGesamtAngebotssumme = getGesamtAngebotssumme;
+window.loadPage14 = loadPage14;
+window.berechneGesamt14 = berechneGesamt14;
+window.loadPage143 = loadPage143;
+window.calcRow143 = calcRow143;
+window.berechneGesamt143 = berechneGesamt143;
+window.savePage5Data = savePage5Data;
+window.loadPage40 = loadPage40;
+window.clearInputs = clearInputs;
+window.loadPage142 = loadPage142;
+window.calcRow142 = calcRow142;
+window.berechneGesamt142 = berechneGesamt142;
+window.loadPage8 = loadPage8;
+window.berechneGesamt8 = berechneGesamt8;
+window.loadPage18 = loadPage18;
+window.calcRow18 = calcRow18;
+window.berechneGesamt18 = berechneGesamt18;
+window.loadPage20 = loadPage20;
+window.calcRow20 = calcRow20;
+window.berechneGesamt20 = berechneGesamt20;
+window.loadPage21 = loadPage21;
+window.calcRow21 = calcRow21;
+window.berechneGesamt21 = berechneGesamt21;
+window.loadPage22 = loadPage22;
+window.calcRow22 = calcRow22;
+window.berechneGesamt22 = berechneGesamt22;
+window.loadPage9 = loadPage9;
+window.calcRow9 = calcRow9;
+window.berechneGesamt9 = berechneGesamt9;
+window.loadPage10 = loadPage10;
+window.calcRow10 = calcRow10;
+window.berechneGesamt10 = berechneGesamt10;
+window.loadPage23 = loadPage23;
+window.calcRow23 = calcRow23;
+window.berechneGesamt23 = berechneGesamt23;
+window.loadPage24 = loadPage24;
+window.calcRow24 = calcRow24;
+window.berechneGesamt24 = berechneGesamt24;
+window.loadPage25 = loadPage25;
+window.calcRow25 = calcRow25;
+window.berechneGesamt25 = berechneGesamt25;
+window.loadPage27 = loadPage27;
+window.calcRow27 = calcRow27;
+window.berechneGesamt27 = berechneGesamt27;
+window.loadPage28 = loadPage28;
+window.calcRow28 = calcRow28;
+window.berechneGesamt28 = berechneGesamt28;
+window.loadPage30 = loadPage30;
+window.calcRow30 = calcRow30;
+window.berechneGesamt30 = berechneGesamt30;
+window.loadPage31 = loadPage31;
+window.calcRow31 = calcRow31;
+window.berechneGesamt31 = berechneGesamt31;
+window.loadPage32 = loadPage32;
+window.calcRow32 = calcRow32;
+window.berechneGesamt32 = berechneGesamt32;
+window.loadPage33 = loadPage33;
+window.calcRow33 = calcRow33;
+window.berechneGesamt33 = berechneGesamt33;
+window.loadPage13 = loadPage13;
+window.calcRow13 = calcRow13;
+window.berechneGesamt13 = berechneGesamt13;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

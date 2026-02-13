@@ -13,6 +13,9 @@
 <!-- Countdown -->
 <div id="timer">Logout in: 10:00</div>
 
+<!-- NEU: Angemeldet als -->
+<div id="login-info"></div>
+
 <!-- SEITE 1: LOGIN -->
 <div class="page active" id="page-login">
     <h2>Login</h2>
@@ -22,7 +25,7 @@
 
     <div class="error" id="loginError"></div>
 
-    <button onclick="login()">Anmelden</button>
+    <button onclick="login()">Anmelden / Weiter</button>
 
     <button onclick="forgotPassword()">Passwort vergessen</button>
     <button onclick="goToChange()">Passwort ändern</button>
@@ -131,18 +134,19 @@
 
     <!-- Auswahlbuttons untereinander -->
     <div>
-        <button onclick="showPage('page-12')">Estrich</button><br>
+        <button onclick="showPage('page-9')">Estrich</button><br>
         <button onclick="showPage('page-13')">unbeheizte Fläche</button><br>
         <button onclick="showPage('page-14-1')">Tackersystem</button><br>
         <button onclick="showPage('page-26')">Klettsystem</button><br>
         <button onclick="showPage('page-29')">Noppensystem</button><br>
         <button onclick="showPage('page-33')">Industrieboden</button>
+	<button onclick="showPage('page-18')">Unterdämmung</button>
     </div>
 
     <!-- Navigationsbuttons nebeneinander -->
     <div style="margin-top:40px;">
         <button onclick="showPage('page-4')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        
     </div>
 </div>
 
@@ -249,7 +253,7 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-6')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
@@ -313,7 +317,7 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück</button>
-        <button onclick="showPage('page-10')">Weiter</button>
+        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
@@ -382,7 +386,7 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-11')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
@@ -483,7 +487,7 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-7')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
