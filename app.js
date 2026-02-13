@@ -38,14 +38,14 @@ onAuthStateChanged(auth, user => {
 
   if (user) {
     if (info) {
-      info.innerText = "Angemeldet als: " + user.email;    
+      info.innerText = "Angemeldet als: " + user.email;
+    }
   } else {
     if (info) info.innerText = "";
     updateAdminUI_();
     showPage("page-login");
   }
 });
-
 
 function showPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
