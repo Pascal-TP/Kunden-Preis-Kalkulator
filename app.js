@@ -33,15 +33,6 @@ const auth = getAuth(fbApp);
 const db = getFirestore(fbApp);
 
 
-async function hashPassword(pw) {
-  const enc = new TextEncoder().encode(pw);
-  const buf = await crypto.subtle.digest("SHA-256", enc);
-  return Array.from(new Uint8Array(buf))
-    .map(b => b.toString(16).padStart(2,"0"))
-    .join("");
-}
-
-    
 
 function showPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
@@ -269,14 +260,6 @@ function updateAdminUI_() {
   const isAdmin = (auth.currentUser?.email || "").toLowerCase() === adminEmail.toLowerCase();
 
   btn.classList.toggle("hidden", !isAdmin);
-}
-
-async function adminMakeHash() {
-  const pw = prompt("Passwort für Hash:");
-  if (!pw) return;
-  const h = await hashPassword(pw);
-  console.log("HASH:", h);
-  alert("Hash steht in der Konsole (F12 → Console).");
 }
 
 function startTimer() {
