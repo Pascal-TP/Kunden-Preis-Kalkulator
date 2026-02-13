@@ -8,7 +8,8 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updatePassword,
-  signOut
+  signOut,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 import {
@@ -3253,7 +3254,7 @@ window.berechneGesamt33 = berechneGesamt33;
 window.loadPage13 = loadPage13;
 window.calcRow13 = calcRow13;
 window.berechneGesamt13 = berechneGesamt13;
-window.onAuthStateChanged = onAuthStateChanged;
+
 
 
 
