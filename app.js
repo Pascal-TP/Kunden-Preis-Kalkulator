@@ -3166,7 +3166,7 @@ window.showPage = showPage;
 window.clearInputs = clearInputs;
 window.goToChange = goToChange;
 window.logout = logout;
-
-
+window.submitPage5 = submitPage5;
+window.direktZumAngebot = direktZumAngebot;
 
 
