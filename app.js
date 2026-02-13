@@ -9,8 +9,10 @@ import {
   sendPasswordResetEmail,
   updatePassword,
   signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  onAuthStateChanged,
+  setPersistence,
+  inMemoryPersistence
+} from "https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js";
 
 import {
   getFirestore,
@@ -31,6 +33,31 @@ const firebaseConfig = {
 
 const fbApp = initializeApp(firebaseConfig);
 const auth = getAuth(fbApp);
+(async () => {
+  // 1) Persistenz: nichts im Browser behalten
+  await setPersistence(auth, inMemoryPersistence);
+
+  // 2) EINMALIGER Cleanup: falls noch eine alte Session (local) rumliegt, abmelden
+  // (nachdem du das einmal deployed hast, ist es danach dauerhaft sauber)
+  await signOut(auth);
+
+  // 3) Listener erst DANACH
+  onAuthStateChanged(auth, user => {
+    const info = document.getElementById("login-info");
+
+    if (user) {
+      if (info) info.innerText = "Angemeldet als: " + user.email;
+      updateAdminUI_();
+    } else {
+      if (info) info.innerText = "";
+      updateAdminUI_();
+      showPage("page-login");
+    }
+  });
+})();
+
+
+
 const db = getFirestore(fbApp);
 
 onAuthStateChanged(auth, user => {
