@@ -351,13 +351,12 @@ function refreshRabattDisplays() {
 
 function submitPage5() {
     const fields = [
-        {id: "pj-contact", name: "Ansprechpartner bei PJ"},
-        {id: "pj-number", name: "SHK – PJ-Kunden-Nr."},
-        {id: "shk-name", name: "SHK Name/Firma"},
+        {id: "bv-contact", name: "Kontakt / Ansprechpartner"},
+        {id: "bv-strasse", name: "Straße, Hausnummer"},
+        {id: "bv-ort", name: "PLZ, Ort"},
         {id: "shk-contact", name: "SHK Ansprechpartner"},
         {id: "shk-email", name: "SHK E-Mail"},
         {id: "shk-phone", name: "SHK Telefon-Nr."},
-        {id: "site-address", name: "Adresse Baustelle"},
         {id: "execution-date", name: "Gewünschter Ausführungstermin"}
     ];
 
@@ -384,8 +383,8 @@ function submitPage5() {
 
 function savePage5Data() {
     const ids = [
-        "pj-contact", "pj-number", "shk-name", "shk-contact",
-        "shk-email", "shk-phone", "site-address", "execution-date"
+        "bv-contact", "bv-strasse", "bv-ort", "shk-contact",
+        "shk-email", "shk-phone", "execution-date"
     ];
 
     const obj = {};
@@ -710,15 +709,15 @@ async function loadPage40() {
     		const p5 = JSON.parse(localStorage.getItem("page5Data") || "{}");
 
     const labels = {
-        "pj-contact": "Ansprechpartner bei PJ",
-        "pj-number": "SHK – PJ-Kunden-Nr.",
-        "shk-name": "SHK Name/Firma",
+        "bv-contact": "Ansprechpartner bei PJ",
+        "bv-strasse": "SHK – PJ-Kunden-Nr.",
+        "bv-ort": "SHK Name/Firma",
         "shk-contact": "SHK Ansprechpartner",
         "shk-email": "SHK E-Mail",
         "shk-phone": "SHK Telefon-Nr.",
-        "site-address": "Adresse Baustelle",
         "execution-date": "Gewünschter Ausführungstermin"
     };
+
 
     let html = "";
     Object.keys(labels).forEach(id => {
