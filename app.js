@@ -358,7 +358,7 @@ function submitPage5() {
         {id: "shk-email", name: "SHK E-Mail"},
         {id: "shk-phone", name: "SHK Telefon-Nr."},
         {id: "execution-date", name: "Gewünschter Ausführungstermin"},
-        {id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne"}
+        {id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne"},
         {id: "zeichnung-plaene"; name:"Zeichnung / Pläne"},
         {id: "zaehlerschrank"; name:"Standort Zählerschrank"},       
         {id: "wechselrichter_speicher"; name:"Standort Wechselrichter + Speicher"},
