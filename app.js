@@ -359,12 +359,12 @@ function submitPage5() {
         {id: "shk-phone", name: "SHK Telefon-Nr."},
         {id: "execution-date", name: "Gewünschter Ausführungstermin"},
         {id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne"},
-        {id: "zeichnung-plaene"; name:"Zeichnung / Pläne"},
-        {id: "zaehlerschrank"; name:"Standort Zählerschrank"},       
-        {id: "wechselrichter_speicher"; name:"Standort Wechselrichter + Speicher"},
-        {id: "jahresstrombedarf"; name:"Jahresstrombedarf kWh"},
-        {id: "waermepumpe_strombedarf"; name:"Wärmepumpe Strombedarf kWh"},
-        {id: "wallbox"; name:"Wallbox"}
+        {id: "zeichnung-plaene", name:"Zeichnung / Pläne"},
+        {id: "zaehlerschrank", name:"Standort Zählerschrank"},       
+        {id: "wechselrichter_speicher", name:"Standort Wechselrichter + Speicher"},
+        {id: "jahresstrombedarf", name:"Jahresstrombedarf kWh"},
+        {id: "waermepumpe_strombedarf", name:"Wärmepumpe Strombedarf kWh"},
+        {id: "wallbox", name:"Wallbox"}
     ];
 
     let missing = [];
@@ -927,10 +927,10 @@ function sendMailPage40() {
     let mailAdresse = "";
 
     if (angebotTyp === "anfrage") {
-        subject = "Anfrage Peter Jensen";
-        mailAdresse = "info@ndf-gmbh.de";
+        subject = "Anfrage";
+        mailAdresse = "info@tga-nord.de";
     } else {
-        subject = `Kostenvoranschlag Peter Jensen - NDF - ${new Date().toLocaleDateString("de-DE")}`;
+        subject = `Kostenvoranschlag - TGA - ${new Date().toLocaleDateString("de-DE")}`;
         mailAdresse = "";
     }
 
