@@ -52,7 +52,8 @@
     <h2>Bitte auswählen</h2>
 
     <button onclick="showPage('page-4')">KV</button>
-    <button onclick="showPage('page-5')">Anfrage an NDF</button>
+    <button onclick="showPage('page-5')">Anfrage an NDF</button><br>
+    <button onclick="showPage('page-3-1')">Info: Der Weg zur Photovoltaikanlage</button>
   
     <p class="hint">
         KV = Kostenvoranschlag – die schnelle und direkte Ermittlung eines Richtpreises für den Kunden<br><br>
@@ -65,6 +66,27 @@
     </button>
 
 </div>
+
+<!-- SEITE 3.1: Info: Der Weg zur Photovoltaikanlage</button -->
+<div class="page" id="page-3-1">
+    <h2>Der Weg zur Photovoltaikanlage</h2>
+
+    <iframe 
+        src="pdf/TGA_Schema.pdf"
+        width="100%"
+        height="800px"
+        style="border: none;">
+    </iframe>
+    <object data="pdf/TGA_Schema.pdf" type="application/pdf" width="100%" height="800px">
+    <p>PDF kann nicht angezeigt werden. 
+       <a href="pdf/TGA_Schema.pdf">Hier herunterladen</a>.
+    </p>
+</object>
+    <button onclick="showPage('page-3')">Zurück</button>
+    <button id="btnExportLog" class="hidden" onclick="exportLoginLog()">Login-Log herunterladen</button>
+
+</div>
+
 
 <!-- SEITE 4: HAUPTMENÜ KV -->
 <div class="page" id="page-4">
