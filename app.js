@@ -401,9 +401,9 @@ function savePage5Data() {
     localStorage.setItem("page5Data", JSON.stringify(obj));
 }
 
-		// -----------------------------
-		// SEITE 14 – Tackersystem Hausmarke (ndf1.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 14 – Wechselrichter "strang" (tga4.csv)
+// -----------------------------
 
 let page14Loaded = false;
 
@@ -412,7 +412,7 @@ function loadPage14() {
     if (page14Loaded) return; // nicht doppelt laden
     page14Loaded = true;
 
-    fetch("ndf1.csv")
+    fetch("tga4.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1068,9 +1068,9 @@ if (p40r) p40r.innerText = "Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €";
     showPage("page-3");
 }
 
-		// -----------------------------
-		// SEITE 14.2 – Tackersystem UPONOR (ndf5.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 14.2 – Wechselrichter "hybrid" (tga5.csv)
+// -----------------------------
 
 function loadPage142() {
 
@@ -1079,7 +1079,7 @@ function loadPage142() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf5.csv")
+    fetch("tga5.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1209,9 +1209,9 @@ function berechneGesamt142() {
     }
 }
 
-		// -----------------------------
-		// SEITE 8 – Fräsen (ndf6.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 8 – Optimierer (tga10.csv)
+// -----------------------------
 
 function loadPage8() {
 
@@ -1220,7 +1220,7 @@ function loadPage8() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf6.csv")
+    fetch("tga10.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1383,9 +1383,9 @@ function berechneGesamt8() {
     }
 }
 
-		// -----------------------------
-		// SEITE 18 – Unterdämmung (ndf7.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 18 – Wallbox (tga8.csv)
+// -----------------------------
 
 function loadPage18() {
 
@@ -1394,7 +1394,7 @@ function loadPage18() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf7.csv")
+    fetch("tga8.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1525,9 +1525,9 @@ function berechneGesamt18() {
     }
 }
 
-		// -----------------------------
-		// SEITE 20 – Verteiler & Regeltechnik (ndf8.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 20 – Zählerschrank (tga9.csv)
+// -----------------------------
 
 function loadPage20() {
 
@@ -1536,7 +1536,7 @@ function loadPage20() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf8.csv")
+    fetch("tga9.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1667,9 +1667,9 @@ function berechneGesamt20() {
     }
 }
 
-		// -----------------------------
-		// SEITE 21 – Dienstleistungen (ndf9.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 21 – Zubehör (tga7.csv)
+// -----------------------------
 
 function loadPage21() {
 
@@ -1678,7 +1678,7 @@ function loadPage21() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf9.csv")
+    fetch("tga7.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1809,9 +1809,9 @@ function berechneGesamt21() {
     }
 }
 
-		// -----------------------------
-		// SEITE 22 – Zuschläge (ndf10.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 22 – Extras (Zählerschrank) (tga10.csv)
+// -----------------------------
 
 function loadPage22() {
 
@@ -1820,7 +1820,7 @@ function loadPage22() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf10.csv")
+    fetch("tga10.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -1951,9 +1951,9 @@ function berechneGesamt22() {
     }
 }
 
-		// -----------------------------
-		// SEITE 9 – Estrich (ndf11.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 9 – Gerüst (tga3.csv)
+// -----------------------------
 
 function loadPage9() {
 
@@ -1962,7 +1962,7 @@ function loadPage9() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf11.csv")
+    fetch("tga3.csv")
         .then(response => response.text())
         .then(data => {
 
@@ -2093,9 +2093,9 @@ function berechneGesamt9() {
     }
 }
 
-		// -----------------------------
-		// SEITE 10 – Klett3mm (ndf2.csv)
-		// -----------------------------
+// -----------------------------
+// SEITE 10 – Speicher (tga6.csv)
+// -----------------------------
 
 function loadPage10() {
 
@@ -2104,7 +2104,7 @@ function loadPage10() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("ndf2.csv")
+    fetch("tga6.csv")
         .then(response => response.text())
         .then(data => {
 

@@ -57,7 +57,7 @@
   
     <p class="hint">
         KV = Kostenvoranschlag – die schnelle und direkte Ermittlung eines Richtpreises für den Kunden<br><br>
-        Anfrage an NDF – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes Angebot von NDF per Mail anzufragen.<br>
+        Anfrage an TGA – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes Angebot von TGA per Mail anzufragen.<br>
     </p>
     <button onclick="clearInputs()">Eingaben löschen</button>
     <button onclick="showPage('page-login')">Zurück</button>
@@ -245,20 +245,19 @@
     </div>
 </div>
 
-									<!-- SEITE 14: TACKERSYSTEM -->
+<!-- SEITE 14: Wechselrichter strang -->
 <div class="page" id="page-14">
-    <h2>Tackersystem</h2>
+    <h2>Wechselrichter "strang"</h2>
 
     <div id="page14-content" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-7')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-10')">Zurück</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-<!-- SEITE 14.1: AUSWAHL MARKE -->
+                                                                              <!-- SEITE 14.1: AUSWAHL MARKE -->
 <div class="page" id="page-14-1">
     <h2>Auswahl Marke</h2>
 
@@ -271,14 +270,13 @@
     <button onclick="showPage('page-7')">Zurück</button>
 </div>
 
-									<!-- SEITE 14.3: ROTH -->
+                                                                              <!-- SEITE 14.3:   -->
 <div class="page" id="page-14-3">
 
        <div id="content-14-3" class="price-table"></div>
 
 <div class="button-bar">
-                <button onclick="showPage('page-7')">Zurück</button>
-                <button onclick="showPage('page-18')">Weiter</button>
+                <button onclick="showPage('page-10')">Zurück</button>
                 <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
                </div>
 </div>
@@ -325,12 +323,12 @@
     </div>
 </div>
 
-										<!-- SEITE 41: Hinweis fehlende Anfrage-Daten -->
+<!-- SEITE 41: Hinweis fehlende Anfrage-Daten -->
 <div class="page" id="page-41">
     <h2>Hinweis</h2>
 
     <p>
-        Für eine Anfrage an NDF müssen zuerst die Kontaktdaten vollständig ausgefüllt werden.
+        Für eine Anfrage an TGA müssen zuerst die Kontaktdaten vollständig ausgefüllt werden.
     </p>
 
     <div class="button-bar">
@@ -339,22 +337,22 @@
     </div>
 </div>
 
-											<!-- SEITE 14.2: UPONOR -->
+<!-- SEITE 14.2: Wechselrichter "hyprid" -->
 <div class="page" id="page-14-2">
 
     <div id="content-14-2" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-7')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-10')">Zurück</button>
+        <button onclick="showPage('page-21')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 
 </div>
 
-													<!-- SEITE 8: Frässystem -->
+<!-- SEITE 8: Optimierer -->
 <div class="page" id="page-8">
-    <h2>Fräsen</h2>
+    <h2>Optimierer</h2>
 
     <div id="content-8" class="price-table"></div>
 
@@ -365,22 +363,22 @@
     </div>
 </div>
 
-													<!-- SEITE 18: Unterdämmung -->
+<!-- SEITE 18: Wallbox -->
 <div class="page" id="page-18">
-    <h2>Unterdämmung</h2>
+    <h2>Wallbox</h2>
 
     <div id="content-18" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück</button>
-        <button onclick="showPage('page-20')">Weiter</button>
+        <button onclick="showPage('page-7')">Zurück</button>
+        
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-													<!-- SEITE 20: Verteiler & Regeltechnik -->
+<!-- SEITE 20: Zählerschrank -->
 <div class="page" id="page-20">
-    <h2>Verteiler & Regeltechnik</h2>
+    <h2>Zählerschrank</h2>
 
     <div id="content-20" class="price-table"></div>
 
@@ -391,45 +389,43 @@
     </div>
 </div>
 
-													<!-- SEITE 21: Dienstleistungen -->
+<!-- SEITE 21: Zubehör -->
 <div class="page" id="page-21">
-    <h2>Dienstleistungen</h2>
+    <h2>Zubehör</h2>
 
     <div id="content-21" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-20')">Zurück</button>
-        <button onclick="showPage('page-22')">Weiter</button>
+        <button onclick="showPage('page-142')">Zurück</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-														<!-- SEITE 22: Zuschläge -->
+<!-- SEITE 22: Extras (Zählerschrank) -->
 <div class="page" id="page-22">
-    <h2>Zuschläge</h2>
+    <h2>Extras</h2>
 
     <div id="content-22" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-21')">Zurück</button>
+        <button onclick="showPage('page-20')">Zurück</button>
         <button onclick="direktZumAngebot()">Weiter</button>
     </div>
 </div>
 
-														<!-- SEITE 9: Estrich -->
+<!-- SEITE 9: Gerüst -->
 <div class="page" id="page-9">
-    <h2>Estrich</h2>
+    <h2>Gerüst</h2>
 
     <div id="content-9" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück</button>
-        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="showPage('page-8')">Zurück</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-<!-- SEITE 11: Speicher -->
+<!-- SEITE 10: Speicher -->
 <div class="page" id="page-10">
     <h2>Speicher</h2>
 
@@ -441,7 +437,7 @@
     </div>
 </div>
 
-<!-- SEITE 10: MENÜ Wechselrichter -->
+<!-- SEITE 11: MENÜ Wechselrichter -->
 <div class="page" id="page-11">
     <h2>Menü Trockenbau</h2>
 
