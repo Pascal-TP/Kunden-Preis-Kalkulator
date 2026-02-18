@@ -1646,9 +1646,6 @@ function loadPage20() {
 
   if (container.innerHTML.trim() !== "") return;
 
-  // optional: damit du via CSS 7 Spalten nutzen kannst
-  container.classList.add("with-pos-images");
-
   fetch("tga9.csv")
     .then(response => response.text())
     .then(data => {
@@ -1672,7 +1669,7 @@ function loadPage20() {
       }
 
       // Header-HTML (links nur leere Zelle für Bild-Spalte)
-     function renderHeader20(imgSrc) {
+    function renderHeader20(imgSrc) {
   return `
     <div class="row table-header">
       <div class="header-img-cell">
@@ -1686,6 +1683,7 @@ function loadPage20() {
     </div>
   `;
 }
+
 
 
       lines.forEach((line, index) => {
@@ -1715,20 +1713,15 @@ function loadPage20() {
           return;
         }
         if (colA === "Beschreibung_fett") {
-          html += `
-            <div class="row beschreibung-fett-row">
-              <div class="pos-img-cell"></div>
-              <div class="col-a"></div>
-              <div class="col-b beschreibung-fett">${colB}</div>
-              <div class="col-c"></div>
-              <div class="col-d"></div>
-              <div class="col-e"></div>
-              <div class="col-f"></div>
-            </div>
-          `;
-          headerInserted = false;
-          return;
-        }
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+    </div>
+  `;
+  headerInserted = false;
+  return;
+}
 
         const preis = parseFloat((colD || "").replace(",", "."));
         const preisVorhanden = !isNaN(preis);
@@ -1761,18 +1754,15 @@ function loadPage20() {
       <div class="col-e">0,00 €</div>
     </div>
   `;
+} else {
+  html += `
+    <div class="row no-price">
+      <div class="col-a">${colA}</div>
+      <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+    </div>
+  `;
+  headerInserted = false;
 }
- else {
-          // no-price Zeilen (auch hier 1 Bild-Spalte berücksichtigen!)
-          html += `
-            <div class="row no-price">
-              <div class="pos-img-cell"></div>
-              <div class="col-a">${colA}</div>
-              <div class="col-b" style="grid-column: 3 / 8;">${colB}</div>
-            </div>
-          `;
-          headerInserted = false;
-        }
       });
 
       html += `<div id="gesamtSumme20" class="gesamt">Gesamtsumme: 0,00 €</div>`;
