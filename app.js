@@ -1661,12 +1661,12 @@ function loadPage20() {
       const gespeicherteWerte =
         JSON.parse(localStorage.getItem("page20Data") || "{}");
 
-      // Bild-Auflösung: 1..10 -> bilder/bildX.jpg
+      // Bild-Auflösung: 1..10 -> bildX.jpg
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
         const n = parseInt(v, 10);
-        if (!isNaN(n) && n > 0) return `bilder/bild${n}.jpg`;
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         // optional: falls du direkt "meinbild.jpg" einträgst
         return v;
       }
