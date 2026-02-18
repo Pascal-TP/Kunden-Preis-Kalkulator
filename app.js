@@ -870,7 +870,7 @@ container.innerHTML += `
 // Hinweise Optimierer
 	const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
 	if (optimiererHinweis) {
- 	 optimiererHinweis.style.display = optimiererVerwendet ? "block" : "none";
+ 	 optimiererHinweis.style.display = optimiererVerwendet ? "none" : "block";
 	}
 
     const angebotspreisEl = document.getElementById("angebotspreis");
@@ -878,6 +878,10 @@ container.innerHTML += `
         angebotspreisEl.innerText =
             "Gesamtpreis: " + gesamt.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
+
+<div id="optimierer-hinweis-print" style="display:none;">
+  Achtung! Sie haben keinen Optimierer ausgewählt!
+</div>
 
 refreshRabattDisplays();
 
@@ -973,6 +977,9 @@ function sendMailPage40() {
 // -----------------------------
 
 function clearInputs() {
+
+optimiererHinweisGezeigt = false;
+optimiererVerwendet = false;
 
 // localStorage komplett löschen
     localStorage.clear();
@@ -1361,34 +1368,35 @@ if (!headerInserted) {
         });
 }
 
+function isOptimiererSelected() {
+  const data = JSON.parse(localStorage.getItem("page8Data") || "{}");
+  return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
+}
+
 function setupOptimiererHinweis() {
   const page8 = document.getElementById("page-8");
   if (!page8) return;
 
-  page8.addEventListener("input", (e) => {
-    const el = e.target;
+  // Capturing, damit es vor dem inline onclick (showPage/direktZumAngebot) läuft
+  page8.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
 
-    // nur Mengenfelder
-    if (!el.classList.contains("menge-input")) return;
+    const selected = isOptimiererSelected();
 
-    // nur wenn wirklich etwas eingegeben wird
-    const menge = Number(el.value) || 0;
-    if (menge <= 0) return;
+    // Flag so setzen, dass es zur Anzeige auf Seite 40 passt
+    // true = Optimierer gewählt, false = nicht gewählt
+    optimiererVerwendet = selected;
 
-    // merken: Optimierer wurde verwendet
-    optimiererVerwendet = true;
-
-
-    // Hinweis nur einmal anzeigen
-    if (optimiererHinweisGezeigt) return;
-
-    optimiererHinweisGezeigt = true;
-
-    alert(
-      "Achtung!\n\n" +
-      "Sie haben keinen Optimierer ausgewählt!\n\n"
+    // Hinweis nur dann zeigen, wenn NICHT gewählt und noch nicht gezeigt
+    if (!selected && !optimiererHinweisGezeigt) {
+      optimiererHinweisGezeigt = true;
+      alert(
+        "Achtung!\n\n" +
+        "Sie haben keinen Optimierer ausgewählt!\n"
       );
-  });
+    }
+  }, true);
 }
 
 setupOptimiererHinweis();
