@@ -3917,3 +3917,4 @@ window.berechneGesamt24 = berechneGesamt24;
 //window.loadPage13 = loadPage13;
 //window.calcRow13 = calcRow13;
 //window.berechneGesamt13 = berechneGesamt13;
+window.loadPage141 = loadPage141;
