@@ -93,10 +93,7 @@ button:active {
 .midtitle { text-align: center;font-weight: bold; font-size: 16px; margin-top: 15px; }
 
 .beschreibung-fett {
-  text-align: left;
   font-weight: 700;
-  margin: 6px 0;
-  line-height: 1.5;
 }
 
 .price-table {

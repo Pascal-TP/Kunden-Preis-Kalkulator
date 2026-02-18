@@ -446,7 +446,16 @@ let gespeicherteWerte = JSON.parse(localStorage.getItem("page14Data") || "{}");
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -593,9 +602,19 @@ function berechneGesamt14() {
 //          return;
 //        }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
+//
 //
 //        const preisVorhanden = colD && !isNaN(parseFloat(colD.replace(",", ".")));
 //
@@ -1121,7 +1140,16 @@ function loadPage142() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -1266,7 +1294,16 @@ function loadPage8() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -1443,7 +1480,16 @@ function loadPage18() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -1589,7 +1635,16 @@ function loadPage20() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -1735,7 +1790,16 @@ function loadPage21() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
                 const preis = parseFloat(colD?.replace(",", "."));
@@ -1880,7 +1944,16 @@ function loadPage22() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -2026,7 +2099,16 @@ function loadPage9() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -2172,7 +2254,16 @@ function loadPage10() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -2318,7 +2409,16 @@ function loadPage23() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -2465,7 +2565,16 @@ function loadPage24() {
                     return;
                 }
 if (colA === "Beschreibung_fett") {
-  html += `<div class="beschreibung-fett">${colB}</div>`;
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
   return;
 }
 
@@ -2612,9 +2721,19 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
+//
 //
 //                const preis = parseFloat(colD?.replace(",", "."));
 //                if (!isNaN(preis)) {
@@ -2759,7 +2878,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
@@ -2904,7 +3032,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
@@ -3049,7 +3186,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
@@ -3194,7 +3340,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
@@ -3339,7 +3494,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
@@ -3484,9 +3648,19 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
+
 //                const preis = parseFloat(colD?.replace(",", "."));
 //                if (!isNaN(preis)) {
 //
@@ -3628,7 +3802,16 @@ function berechneGesamt24() {
 //                    return;
 //                }
 //if (colA === "Beschreibung_fett") {
-//  html += `<div class="beschreibung-fett">${colB}</div>`;
+//  html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//      <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
 //  return;
 //}
 //                const preis = parseFloat(colD?.replace(",", "."));
