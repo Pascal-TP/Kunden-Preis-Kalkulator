@@ -94,8 +94,7 @@ async function showPage(id) {
   //if (id === "page-32") loadPage32();
   //if (id === "page-33") loadPage33();
   //if (id === "page-13") loadPage13();
-  if (id === "page-14-1") loadPage141();
-
+  
   if (id === "page-40") {
     showLoader40(true);
     try {
@@ -3917,4 +3916,3 @@ window.berechneGesamt24 = berechneGesamt24;
 //window.loadPage13 = loadPage13;
 //window.calcRow13 = calcRow13;
 //window.berechneGesamt13 = berechneGesamt13;
-window.loadPage141 = loadPage141;
