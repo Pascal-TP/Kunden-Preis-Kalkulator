@@ -1646,24 +1646,37 @@ function loadPage20() {
 
   if (container.innerHTML.trim() !== "") return;
 
+  // optional: damit du via CSS 7 Spalten nutzen kannst
+  container.classList.add("with-pos-images");
+
   fetch("tga9.csv")
     .then(response => response.text())
     .then(data => {
 
       const lines = data.split("\n").slice(1);
       let html = "";
+
       let headerInserted = false;
 
       const gespeicherteWerte =
         JSON.parse(localStorage.getItem("page20Data") || "{}");
 
-      // Header-HTML (mit Bild links)
+      // Bild-Auflösung: 1..10 -> bilder/bildX.jpg
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 10);
+        if (!isNaN(n) && n > 0) return `bilder/bild${n}.jpg`;
+        // optional: falls du direkt "meinbild.jpg" einträgst
+        return v;
+      }
+
+      // Header-HTML (links nur leere Zelle für Bild-Spalte)
       function renderHeader20() {
         return `
           <div class="row table-header">
-            <div class="header-img-cell">
-              <img src="bild3.jpg" class="header-img" alt="Bild">
-            </div>
+            <div></div>
+            <div>Artikel</div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -1681,11 +1694,12 @@ function loadPage20() {
         const colB = cols[1]?.trim();
         const colC = cols[2]?.trim();
         const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
 
         // ====== Abschnittstrenner: Header soll später wieder kommen ======
         if (colA === "Titel") {
           html += `<div class="title">${colB}</div>`;
-          headerInserted = false; // <-- WICHTIG
+          headerInserted = false;
           return;
         }
         if (colA === "Untertitel") {
@@ -1701,6 +1715,7 @@ function loadPage20() {
         if (colA === "Beschreibung_fett") {
           html += `
             <div class="row beschreibung-fett-row">
+              <div class="pos-img-cell"></div>
               <div class="col-a"></div>
               <div class="col-b beschreibung-fett">${colB}</div>
               <div class="col-c"></div>
@@ -1709,7 +1724,7 @@ function loadPage20() {
               <div class="col-f"></div>
             </div>
           `;
-          headerInserted = false; // <-- WICHTIG (neuer Block)
+          headerInserted = false;
           return;
         }
 
@@ -1718,7 +1733,6 @@ function loadPage20() {
 
         if (preisVorhanden) {
 
-          // Header pro Block nur einmal, aber nach Trennern wieder neu
           if (!headerInserted) {
             html += renderHeader20();
             headerInserted = true;
@@ -1726,8 +1740,14 @@ function loadPage20() {
 
           const menge = gespeicherteWerte[index] || 0;
 
+          const imgSrc = resolvePosImg(colImg);
+
           html += `
             <div class="row">
+              <div class="pos-img-cell">
+                ${imgSrc ? `<img src="${imgSrc}" class="pos-img" alt="Pos ${colA}">` : ``}
+              </div>
+
               <div class="col-a">${colA}</div>
               <div class="col-b">${colB}</div>
               <div class="col-c">${colC}</div>
@@ -1745,13 +1765,15 @@ function loadPage20() {
             </div>
           `;
         } else {
+          // no-price Zeilen (auch hier 1 Bild-Spalte berücksichtigen!)
           html += `
             <div class="row no-price">
+              <div class="pos-img-cell"></div>
               <div class="col-a">${colA}</div>
-              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+              <div class="col-b" style="grid-column: 3 / 8;">${colB}</div>
             </div>
           `;
-          headerInserted = false; // <-- optional, aber bei dir sinnvoll (neuer Abschnitt)
+          headerInserted = false;
         }
       });
 

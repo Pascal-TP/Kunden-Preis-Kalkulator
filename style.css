@@ -234,6 +234,25 @@ button:active {
   display:block;
 }
 
+.with-pos-images .row{
+  display:grid;
+  grid-template-columns: 60px 160px 4fr 100px 100px 120px 120px; /* Bild + 6 Spalten */
+  gap: 15px;
+  align-items:center;
+}
+
+.pos-img-cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pos-img{
+  max-height: 42px;
+  width: auto;
+  display:block;
+}
+
 
 /* ===== PDF-Modus (für html2pdf/html2canvas) ===== */
 body.pdf-mode .button-bar,
