@@ -846,6 +846,7 @@ container.innerHTML += `
                 colA !== "Titel" &&
                 colA !== "Untertitel" &&
                 colA !== "Zwischentitel" &&
+                colA !== "Beschreibung_fett" &&
                 menge > 0
             ) {
 
@@ -868,6 +869,9 @@ container.innerHTML += `
     }
 
 // Hinweise Optimierer
+
+        optimiererVerwendet = isOptimiererSelected(); 
+
 	const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
 	if (optimiererHinweis) {
  	 optimiererHinweis.style.display = optimiererVerwendet ? "none" : "block";
@@ -878,10 +882,6 @@ container.innerHTML += `
         angebotspreisEl.innerText =
             "Gesamtpreis: " + gesamt.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
-
-<div id="optimierer-hinweis-print" style="display:none;">
-  Achtung! Sie haben keinen Optimierer ausgewählt!
-</div>
 
 refreshRabattDisplays();
 
@@ -1399,7 +1399,10 @@ function setupOptimiererHinweis() {
   }, true);
 }
 
-setupOptimiererHinweis();
+document.addEventListener("DOMContentLoaded", () => {
+  setupOptimiererHinweis();
+});
+
 
 function calcRow8(input, preis, index) {
 
