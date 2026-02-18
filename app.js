@@ -1,7 +1,6 @@
 let currentUser = null;
 let logoutTimer;
 let remaining = 600;
-let optimiererHinweisGezeigt = false;
 let optimiererVerwendet = false;
 let page40Promise = null;
 
@@ -978,7 +977,6 @@ function sendMailPage40() {
 
 function clearInputs() {
 
-optimiererHinweisGezeigt = false;
 optimiererVerwendet = false;
 
 // localStorage komplett löschen
@@ -1377,20 +1375,17 @@ function setupOptimiererHinweis() {
   const page8 = document.getElementById("page-8");
   if (!page8) return;
 
-  // Capturing, damit es vor dem inline onclick (showPage/direktZumAngebot) läuft
   page8.addEventListener("click", (e) => {
     const btn = e.target.closest("button");
     if (!btn) return;
 
     const selected = isOptimiererSelected();
 
-    // Flag so setzen, dass es zur Anzeige auf Seite 40 passt
-    // true = Optimierer gewählt, false = nicht gewählt
+    // Flag für Seite 40 immer aktuell setzen
     optimiererVerwendet = selected;
 
-    // Hinweis nur dann zeigen, wenn NICHT gewählt und noch nicht gezeigt
-    if (!selected && !optimiererHinweisGezeigt) {
-      optimiererHinweisGezeigt = true;
+    // IMMER anzeigen, wenn nichts gewählt oder 0
+    if (!selected) {
       alert(
         "Achtung!\n\n" +
         "Sie haben keinen Optimierer ausgewählt!\n"
