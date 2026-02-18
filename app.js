@@ -465,7 +465,19 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
     html += `
       <div class="row table-header">
-        <div></div>
+        html += `
+  <div class="row table-header">
+    <div class="header-img-cell">
+      <img src="bild3.jpg" class="header-img" alt="Bild">
+    </div>
+    <div>Beschreibung</div>
+    <div>Einheit</div>
+    <div style="text-align:center;">Menge</div>
+    <div style="text-align:right;">Preis / Einheit</div>
+    <div style="text-align:right;">Positionsergebnis</div>
+  </div>
+`;
+
         <div>Beschreibung</div>
         <div>Einheit</div>
         <div style="text-align:center;">Menge</div>

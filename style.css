@@ -223,6 +223,18 @@ button:active {
   opacity: 0.9;
 }
 
+.header-img-cell{
+  display:flex;
+  align-items:center;
+}
+
+.header-img{
+  width: 140px;     /* anpassen */
+  height: auto;
+  display:block;
+}
+
+
 /* ===== PDF-Modus (für html2pdf/html2canvas) ===== */
 body.pdf-mode .button-bar,
 body.pdf-mode button,
