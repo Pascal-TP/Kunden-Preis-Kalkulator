@@ -627,7 +627,9 @@ function berechneGesamt14() {
 //if (!headerInserted) {
 //    html += `
 //      <div class="row table-header">
-//        <div></div>
+//        <div class="header-img-cell">
+//          <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //        <div>Beschreibung</div>
 //        <div>Einheit</div>
 //        <div style="text-align:center;">Menge</div>
@@ -1169,7 +1171,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild3.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -1323,7 +1327,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild2.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -1510,7 +1516,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild4.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -2284,7 +2292,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild10.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -2439,7 +2449,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild1.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -2595,7 +2607,9 @@ if (colA === "Beschreibung_fett") {
 if (!headerInserted) {
         html += `
           <div class="row table-header">
-            <div></div>
+            <div class="header-img-cell">
+          <img src="bild1.jpg" class="header-img" alt="Bild">
+        </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -2753,7 +2767,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //       html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -2907,7 +2923,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3061,7 +3079,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3215,7 +3235,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3369,7 +3391,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3523,7 +3547,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3678,7 +3704,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
@@ -3831,7 +3859,9 @@ function berechneGesamt24() {
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
-//            <div></div>
+//            <div class="header-img-cell">
+//        <img src="xxx.jpg" class="header-img" alt="Bild">
+//        </div>
 //            <div>Beschreibung</div>
 //            <div>Einheit</div>
 //            <div style="text-align:center;">Menge</div>
