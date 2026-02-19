@@ -5,6 +5,17 @@ let optimiererVerwendet = false;
 let page40Promise = null;
 
 // -----------------------------
+// Wechsel der Startseite nach 3 Sekunden
+// -----------------------------
+
+function startSplashScreen() {
+  setTimeout(() => {
+    showPage("page-login");
+  }, 3000);
+}
+
+
+// -----------------------------
 // Reset bei reload (F5)
 // -----------------------------
 
@@ -109,6 +120,7 @@ const info = document.getElementById("login-info");
     history.replaceState({ page: target }, "", "#" + target);
 
     showPage(target, true);
+    startSplashScreen();
     
   } else {
     if (info) info.innerText = "";

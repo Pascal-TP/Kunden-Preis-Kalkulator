@@ -370,3 +370,9 @@ select {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+.start-slogan {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
