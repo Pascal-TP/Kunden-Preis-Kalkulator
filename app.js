@@ -484,7 +484,6 @@ async function exportLoginLog() {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
-}
 
 window.exportLoginLog = exportLoginLog;
 
