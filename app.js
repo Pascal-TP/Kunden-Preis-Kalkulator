@@ -281,6 +281,22 @@ async function exportLoginLog() {
   const q = query(collection(db, "loginLogs"), orderBy("time", "desc"));
   const snap = await getDocs(q);
  
+function toggleUserMenu() {
+  const menu = document.getElementById("user-menu");
+  if (!menu) return;
+  menu.classList.toggle("hidden");
+}
+
+// Klick außerhalb schließt Menü
+document.addEventListener("click", e => {
+  const wrapper = document.getElementById("user-menu-wrapper");
+  if (!wrapper) return;
+  if (!wrapper.contains(e.target)) {
+    document.getElementById("user-menu")?.classList.add("hidden");
+  }
+});
+
+
 // -----------------------------
 // LOGBUCH - NUR FÜR ADMIN
 // -----------------------------

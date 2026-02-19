@@ -16,7 +16,14 @@
 <div id="timer">Logout in: 10:00</div>
 
 <!-- NEU: Angemeldet als -->
-<div id="login-info"></div>
+<div id="user-menu-wrapper">
+  <div id="login-info" onclick="toggleUserMenu()"></div>
+
+  <div id="user-menu" class="user-menu hidden">
+    <div onclick="goToChange()">🔑 Passwort ändern</div>
+    <div onclick="logout()">🚪 Abmelden</div>
+  </div>
+</div>
 
 <!-- SEITE 1: LOGIN -->
 <div class="page active" id="page-login">
@@ -30,8 +37,7 @@
     <button onclick="login()">Anmelden</button>
 
     <button onclick="forgotPassword()">Passwort vergessen</button>
-    <button onclick="goToChange()">Passwort ändern</button>
-    <button onclick="logout()">Abmelden</button>
+    
 </div>
 
 <!-- SEITE 2: PASSWORT ÄNDERN -->
