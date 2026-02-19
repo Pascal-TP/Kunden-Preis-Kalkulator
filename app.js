@@ -4,6 +4,43 @@ let remaining = 600;
 let optimiererVerwendet = false;
 let page40Promise = null;
 
+// -----------------------------
+// Reset bei reload (F5)
+// -----------------------------
+
+
+function resetStoredInputsOnReload() {
+  // Reload erkennen (F5 / Browser-Reload)
+  const nav = performance.getEntriesByType("navigation")[0];
+  const isReload = nav && nav.type === "reload";
+
+  if (!isReload) return;
+
+  // Nur deine Eingabe-/Angebotsdaten löschen (Auth bleibt erhalten!)
+  const keysToRemove = [
+    "page5Data",
+    "angebotTyp",
+    "angebotSummen",
+
+    "page14Data",
+    "page142Data",
+    "page8Data",
+    "page18Data",
+    "page20Data",
+    "page21Data",
+    "page22Data",
+    "page9Data",
+    "page10Data",
+    "page23Data",
+    "page24Data"
+  ];
+
+  keysToRemove.forEach(k => localStorage.removeItem(k));
+}
+
+// SOFORT ausführen (möglichst früh)
+resetStoredInputsOnReload();
+
 
 		// -----------------------------
 		// Firebase - E-Mail+Passwort
