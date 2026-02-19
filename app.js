@@ -319,6 +319,10 @@ async function login() {
     const cred = await signInWithEmailAndPassword(auth, email, pw);
     currentUser = cred.user;
 
+console.log("LOGIN email:", currentUser.email);
+console.log("LOGIN uid:", currentUser.uid);
+
+
     // zentral loggen
     await addDoc(collection(db, "loginLogs"), {
       uid: currentUser.uid,
