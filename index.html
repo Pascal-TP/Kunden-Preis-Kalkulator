@@ -21,6 +21,7 @@
   <div id="user-actions" class="hidden">
   <select id="user-action-select" onchange="handleUserAction(this.value)">
     <option value="">Aktion auswählen…</option>
+    <option value="clear">Eingaben löschen</option>
     <option value="changePw">Passwort ändern</option>
     <option value="logout">Abmelden</option>
   </select>
@@ -69,7 +70,6 @@
         KV = Kostenvoranschlag – die schnelle und direkte Ermittlung eines Richtpreises für den Kunden<br><br>
         Anfrage an TGA – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes Angebot von TGA per Mail anzufragen.<br>
     </p>
-    <button onclick="clearInputs()">Eingaben löschen</button>
     <button onclick="showPage('page-login')">Zurück</button>
     <button id="btnExportLog" class="hidden" onclick="exportLoginLog()">Login-Log herunterladen</button>
 
@@ -341,8 +341,7 @@
         <button onclick="printPage40()">Drucken / speichern als PDF</button>
         <button onclick="sendMailPage40()">Senden als Text-Mail</button>
         <button onclick="sharePdf()">PDF download</button>
-        <button onclick="clearInputs()">Eingaben löschen</button>
-    </div>
+     </div>
 </div>
 
 <!-- SEITE 41: Hinweis fehlende Anfrage-Daten -->

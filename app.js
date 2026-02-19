@@ -240,7 +240,9 @@ function goToChange() {
 
 function handleUserAction(val) {
   if (!val) return;
-
+  if (val === "clear") {const ok = confirm("Alle Eingaben wirklich löschen?");
+  if (ok) clearInputs();
+  }
   if (val === "changePw") goToChange();
   if (val === "logout") logout();
 
