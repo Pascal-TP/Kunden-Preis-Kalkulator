@@ -50,17 +50,27 @@ const auth = getAuth(fbApp);
 
   // 3) Listener erst DANACH
   onAuthStateChanged(auth, user => {
-    const info = document.getElementById("login-info");
+  const info = document.getElementById("login-info");
 
-    if (user) {
-      if (info) info.innerText = "Angemeldet als: " + user.email;
-      updateAdminUI_();
-    } else {
-      if (info) info.innerText = "";
-      updateAdminUI_();
-      showPage("page-login");
-    }
-  });
+  if (user) {
+    if (info) info.innerText = "Angemeldet als: " + user.email;
+    updateAdminUI_();
+
+    // Zielseite bestimmen: letzte Seite (aber nie login) – ansonsten Seite 3
+    const last = sessionStorage.getItem("lastPage");
+    const target =
+      last && last !== "page-login"
+        ? last
+        : "page-3";
+
+    showPage(target);
+
+  } else {
+    if (info) info.innerText = "";
+    updateAdminUI_();
+    showPage("page-login");
+  }
+});
 })();
 
 const db = getFirestore(fbApp);
@@ -91,6 +101,14 @@ function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
 		// -----------------------------
 
 async function showPage(id) {
+  // letzte Seite merken (nur für dieses Tab/Fenster)
+  sessionStorage.setItem("lastPage", id);
+
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const el = document.getElementById(id);
+  if (!el) return;           // Sicherheitsnetz
+  el.classList.add("active");  
+  
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
