@@ -976,14 +976,24 @@ container.innerHTML += `
         });
     }
 
-// Hinweise Optimierer
+// ===== Optimierer-Hinweis nur unter bestimmten Bedingungen =====
 
-        optimiererVerwendet = isOptimiererSelected(); 
+// true, wenn in einem Page-Storage (page23Data/page24Data) irgendein Wert > 0 ist
+function hasAnyPositiveInput(storageKey) {
+  const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
+  return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
+}
 
-	const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
-	if (optimiererHinweis) {
- 	 optimiererHinweis.style.display = optimiererVerwendet ? "none" : "block";
-	}
+const optimiererSelected = isOptimiererSelected(); // Seite 8
+const hasInput23 = hasAnyPositiveInput("page23Data"); // Schrägdach
+const hasInput24 = hasAnyPositiveInput("page24Data"); // Flachdach
+
+const shouldShowOptimiererHinweis = (!optimiererSelected) && (hasInput23 || hasInput24);
+
+const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
+if (optimiererHinweis) {
+  optimiererHinweis.style.display = shouldShowOptimiererHinweis ? "block" : "none";
+}
 
     const angebotspreisEl = document.getElementById("angebotspreis");
     if (angebotspreisEl) {
