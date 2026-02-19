@@ -121,10 +121,7 @@ async function showPage(id) {
   if (!el) return;           // Sicherheitsnetz
   el.classList.add("active");  
   
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  if (id === "page-14") loadPage14();
+    if (id === "page-14") loadPage14();
   //if (id === "page-14-3") loadPage143();
   if (id === "page-14-2") loadPage142();
   if (id === "page-8") loadPage8();
@@ -241,6 +238,18 @@ function goToChange() {
   showPage("page-change");
 }
 
+function handleUserAction(val) {
+  if (!val) return;
+
+  if (val === "changePw") goToChange();
+  if (val === "logout") logout();
+
+  const sel = document.getElementById("user-action-select");
+  if (sel) sel.value = "";
+}
+window.handleUserAction = handleUserAction;
+
+
 async function savePassword() {
   const n1 = newPass1.value;
   const n2 = newPass2.value;
@@ -290,18 +299,6 @@ async function exportLoginLog() {
   const q = query(collection(db, "loginLogs"), orderBy("time", "desc"));
   const snap = await getDocs(q);
  
-function handleUserAction(val) {
-  if (!val) return;
-
-  if (val === "changePw") goToChange();
-  if (val === "logout") logout();
-
-  // zurücksetzen, damit man die gleiche Aktion nochmal wählen kann
-  const sel = document.getElementById("user-action-select");
-  if (sel) sel.value = "";
-}
-window.handleUserAction = handleUserAction;
-});
 
 
 // -----------------------------
