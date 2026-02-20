@@ -5,6 +5,37 @@ let optimiererVerwendet = false;
 let page40Promise = null;
 
 // -----------------------------
+// Flow "Komplett" (Session-State)
+// -----------------------------
+const FLOW_KEY = "flowMode";
+
+function isKomplettFlow() {
+  return sessionStorage.getItem(FLOW_KEY) === "komplett";
+}
+function setKomplettFlow() {
+  sessionStorage.setItem(FLOW_KEY, "komplett");
+}
+function clearKomplettFlow() {
+  sessionStorage.removeItem(FLOW_KEY);
+}
+
+function startKomplettFlow() {
+  setKomplettFlow();
+  showPage("page-15"); // Einstieg Komplett (Versicherung) – wie bisher
+}
+
+function applyFlowUI(pageId) {
+  if (pageId === "page-8") {
+    const normalBtn = document.getElementById("btnWeiter8Normal");
+    const komplettBtn = document.getElementById("btnWeiter8Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+}
+
+// -----------------------------
 // Wechsel der Startseite nach 3 Sekunden
 // -----------------------------
 
@@ -3792,37 +3823,6 @@ function showLoader40(show) {
   const l = document.getElementById("loader40");
   if (!l) return;
   l.classList.toggle("hidden", !show);
-}
-
-// -----------------------------
-// Flow "Komplett" (Session-State)
-// -----------------------------
-const FLOW_KEY = "flowMode";
-
-function isKomplettFlow() {
-  return sessionStorage.getItem(FLOW_KEY) === "komplett";
-}
-function setKomplettFlow() {
-  sessionStorage.setItem(FLOW_KEY, "komplett");
-}
-function clearKomplettFlow() {
-  sessionStorage.removeItem(FLOW_KEY);
-}
-
-function startKomplettFlow() {
-  setKomplettFlow();
-  showPage("page-15"); // Einstieg Komplett (Versicherung) – wie bisher
-}
-
-function applyFlowUI(pageId) {
-  if (pageId === "page-8") {
-    const normalBtn = document.getElementById("btnWeiter8Normal");
-    const komplettBtn = document.getElementById("btnWeiter8Komplett");
-
-    const k = isKomplettFlow();
-    if (normalBtn) normalBtn.classList.toggle("hidden", k);
-    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
-  }
 }
 
 
