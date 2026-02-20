@@ -21,9 +21,34 @@
   <div id="user-actions" class="hidden">
   <select id="user-action-select" onchange="handleUserAction(this.value)">
     <option value="">Aktion auswählen…</option>
+    
+    <optgroup label="Aktionen">
     <option value="clear">Eingaben löschen</option>
     <option value="changePw">Passwort ändern</option>
     <option value="logout">Abmelden</option>
+    </optgroup>
+
+    <option value="nav:page-3">➡️ Auswahl KV / Anfrage</option>
+
+    <optgroup label="DC">
+    <option value="nav:page-24">Flachdach</option>
+    <option value="nav:page-23">Schrägdach</option>
+    <option value="nav:page-8">Optimierer</option>
+    <option value="nav:page-9">Gerüst</option>
+    </optgroup>
+
+    <optgroup label="AC">
+    <option value="nav:page-11">Wechselrichter</option>
+    <option value="nav:page-21">Zubehör Wechselrichter</option>
+    <option value="nav:page-10">Speicher</option>
+    <option value="nav:page-24">Wallbox</option>
+    <option value="nav:page-20">Zählerschränke</option>
+    <option value="nav:page-22">Extras Zählerschränke</option>
+    </optgroup>
+
+    <option value="nav:page-15">➡️ Versicherung</option>
+    <option value="nav:page-14-1">➡️ Downloadbereich</option>
+    
   </select>
 </div>
 

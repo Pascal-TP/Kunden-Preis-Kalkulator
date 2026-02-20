@@ -398,6 +398,16 @@ function goToChange() {
 
 function handleUserAction(val) {
   if (!val) return;
+  
+// ✅ Navigationseinträge
+    if (val.startsWith("nav:")) {
+    const pageId = val.replace("nav:", "");
+    showPage(pageId);
+    const sel = document.getElementById("user-action-select");
+    if (sel) sel.value = "";
+    return;
+  }
+
   if (val === "clear") {const ok = confirm("Alle Eingaben wirklich löschen?");
   if (ok) clearInputs();
   }
