@@ -171,13 +171,19 @@ function getWrRecommendationText(modules) {
 // -----------------------------
 
 function extractWrSizeFromRow(rowEl) {
-  // versucht, in der Beschreibung eine Größe wie "3.0", "4.0", "5.0" etc. zu finden
-  const desc = (rowEl.querySelector(".col-b")?.innerText || "").trim();
+  const descRaw = (rowEl.querySelector(".col-b")?.innerText || "").trim();
+  if (!descRaw) return null;
 
-  // Beispiele die damit klappen:
-  // "Wechselrichter 3.0", "GEN24 6.0", "Fronius ... 10.0"
-  const m = desc.match(/\b(3\.0|4\.0|5\.0|6\.0|8\.0|10\.0|12\.0|15\.0)\b/);
-  return m ? m[1] : null;
+  // Normalisieren: 3,0 -> 3.0
+  const desc = descRaw.replace(",", ".");
+
+  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15
+  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?)(?![0-9])/);
+  if (!m) return null;
+
+  // Immer als "x.0" zurückgeben
+  const num = m[1];
+  return num.includes(".") ? num : `${num}.0`;
 }
 
 function applyWrRecommendation(pageId) {
@@ -1110,6 +1116,7 @@ if (colA === "Beschreibung_fett") {
             container.innerHTML = html;
 
             berechneGesamt14();
+            applyWrRecommendation("page-14");
         });
 }
 
@@ -1827,6 +1834,7 @@ if (!headerInserted) {
 
             container.innerHTML = html;
             berechneGesamt142();
+            applyWrRecommendation("page-14-2");
         });
 }
 
