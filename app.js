@@ -33,6 +33,15 @@ function applyFlowUI(pageId) {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
+
+if (pageId === "page-15") {
+    const normalBtn = document.getElementById("btnWeiter15Normal");
+    const komplettBtn = document.getElementById("btnWeiter15Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
 }
 
 // -----------------------------
