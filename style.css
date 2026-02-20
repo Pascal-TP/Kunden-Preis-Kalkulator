@@ -397,3 +397,29 @@ button.btn-komplett:active {
   background: #1f55c9;       /* dunkler beim Klick */
   transform: translateY(0px);
 }
+/* ================================
+   WR Empfehlung / Ausgrauen / Warnung
+================================ */
+.wr-reco-box{
+  max-width: 1100px;
+  margin: 10px auto 18px auto;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-align: left;
+  font-weight: 600;
+  background: #eaf2ff;
+  border: 1px solid rgba(47,111,237,0.35);
+}
+
+.wr-dimmed{
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.wr-warn{
+  grid-column: 1 / -1;
+  text-align: left;
+  color: darkred;
+  font-weight: 700;
+  margin-top: 4px;
+}

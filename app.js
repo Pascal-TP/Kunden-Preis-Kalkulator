@@ -135,6 +135,132 @@ function startSplashScreen() {
   }, 3000);
 }
 
+// -----------------------------
+// PV-Module zählen für Emfpehlung
+// -----------------------------
+
+function getPvModuleCount() {
+  const d23 = JSON.parse(localStorage.getItem("page23Data") || "{}");
+  const d24 = JSON.parse(localStorage.getItem("page24Data") || "{}");
+
+  const sumObj = (obj) => Object.values(obj).reduce((acc, v) => {
+    const n = parseFloat(String(v).replace(",", ".")) || 0;
+    return acc + n;
+  }, 0);
+
+  const total = sumObj(d23) + sumObj(d24);
+  return Math.round(total); // falls irgendwo Dezimalwerte wären
+}
+
+function getWrRecommendationText(modules) {
+  if (modules <= 0) return null;
+
+  if (modules <= 7)  return "3.0";
+  if (modules <= 9)  return "4.0";
+  if (modules <= 11) return "5.0";
+  if (modules <= 14) return "6.0";
+  if (modules <= 18) return "8.0";
+  if (modules <= 23) return "10.0";
+  if (modules <= 28) return "12.0";
+  if (modules <= 33) return "15.0";
+  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
+}
+
+// -----------------------------
+// Wechselrichter-Empfhelung
+// -----------------------------
+
+function extractWrSizeFromRow(rowEl) {
+  // versucht, in der Beschreibung eine Größe wie "3.0", "4.0", "5.0" etc. zu finden
+  const desc = (rowEl.querySelector(".col-b")?.innerText || "").trim();
+
+  // Beispiele die damit klappen:
+  // "Wechselrichter 3.0", "GEN24 6.0", "Fronius ... 10.0"
+  const m = desc.match(/\b(3\.0|4\.0|5\.0|6\.0|8\.0|10\.0|12\.0|15\.0)\b/);
+  return m ? m[1] : null;
+}
+
+function applyWrRecommendation(pageId) {
+  const pageEl = document.getElementById(pageId);
+  if (!pageEl) return;
+
+  const modules = getPvModuleCount();
+  const reco = getWrRecommendationText(modules);
+
+  // Box anlegen/finden
+  let box = pageEl.querySelector(".wr-reco-box");
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "wr-reco-box";
+    // direkt unter die H2 setzen
+    const h2 = pageEl.querySelector("h2");
+    if (h2 && h2.parentNode) h2.parentNode.insertBefore(box, h2.nextSibling);
+  }
+
+  // Wenn keine Module gewählt: nichts machen
+  if (!reco) {
+    box.style.display = "none";
+    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
+    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
+    return;
+  }
+
+  box.style.display = "block";
+  box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
+
+  // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
+  const inputs = pageEl.querySelectorAll("input.menge-input");
+  inputs.forEach(inp => {
+    const row = inp.closest(".row");
+    if (!row) return;
+
+    // Warntext entfernen (wird ggf. neu gesetzt)
+    const existingWarn = row.querySelector(".wr-warn");
+    if (existingWarn) existingWarn.remove();
+
+    const size = extractWrSizeFromRow(row);
+
+    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
+    const shouldDim = (size && size !== reco);
+
+    row.classList.toggle("wr-dimmed", shouldDim);
+
+    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
+    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+    if (shouldDim && val > 0) {
+      const warn = document.createElement("div");
+      warn.className = "wr-warn";
+      warn.innerText = "Achtung: Wechselrichter nicht passend!";
+      row.appendChild(warn);
+    }
+  });
+
+  // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
+  if (!pageEl.dataset.wrRecoListener) {
+    pageEl.addEventListener("input", (e) => {
+      const inp = e.target;
+      if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
+
+      const row = inp.closest(".row");
+      if (!row) return;
+
+      const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+
+      // alten Warntext entfernen
+      const old = row.querySelector(".wr-warn");
+      if (old) old.remove();
+
+      if (row.classList.contains("wr-dimmed") && val > 0) {
+        const warn = document.createElement("div");
+        warn.className = "wr-warn";
+        warn.innerText = "Achtung: Wechselrichter nicht passend!";
+        row.appendChild(warn);
+      }
+    }, true);
+
+    pageEl.dataset.wrRecoListener = "1";
+  }
+}
 
 // -----------------------------
 // Reset bei reload (F5)
@@ -390,6 +516,12 @@ async function showPage(id, fromHistory = false) {
   if (!el) return;           // Sicherheitsnetz
   el.classList.add("active");  
   
+if (id === "page-14" || id === "page-14-2") {
+  // wichtig: erst laden, dann anwenden
+  // (falls loadPage14/page142 den Content erst füllt)
+  setTimeout(() => applyWrRecommendation(id), 0);
+}
+
     if (id === "page-14") loadPage14();
   //if (id === "page-14-3") loadPage143();
   if (id === "page-14-2") loadPage142();
