@@ -216,6 +216,7 @@ function applyWrRecommendation(pageId) {
 
   // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
   const inputs = pageEl.querySelectorAll("input.menge-input");
+  let hasMismatch = false;
   inputs.forEach(inp => {
     const row = inp.closest(".row");
     if (!row) return;
@@ -228,7 +229,7 @@ function applyWrRecommendation(pageId) {
 
     // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
     const shouldDim = (size && size !== reco);
-
+    hasMismatch = true;
     row.classList.toggle("wr-dimmed", shouldDim);
 
     // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
@@ -239,6 +240,13 @@ function applyWrRecommendation(pageId) {
       warn.innerText = "Achtung: Wechselrichter nicht passend!";
       row.appendChild(warn);
     }
+// Ergebnis für Seite 40 merken
+if (hasMismatch) localStorage.setItem("wrMismatch", "1");
+else localStorage.removeItem("wrMismatch");
+
+// Optional: für Anzeige auf Seite 40 (empfohlen)
+localStorage.setItem("wrRecoSize", reco);
+localStorage.setItem("wrRecoModules", String(modules));
   });
 
   // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
@@ -1483,6 +1491,38 @@ container.innerHTML += `
 function hasAnyPositiveInput(storageKey) {
   const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
   return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
+}
+// ===== Wechselrichter-Hinweis in Seite 40 =====
+const wrMismatch = localStorage.getItem("wrMismatch") === "1";
+const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
+const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
+
+let wrHinweis = document.getElementById("wr-hinweis-print");
+if (!wrHinweis) {
+  wrHinweis = document.createElement("div");
+  wrHinweis.id = "wr-hinweis-print";
+  wrHinweis.style.display = "none";
+  wrHinweis.style.marginTop = "20px";
+  wrHinweis.style.color = "darkred";
+  wrHinweis.style.fontWeight = "700";
+
+  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
+  const opt = document.getElementById("optimierer-hinweis-print");
+  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
+  else {
+    const preis = document.getElementById("angebotspreis");
+    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
+  }
+}
+
+if (wrMismatch && wrRecoSize && wrRecoModules) {
+  wrHinweis.innerHTML =
+    `Achtung!<br>` +
+    `Wechselrichter nicht passend!<br>` +
+    `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
+  wrHinweis.style.display = "block";
+} else {
+  wrHinweis.style.display = "none";
 }
 
 const optimiererSelected = isOptimiererSelected(); // Seite 8
