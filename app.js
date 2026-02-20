@@ -163,8 +163,7 @@ function getWrRecommendationText(modules) {
   if (modules <= 23) return "10.0";
   if (modules <= 28) return "12.0";
   if (modules <= 33) return "15.0";
-  // >33 Module
-  return { mode: "advice", reco: null };
+  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
 }
 
 // -----------------------------
@@ -192,8 +191,7 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
-const info = getWrRecommendationInfo(modules);
-const reco = info.reco;  // kann null sein
+  const reco = getWrRecommendationText(modules);
 
   // Box anlegen/finden
   let box = pageEl.querySelector(".wr-reco-box");
@@ -206,26 +204,15 @@ const reco = info.reco;  // kann null sein
   }
 
   // Wenn keine Module gewählt: nichts machen
-  // Wenn keine Module gewählt: nichts machen
-if (info.mode === "none") {
-  box.style.display = "none";
-  pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
-  pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
-  localStorage.removeItem("wrMismatch");
-  localStorage.removeItem("wrRecoSize");
-  localStorage.removeItem("wrRecoModules");
-  return;
-}
+  if (!reco) {
+    box.style.display = "none";
+    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
+    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
+    return;
+  }
 
   box.style.display = "block";
-
-if (info.mode === "reco") {
   box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
-} else if (info.mode === "advice") {
-  box.innerHTML =
-    `Hinweis: Es wurden <strong>mehr als 33 PV-Module</strong> ausgewählt (${modules} Stück).<br>` +
-    `Gern unterstützen wir Sie bei der <strong>richtigen Auslegung</strong> (Beratung/Planung).`;
-}
 
   // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
   const inputs = pageEl.querySelectorAll("input.menge-input");
@@ -238,21 +225,21 @@ if (info.mode === "reco") {
     const existingWarn = row.querySelector(".wr-warn");
     if (existingWarn) existingWarn.remove();
 
-   const size = extractWrSizeFromRow(row);
+    const size = extractWrSizeFromRow(row);
 
-// Wenn >33 Module: ALLES ausgrauen
-const shouldDim = (info.mode === "advice") ? true : (size && size !== reco);
+    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
+    const shouldDim = (size && size !== reco);
+    hasMismatch = true;
+    row.classList.toggle("wr-dimmed", shouldDim);
 
-row.classList.toggle("wr-dimmed", !!shouldDim);
-
-const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
-if (shouldDim && val > 0) {
-  const warn = document.createElement("div");
-  warn.className = "wr-warn";
-  warn.innerText = "Achtung: Wechselrichter nicht passend!";
-  row.appendChild(warn);
-  hasMismatch = true; // NUR hier!
-}
+    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
+    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+    if (shouldDim && val > 0) {
+      const warn = document.createElement("div");
+      warn.className = "wr-warn";
+      warn.innerText = "Achtung: Wechselrichter nicht passend!";
+      row.appendChild(warn);
+    }
 // Ergebnis für Seite 40 merken
 if (hasMismatch) localStorage.setItem("wrMismatch", "1");
 else localStorage.removeItem("wrMismatch");
@@ -260,7 +247,6 @@ else localStorage.removeItem("wrMismatch");
 // Optional: für Anzeige auf Seite 40 (empfohlen)
 localStorage.setItem("wrRecoSize", reco);
 localStorage.setItem("wrRecoModules", String(modules));
-localStorage.setItem("wrRecoMode", info.mode); // NEU
   });
 
   // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
@@ -544,6 +530,11 @@ async function showPage(id, fromHistory = false) {
   if (!el) return;           // Sicherheitsnetz
   el.classList.add("active");  
   
+if (id === "page-14" || id === "page-14-2") {
+  // wichtig: erst laden, dann anwenden
+  // (falls loadPage14/page142 den Content erst füllt)
+  setTimeout(() => applyWrRecommendation(id), 0);
+}
 
     if (id === "page-14") loadPage14();
   //if (id === "page-14-3") loadPage143();
@@ -1505,24 +1496,31 @@ function hasAnyPositiveInput(storageKey) {
 const wrMismatch = localStorage.getItem("wrMismatch") === "1";
 const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
 const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
-const wrRecoMode = localStorage.getItem("wrRecoMode") || "";
-const wrHinweis = document.getElementById("wr-hinweis-print");
 
-if (wrRecoMode === "advice" && wrRecoModules) {
-  wrHinweis.innerHTML =
-    `Hinweis zur Wechselrichter-Auslegung<br>` +
-    `Es wurden <strong>mehr als 33 PV-Module</strong> ausgewählt (${wrRecoModules} Stück).<br>` +
-    `Für diese Anlagenkonfiguration empfehlen wir eine <strong>individuelle Beratung</strong> ` +
-    `zur optimalen Auslegung der Wechselrichter.`;
-  wrHinweis.style.display = "block";
+let wrHinweis = document.getElementById("wr-hinweis-print");
+if (!wrHinweis) {
+  wrHinweis = document.createElement("div");
+  wrHinweis.id = "wr-hinweis-print";
+  wrHinweis.style.display = "none";
+  wrHinweis.style.marginTop = "20px";
+  wrHinweis.style.color = "darkred";
+  wrHinweis.style.fontWeight = "700";
 
-} else if (wrMismatch && wrRecoSize && wrRecoModules) {
+  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
+  const opt = document.getElementById("optimierer-hinweis-print");
+  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
+  else {
+    const preis = document.getElementById("angebotspreis");
+    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
+  }
+}
+
+if (wrMismatch && wrRecoSize && wrRecoModules) {
   wrHinweis.innerHTML =
     `Achtung!<br>` +
-    `Der ausgewählte Wechselrichter passt nicht zur Anzahl der PV-Module.<br>` +
+    `Wechselrichter nicht passend!<br>` +
     `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
   wrHinweis.style.display = "block";
-
 } else {
   wrHinweis.style.display = "none";
 }
