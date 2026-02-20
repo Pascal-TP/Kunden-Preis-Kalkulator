@@ -377,11 +377,6 @@ function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
 
 async function showPage(id, fromHistory = false) {
   
-// Wenn zurück ins Hauptmenü -> Komplett-Flow immer löschen
-  if (id === "page-4") {
-    clearKomplettFlow();
-  }
-
 // letzte Seite merken (nur für dieses Tab/Fenster)
   sessionStorage.setItem("lastPage", id);
 

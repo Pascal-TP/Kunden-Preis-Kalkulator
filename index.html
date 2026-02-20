@@ -176,7 +176,7 @@
     <button onclick="showPage('page-6')">DC</button>
     <button onclick="showPage('page-7')">AC</button><br><br>
     <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button>
-<br><p>Wenn Sie die Komplettleistung auswählen, dann werden Sie durch alle benötigten Punkte geleitet.<br>Der blaue Button "Weiter" signalisiert, dass Sie sich in diesem Bereich befinden.<br>Betätigen Sie F5 (Seite neu laden) werden alle Eingaben gelöscht.<br>Gehen Sie zurück ins Hauptmenü, verlassen Sie diesen Bereich, die Daten bleiben erhalten und<br>Sie können jederzeit weitermachen, müssen jedoch neu über den Button "Komplettleistung" starten.</p>
+<br><p>Wenn Sie die Komplettleistung auswählen, dann werden Sie durch alle benötigten Punkte geleitet.<br>Der blaue Button "Weiter" signalisiert, dass Sie sich in diesem Bereich befinden.<br>Betätigen Sie F5 (Seite neu laden) oder die Aktion "Eingaben löschen", dann werden alle Eingaben gelöscht.<br>Gehen Sie zurück ins Hauptmenü bzw. verlassen Sie diesen Bereich, dann bleiben die Daten erhalten und<br>Sie können jederzeit weitermachen, müssen jedoch neu über den Button "Komplettleistung" starten.</p>
 <br>
 <br>
 <br>
@@ -511,13 +511,12 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter8Normal" onclick="showPage('page-20')">Weiter</button>
+        <button id="btnWeiter8Normal" onclick="direktZumAngebot()">>Direkt zum Angebot</button>
         <button
           id="btnWeiter8Komplett"
           class="btn-komplett hidden"
           onclick="showPage('page-9')">Weiter</button>
-        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
+        </div>
 </div>
 
 <!-- SEITE 18: Wallbox -->
