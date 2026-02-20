@@ -163,7 +163,8 @@ function getWrRecommendationText(modules) {
   if (modules <= 23) return "10.0";
   if (modules <= 28) return "12.0";
   if (modules <= 33) return "15.0";
-  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
+  // >33 Module
+  return { mode: "advice", reco: null };
 }
 
 // -----------------------------
@@ -191,7 +192,8 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
-  const reco = getWrRecommendationText(modules);
+const info = getWrRecommendationInfo(modules);
+const reco = info.reco;  // kann null sein
 
   // Box anlegen/finden
   let box = pageEl.querySelector(".wr-reco-box");
@@ -204,15 +206,26 @@ function applyWrRecommendation(pageId) {
   }
 
   // Wenn keine Module gewählt: nichts machen
-  if (!reco) {
-    box.style.display = "none";
-    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
-    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
-    return;
-  }
+  // Wenn keine Module gewählt: nichts machen
+if (info.mode === "none") {
+  box.style.display = "none";
+  pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
+  pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
+  localStorage.removeItem("wrMismatch");
+  localStorage.removeItem("wrRecoSize");
+  localStorage.removeItem("wrRecoModules");
+  return;
+}
 
   box.style.display = "block";
+
+if (info.mode === "reco") {
   box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
+} else if (info.mode === "advice") {
+  box.innerHTML =
+    `Hinweis: Es wurden <strong>mehr als 33 PV-Module</strong> ausgewählt (${modules} Stück).<br>` +
+    `Gern unterstützen wir Sie bei der <strong>richtigen Auslegung</strong> (Beratung/Planung).`;
+}
 
   // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
   const inputs = pageEl.querySelectorAll("input.menge-input");
@@ -225,10 +238,13 @@ function applyWrRecommendation(pageId) {
     const existingWarn = row.querySelector(".wr-warn");
     if (existingWarn) existingWarn.remove();
 
-    const size = extractWrSizeFromRow(row);
+   const size = extractWrSizeFromRow(row);
 
-    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
-    const shouldDim = (size && size !== reco);
+// Wenn >33 Module: ALLES ausgrauen
+const shouldDim =
+  (info.mode === "advice")
+    ? true
+    : (size && size !== reco);
     hasMismatch = true;
     row.classList.toggle("wr-dimmed", shouldDim);
 
@@ -247,6 +263,7 @@ else localStorage.removeItem("wrMismatch");
 // Optional: für Anzeige auf Seite 40 (empfohlen)
 localStorage.setItem("wrRecoSize", reco);
 localStorage.setItem("wrRecoModules", String(modules));
+localStorage.setItem("wrRecoMode", info.mode); // NEU
   });
 
   // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
@@ -1496,35 +1513,26 @@ function hasAnyPositiveInput(storageKey) {
 const wrMismatch = localStorage.getItem("wrMismatch") === "1";
 const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
 const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
+const wrRecoMode = localStorage.getItem("wrRecoMode") || "";
 
-let wrHinweis = document.getElementById("wr-hinweis-print");
-if (!wrHinweis) {
-  wrHinweis = document.createElement("div");
-  wrHinweis.id = "wr-hinweis-print";
-  wrHinweis.style.display = "none";
-  wrHinweis.style.marginTop = "20px";
-  wrHinweis.style.color = "darkred";
-  wrHinweis.style.fontWeight = "700";
+if (wrRecoMode === "advice" && wrRecoModules) {
+  wrHinweis.innerHTML =
+    `Hinweis zur Wechselrichter-Auslegung<br>` +
+    `Es wurden <strong>mehr als 33 PV-Module</strong> ausgewählt (${wrRecoModules} Stück).<br>` +
+    `Für diese Anlagenkonfiguration empfehlen wir eine <strong>individuelle Beratung</strong> ` +
+    `zur optimalen Auslegung der Wechselrichter.`;
+  wrHinweis.style.display = "block";
 
-  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
-  const opt = document.getElementById("optimierer-hinweis-print");
-  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
-  else {
-    const preis = document.getElementById("angebotspreis");
-    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
-  }
-}
-
-if (wrMismatch && wrRecoSize && wrRecoModules) {
+} else if (wrMismatch && wrRecoSize && wrRecoModules) {
   wrHinweis.innerHTML =
     `Achtung!<br>` +
-    `Wechselrichter nicht passend!<br>` +
+    `Der ausgewählte Wechselrichter passt nicht zur Anzahl der PV-Module.<br>` +
     `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
   wrHinweis.style.display = "block";
+
 } else {
   wrHinweis.style.display = "none";
 }
-
 const optimiererSelected = isOptimiererSelected(); // Seite 8
 const hasInput23 = hasAnyPositiveInput("page23Data"); // Schrägdach
 const hasInput24 = hasAnyPositiveInput("page24Data"); // Flachdach
