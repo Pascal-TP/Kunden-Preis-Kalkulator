@@ -380,3 +380,20 @@ select {
   font-weight: 500;
   color: #333;
 }
+/* ================================
+   KOMPLETT-FLOW BUTTONS (BLAU)
+================================ */
+button.btn-komplett {
+  background: #2f6fed;       /* Blau */
+  color: white;
+}
+
+button.btn-komplett:hover {
+  background: #5a8cff;       /* helleres Blau */
+  transform: translateY(-1px);
+}
+
+button.btn-komplett:active {
+  background: #1f55c9;       /* dunkler beim Klick */
+  transform: translateY(0px);
+}

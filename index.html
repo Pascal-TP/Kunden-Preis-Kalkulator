@@ -175,7 +175,7 @@
 
     <button onclick="showPage('page-6')">DC</button>
     <button onclick="showPage('page-7')">AC</button>
-    <button onclick="startKomplettFlow()">Komplett</button><br>
+    <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button>
     <button onclick="showPage('page-14-1')">Downloadbereich</button>
 <br>
 <br>
@@ -499,7 +499,10 @@
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
         <button id="btnWeiter8Normal" onclick="showPage('page-20')">Weiter</button>
-        <button id="btnWeiter8Komplett" class="hidden" onclick="showPage('page-9')">Weiter</button>
+        <button
+          id="btnWeiter8Komplett"
+          class="btn-komplett hidden"
+          onclick="showPage('page-9')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
