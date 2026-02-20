@@ -27,6 +27,9 @@ function resetStoredInputsOnReload() {
 
   if (!isReload) return;
 
+    // Flow-State ebenfalls löschen
+  clearKomplettFlow();
+
   // Nur deine Eingabe-/Angebotsdaten löschen (Auth bleibt erhalten!)
   const keysToRemove = [
     "page5Data",
@@ -252,7 +255,13 @@ function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
 // -----------------------------
 
 async function showPage(id, fromHistory = false) {
-  // letzte Seite merken (nur für dieses Tab/Fenster)
+  
+// Wenn zurück ins Hauptmenü -> Komplett-Flow immer löschen
+  if (id === "page-4") {
+    clearKomplettFlow();
+  }
+
+// letzte Seite merken (nur für dieses Tab/Fenster)
   sessionStorage.setItem("lastPage", id);
 
 // Browser-History nur setzen, wenn NICHT durch Zurück/Vor ausgelöst
@@ -287,6 +296,7 @@ async function showPage(id, fromHistory = false) {
   //if (id === "page-13") loadPage13();
     if (id === "page-admin") loadAdminPage();
 
+  applyFlowUI(id);
   
   if (id === "page-40") {
     showLoader40(true);
@@ -1333,6 +1343,8 @@ function sendMailPage40() {
 function clearInputs() {
 
 optimiererVerwendet = false;
+  clearKomplettFlow();
+
 
 // localStorage komplett löschen
     localStorage.clear();
@@ -3783,6 +3795,38 @@ function showLoader40(show) {
 }
 
 // -----------------------------
+// Flow "Komplett" (Session-State)
+// -----------------------------
+const FLOW_KEY = "flowMode";
+
+function isKomplettFlow() {
+  return sessionStorage.getItem(FLOW_KEY) === "komplett";
+}
+function setKomplettFlow() {
+  sessionStorage.setItem(FLOW_KEY, "komplett");
+}
+function clearKomplettFlow() {
+  sessionStorage.removeItem(FLOW_KEY);
+}
+
+function startKomplettFlow() {
+  setKomplettFlow();
+  showPage("page-15"); // Einstieg Komplett (Versicherung) – wie bisher
+}
+
+function applyFlowUI(pageId) {
+  if (pageId === "page-8") {
+    const normalBtn = document.getElementById("btnWeiter8Normal");
+    const komplettBtn = document.getElementById("btnWeiter8Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+}
+
+
+// -----------------------------
 
 window.addEventListener("popstate", (e) => {
   const page = e.state?.page || location.hash.replace("#", "");
@@ -3889,3 +3933,4 @@ window.berechneGesamt24 = berechneGesamt24;
 //window.loadPage13 = loadPage13;
 //window.calcRow13 = calcRow13;
 //window.berechneGesamt13 = berechneGesamt13;
+window.startKomplettFlow = startKomplettFlow;

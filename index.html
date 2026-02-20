@@ -12,7 +12,7 @@
 <img src="logo.png" class="logo">
 
 <!-- Countdown -->
-<div id="release-info">Release: V1.0.3</div>
+<div id="release-info">Release: V1.0.4</div>
 <div id="timer">Logout in: 10:00</div>
 
 <!-- NEU: Angemeldet als -->
@@ -175,7 +175,7 @@
 
     <button onclick="showPage('page-6')">DC</button>
     <button onclick="showPage('page-7')">AC</button>
-    <button onclick="showPage('page-15')">Komplett</button><br>
+    <button onclick="startKomplettFlow()">Komplett</button><br>
     <button onclick="showPage('page-14-1')">Downloadbereich</button>
 <br>
 <br>
@@ -498,7 +498,8 @@
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-20')">Weiter</button>
+        <button id="btnWeiter8Normal" onclick="showPage('page-20')">Weiter</button>
+        <button id="btnWeiter8Komplett" class="hidden" onclick="showPage('page-9')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
