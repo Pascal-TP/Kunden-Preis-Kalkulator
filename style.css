@@ -6,7 +6,7 @@ body {
 }
 
 .logo {
-    margin: 30px auto;
+    margin: 150px auto 30px;
     display: block;
     width: 50%;
     max-width: 400px;
@@ -215,7 +215,7 @@ button:active {
   #page-40 { display: block !important; }
 
   /* Buttons/Nav etc. ausblenden */
-  button, .nav, #timer, #login-info, #release-info {
+  button, .nav, #timer, #login-info, #release-info, #user-actions {
     display: none !important;
   }
 }

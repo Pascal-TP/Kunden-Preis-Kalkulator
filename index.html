@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TGA KalkPro1.0</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.ico">
@@ -12,7 +13,7 @@
 <img src="logo.png" class="logo">
 
 <!-- Countdown -->
-<div id="release-info">Release: V1.0.5</div>
+<div id="release-info">Release: V1.0.6</div>
 <div id="timer">Logout in: 10:00</div>
 
 <!-- NEU: Angemeldet als -->
@@ -105,8 +106,7 @@
 <br> 
 
   <button onclick="registerRequest()">Registrierung absenden</button>
-  <button onclick="showPage('page-login')">Zurück zum Login</button>
-</div>
+  </div>
 
 <!-- SEITE 1.1 Registrierung:  -->
 <div id="page-admin" class="page">
@@ -129,7 +129,9 @@
 
     <input id="oldPass" type="password" placeholder="Altes Passwort">
     <input id="newPass1" type="password" placeholder="Neues Passwort">
-    <input id="newPass2" type="password" placeholder="Neues Passwort wiederholen">
+    <input id="newPass2" type="password" placeholder="Neues Passwort wiederholen"><br><br>
+
+<p><strong>Passwortrichtlinie:</strong> mind. 8 Zeichen, Großbuchstaben, Kleinbuchstaben, Sonderzeichen, numerische Zeichen</p><br><br>
 
     <div class="error" id="changeError"></div>
 
