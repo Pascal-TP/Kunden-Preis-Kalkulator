@@ -611,6 +611,14 @@ if (id === "page-14" || id === "page-14-2") {
       showLoader40(false);
     }
   }
+// Checkboxen beim Seitenwechsel zurücksetzen
+  const cb1 = document.getElementById("chkPrivacyAck");
+  const cb2 = document.getElementById("chkPrivacyAck2");
+
+  if (cb1) cb1.checked = false;
+  if (cb2) cb2.checked = false;
+
+  updateAuthButtons();
 }
 
 // -----------------------------
