@@ -515,13 +515,22 @@ body.pdf-mode #page-40 .hinweis-row {
   margin: 12px 0;
 }
 
+/* Checkbox + Text: kompakter und einzeilig */
 .ack-label{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  text-align:left;
-  max-width: 520px;
-  line-height: 1.35;
+  display: inline-flex;
+  align-items: center;      /* statt align-items:flex-start */
+  gap: 6px;                 /* kleiner Abstand */
+  max-width: 900px;         /* genug Platz für 1 Zeile */
+  line-height: 1.2;
+}
+
+.ack-label span{
+  white-space: nowrap;      /* 1 Zeile */
+}
+
+/* auf sehr kleinen Displays darf es umbrechen, sonst wird es zu breit */
+@media (max-width: 420px){
+  .ack-label span{ white-space: normal; }
 }
 
 /* damit Checkbox nicht „hoch“ sitzt */

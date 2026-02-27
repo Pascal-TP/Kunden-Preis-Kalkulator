@@ -420,8 +420,9 @@ function updateAuthButtons() {
   const btnLogin = document.getElementById("btnLogin");
   const btnRegisterSend = document.getElementById("btnRegisterSend");
 
-  if (btnLogin) btnLogin.disabled = !ok;
-  if (btnRegisterSend) btnRegisterSend.disabled = !ok;
+  // NICHT disabled setzen -> sonst kein Klick -> keine Fehlermeldung
+  btnLogin?.classList.toggle("btn-disabled", !ok);
+  btnRegisterSend?.classList.toggle("btn-disabled", !ok);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -450,16 +451,12 @@ function makeTempPassword(len = 18) {
 }
 
 async function registerRequest() {
-  
-if (!isPrivacyAccepted()) {
-const err = document.getElementById("reg-error");
-if (err) err.innerText =
-"Bitte bestätigen Sie zuerst (im Login), dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.";
-showPage("page-login");
-return;
-}
+  const err = document.getElementById("reg-error");
+  const info = document.getElementById("reg-info");
+  if (err) err.innerText = "";
+  if (info) info.innerText = "";
 
-const firma   = (document.getElementById("reg-firma")?.value || "").trim();
+  const firma   = (document.getElementById("reg-firma")?.value || "").trim();
   const name    = (document.getElementById("reg-name")?.value || "").trim();
   const strasse = (document.getElementById("reg-strasse")?.value || "").trim();
   const hausnr  = (document.getElementById("reg-hausnr")?.value || "").trim();
@@ -468,11 +465,7 @@ const firma   = (document.getElementById("reg-firma")?.value || "").trim();
   const email   = (document.getElementById("reg-email")?.value || "").trim().toLowerCase();
   const tel     = (document.getElementById("reg-tel")?.value || "").trim();
 
-  const err = document.getElementById("reg-error");
-  const info = document.getElementById("reg-info");
-  if (err) err.innerText = "";
-  if (info) info.innerText = "";
-
+  // 1) Erst Pflichtfelder prüfen
   const missing = [];
   if (!firma) missing.push("Firmenname");
   if (!name) missing.push("Name Ansprechpartner");
@@ -485,6 +478,13 @@ const firma   = (document.getElementById("reg-firma")?.value || "").trim();
 
   if (missing.length) {
     if (err) err.innerText = "Bitte ausfüllen: " + missing.join(", ");
+    return;
+  }
+
+  // 2) Dann Checkbox prüfen
+  if (!isPrivacyAccepted()) {
+    if (err) err.innerText =
+      "Bitte bestätigen Sie die Datenschutzerklärung (Haken setzen), um die Registrierung abzusenden.";
     return;
   }
 
@@ -618,18 +618,21 @@ if (id === "page-14" || id === "page-14-2") {
 // -----------------------------
 
 async function login() {
-  if (!isPrivacyAccepted()) {
-    const loginError = document.getElementById("loginError");
-    if (loginError) loginError.innerText =
-      "Bitte bestätigen Sie zuerst, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.";
+  const loginError = document.getElementById("loginError");
+
+  const email = (document.getElementById("loginUser")?.value || "").trim();
+  const pw = (document.getElementById("loginPass")?.value || "");
+
+  // 1) Erst Eingaben prüfen
+  if (!email || !pw) {
+    if (loginError) loginError.innerText = "Bitte E-Mail und Passwort eingeben.";
     return;
   }
- 
-  const email = loginUser.value.trim();
-  const pw = loginPass.value;
 
-  if (!email || !pw) {
-    loginError.innerText = "Bitte E-Mail und Passwort eingeben.";
+  // 2) Dann Datenschutz-Haken prüfen
+  if (!isPrivacyAccepted()) {
+    if (loginError) loginError.innerText =
+      "Bitte bestätigen Sie die Datenschutzerklärung (Haken setzen), um sich anzumelden.";
     return;
   }
 
