@@ -478,6 +478,11 @@ currentUser = user || null;
   } else {
     // UI
     actions?.classList.add("hidden");
+
+    clearInterval(logoutTimer);
+    sessionStorage.removeItem(LOGOUT_DEADLINE_KEY);
+    document.body.classList.remove("is-logged-in");
+
     if (info) info.innerText = "";
     updateAdminUI_();
 
@@ -1116,7 +1121,10 @@ async function autoLogoutNow() {
 function checkLogoutTimer() {
   const deadline = getLogoutDeadline();
 
-  if (!auth.currentUser || !deadline) return;
+  if (!deadline) return;
+
+  const isUserKnown = !!auth.currentUser || !!currentUser;
+  if (!isUserKnown) return;
 
   const diff = deadline - Date.now();
 
