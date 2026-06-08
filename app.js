@@ -824,7 +824,8 @@ const kpSummaryConfig = [
   { key: "page23Data", label: "Schrägdach" },
   { key: "page8Data", label: "Optimierer" },
   { key: "page9Data", label: "Gerüst" },
-  { key: "page142Data", label: "Wechselrichter" },
+  { key: "page142Data", label: "Wechselrichter hybrid" },
+  { key: "page14Data", label: "Wechselrichter strang" },
   { key: "page21Data", label: "Zubehör WR" },
   { key: "page10Data", label: "Speicher BYD" },
   { key: "page26Data", label: "Speicher Fronius" },
@@ -905,7 +906,7 @@ async function showPage(id, fromHistory = false) {
     setTimeout(() => applyWrRecommendation(id), 0);
   }
 
-  // if (id === "page-14") loadPage14();
+  if (id === "page-14") loadPage14();
   //if (id === "page-14-3") loadPage143();
   if (id === "page-14-2") loadPage142();
   if (id === "page-8") loadPage8();
@@ -2363,8 +2364,8 @@ function clearInputs() {
   // const sum13 = document.getElementById("gesamtSumme13");
   // if (sum13) sum13.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-  // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
-  // page14Loaded = false;
+  //Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
+  page14Loaded = false;
 
   // Seite 14.3 hat kein Flag, daher reicht Container leeren
 
