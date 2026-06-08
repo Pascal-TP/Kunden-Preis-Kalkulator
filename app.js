@@ -70,7 +70,7 @@ function applyFlowUI(pageId) {
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
 
-if (pageId === "page-15") {
+  if (pageId === "page-15") {
     const normalBtn = document.getElementById("btnWeiter15Normal");
     const komplettBtn = document.getElementById("btnWeiter15Komplett");
 
@@ -78,7 +78,7 @@ if (pageId === "page-15") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-23") {
+  if (pageId === "page-23") {
     const normalBtn = document.getElementById("btnWeiter23Normal");
     const komplettBtn = document.getElementById("btnWeiter23Komplett");
 
@@ -86,7 +86,7 @@ if (pageId === "page-23") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-24") {
+  if (pageId === "page-24") {
     const normalBtn = document.getElementById("btnWeiter24Normal");
     const komplettBtn = document.getElementById("btnWeiter24Komplett");
 
@@ -94,7 +94,7 @@ if (pageId === "page-24") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-9") {
+  if (pageId === "page-9") {
     const normalBtn = document.getElementById("btnWeiter9Normal");
     const komplettBtn = document.getElementById("btnWeiter9Komplett");
 
@@ -102,15 +102,15 @@ if (pageId === "page-9") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-14") {
-    const normalBtn = document.getElementById("btnWeiter14Normal");
-    const komplettBtn = document.getElementById("btnWeiter14Komplett");
+  // if (pageId === "page-14") {
+  //  const normalBtn = document.getElementById("btnWeiter14Normal");
+  //  const komplettBtn = document.getElementById("btnWeiter14Komplett");
 
-    const k = isKomplettFlow();
-    if (normalBtn) normalBtn.classList.toggle("hidden", k);
-    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
-  }
-if (pageId === "page-14-2") {
+  //  const k = isKomplettFlow();
+  //  if (normalBtn) normalBtn.classList.toggle("hidden", k);
+  //  if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  // }
+  if (pageId === "page-14-2") {
     const normalBtn = document.getElementById("btnWeiter142Normal");
     const komplettBtn = document.getElementById("btnWeiter142Komplett");
 
@@ -118,7 +118,7 @@ if (pageId === "page-14-2") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-21") {
+  if (pageId === "page-21") {
     const normalBtn = document.getElementById("btnWeiter21Normal");
     const komplettBtn = document.getElementById("btnWeiter21Komplett");
 
@@ -126,7 +126,7 @@ if (pageId === "page-21") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-10") {
+  if (pageId === "page-10") {
     const normalBtn = document.getElementById("btnWeiter10Normal");
     const komplettBtn = document.getElementById("btnWeiter10Komplett");
 
@@ -134,7 +134,7 @@ if (pageId === "page-10") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-18") {
+  if (pageId === "page-18") {
     const normalBtn = document.getElementById("btnWeiter18Normal");
     const komplettBtn = document.getElementById("btnWeiter18Komplett");
 
@@ -142,7 +142,7 @@ if (pageId === "page-18") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-20") {
+  if (pageId === "page-20") {
     const normalBtn = document.getElementById("btnWeiter20Normal");
     const komplettBtn = document.getElementById("btnWeiter20Komplett");
 
@@ -150,9 +150,27 @@ if (pageId === "page-20") {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-22") {
+  if (pageId === "page-22") {
     const normalBtn = document.getElementById("btnWeiter22Normal");
     const komplettBtn = document.getElementById("btnWeiter22Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+
+  if (pageId === "page-26") {
+    const normalBtn = document.getElementById("btnWeiter26Normal");
+    const komplettBtn = document.getElementById("btnWeiter26Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+
+  if (pageId === "page-25") {
+    const normalBtn = document.getElementById("btnWeiter25Normal");
+    const komplettBtn = document.getElementById("btnWeiter25Komplett");
 
     const k = isKomplettFlow();
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
@@ -175,8 +193,7 @@ function startSplashScreen() {
 // Hinweistexte in eigenen Hinweisfenster
 // -----------------------------
 
-function showHinweis(text) {
-
+function showHinweis(text, onOk) {
   const modal = document.getElementById("hinweisModal");
   const textBox = document.getElementById("hinweisText");
   const okBtn = document.getElementById("hinweisOk");
@@ -184,8 +201,14 @@ function showHinweis(text) {
 
   textBox.innerText = text;
 
-  cancelBtn.style.display = "none";   // Abbrechen ausblenden
-  okBtn.onclick = closeHinweis;
+  cancelBtn.style.display = "none";
+
+  okBtn.onclick = async () => {
+    closeHinweis();
+    if (typeof onOk === "function") {
+      await onOk();
+    }
+  };
 
   modal.style.display = "block";
 }
@@ -217,6 +240,14 @@ function showConfirm(text, onOk) {
   modal.style.display = "block";
 }
 
+function confirmClearInputs() {
+  showConfirm("Alle Eingaben wirklich löschen?", () => {
+    clearInputs();
+  });
+}
+
+window.confirmClearInputs = confirmClearInputs;
+
 window.showHinweis = showHinweis;
 window.closeHinweis = closeHinweis;
 window.showConfirm = showConfirm;
@@ -241,15 +272,18 @@ function getPvModuleCount() {
 function getWrRecommendationText(modules) {
   if (modules <= 0) return null;
 
-  if (modules <= 7)  return "3.0";
-  if (modules <= 9)  return "4.0";
+  if (modules <= 7) return "3.0";
+  if (modules <= 9) return "4.0";
   if (modules <= 11) return "5.0";
   if (modules <= 14) return "6.0";
   if (modules <= 18) return "8.0";
   if (modules <= 23) return "10.0";
   if (modules <= 28) return "12.0";
   if (modules <= 33) return "15.0";
-  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
+  if (modules <= 44) return "20.0";
+  if (modules <= 55) return "25.0";
+  if (modules <= 66) return "30.0";
+  return "30.0";
 }
 
 // -----------------------------
@@ -263,8 +297,8 @@ function extractWrSizeFromRow(rowEl) {
   // Normalisieren: 3,0 -> 3.0
   const desc = descRaw.replace(",", ".");
 
-  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15
-  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?)(?![0-9])/);
+  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15 / 20.0 / 20 / 25.0 / 25 / 30.0 / 30
+  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?|20(?:\.0)?|25(?:\.0)?|30(?:\.0)?)(?![0-9])/);
   if (!m) return null;
 
   // Immer als "x.0" zurückgeben
@@ -315,25 +349,34 @@ function applyWrRecommendation(pageId) {
 
     // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
     const shouldDim = (size && size !== reco);
-    hasMismatch = true;
     row.classList.toggle("wr-dimmed", shouldDim);
 
-    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
     const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+
+    if (shouldDim && val > 0) {
+      hasMismatch = true;
+    }
+
+    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
+
     if (shouldDim && val > 0) {
       const warn = document.createElement("div");
       warn.className = "wr-warn";
       warn.innerText = "Achtung: Wechselrichter nicht passend!";
       row.appendChild(warn);
     }
-// Ergebnis für Seite 40 merken
-if (hasMismatch) localStorage.setItem("wrMismatch", "1");
-else localStorage.removeItem("wrMismatch");
 
-// Optional: für Anzeige auf Seite 40 (empfohlen)
-localStorage.setItem("wrRecoSize", reco);
-localStorage.setItem("wrRecoModules", String(modules));
   });
+
+  // Ergebnis für Seite 40 merken – erst NACH Prüfung aller Wechselrichter
+  if (hasMismatch) {
+    localStorage.setItem("wrMismatch", "1");
+  } else {
+    localStorage.removeItem("wrMismatch");
+  }
+
+  localStorage.setItem("wrRecoSize", reco);
+  localStorage.setItem("wrRecoModules", String(modules));
 
   // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
   if (!pageEl.dataset.wrRecoListener) {
@@ -356,6 +399,9 @@ localStorage.setItem("wrRecoModules", String(modules));
         warn.innerText = "Achtung: Wechselrichter nicht passend!";
         row.appendChild(warn);
       }
+
+      applyWrRecommendation(pageId);
+
     }, true);
 
     pageEl.dataset.wrRecoListener = "1";
@@ -374,7 +420,7 @@ function resetStoredInputsOnReload() {
 
   if (!isReload) return;
 
-    // Flow-State ebenfalls löschen
+  // Flow-State ebenfalls löschen
   clearKomplettFlow();
 
   // Nur deine Eingabe-/Angebotsdaten löschen (Auth bleibt erhalten!)
@@ -392,15 +438,16 @@ function resetStoredInputsOnReload() {
     "page9Data",
     "page10Data",
     "page23Data",
-    "page24Data"
+    "page24Data",
+    "page25Data",
+    "page26Data",
+    "uploadedFiles"
   ];
+
+  void clearUploadedFilesFromStorage();
 
   keysToRemove.forEach(k => localStorage.removeItem(k));
 }
-
-// SOFORT ausführen (möglichst früh)
-resetStoredInputsOnReload();
-
 
 // -----------------------------
 // Firebase - E-Mail+Passwort
@@ -433,6 +480,24 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+import {
+  getFunctions,
+  httpsCallable
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js";
+
+import {
+  initializeAppCheck,
+  ReCaptchaV3Provider
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app-check.js";
+
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  uploadBytesResumable,
+  deleteObject
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCAY_yEMYyLx8yJbJ3ou6T_nepH-UxInos",
   authDomain: "pw-tga-pv-a12b2.firebaseapp.com",
@@ -443,7 +508,31 @@ const firebaseConfig = {
   measurementId: "G-27NWPRNC95"
 };
 
+const blazeConfig = {
+  apiKey: "AIzaSyCcHI5sGR7sFwrWRpo2uQ3Plm0HpTvqr30",
+  authDomain: "kalkpro-4cc29.firebaseapp.com",
+  projectId: "kalkpro-4cc29",
+  storageBucket: "kalkpro-4cc29.firebasestorage.app",
+  messagingSenderId: "185447466021",
+  appId: "1:185447466021:web:e0d0720fae971b4ab52bcc",
+  measurementId: "G-V4SF92V16K"
+};
+
+const blazeApp = initializeApp(blazeConfig, "blazeApp");
+const blazeFunctions = getFunctions(blazeApp, "europe-west1");
+
+const blazeStorage = getStorage(blazeApp);
+let uploadedFiles = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
+
+resetStoredInputsOnReload();
+
 const fbApp = initializeApp(firebaseConfig);
+
+const appCheck = initializeAppCheck(fbApp, {
+  provider: new ReCaptchaV3Provider("6LeGUxMtAAAAAE2qMwNGM0FcfaH_Gai_O6lBGE2S"),
+  isTokenAutoRefreshEnabled: true
+});
+
 const auth = getAuth(fbApp);
 (async () => {
   // 1) Persistenz: nichts im Browser behalten
@@ -454,46 +543,41 @@ const auth = getAuth(fbApp);
   // await signOut(auth);
 
   // 3) Listener erst DANACH
-const app = document.getElementById("app");  
-onAuthStateChanged(auth, user => {
-currentUser = user || null;
+  const app = document.getElementById("app");
+  onAuthStateChanged(auth, user => {
+    currentUser = user || null;
 
-  const actions = document.getElementById("user-actions");
-  const info = document.getElementById("login-info");
-  
-  if (user) {
-    document.body.classList.add("is-logged-in");
+    const actions = document.getElementById("user-actions");
+    const info = document.getElementById("login-info");
+
+    if (user) {
+      document.body.classList.add("is-logged-in");
       startTimer();
+      // UI
+      actions?.classList.remove("hidden");
+      if (info) info.innerText = "Angemeldet als: " + user.email;
+      updateAdminUI_();
 
-    // UI
-    actions?.classList.remove("hidden");
-    if (info) info.innerText = "Angemeldet als: " + user.email;
-    updateAdminUI_();
+      // direkt ins Tool (ohne Splash)
+      const target = getInitialPage(); // oder dein lastPage-Mechanismus
+      history.replaceState({ page: target }, "", "#" + target);
+      showPage(target, true);
 
-    // direkt ins Tool (ohne Splash)
-    const target = getInitialPage(); // oder dein lastPage-Mechanismus
-    history.replaceState({ page: target }, "", "#" + target);
-    showPage(target, true);
+    } else {
+      document.body.classList.remove("is-logged-in");
+      // UI
+      actions?.classList.add("hidden");
+      if (info) info.innerText = "";
+      updateAdminUI_();
 
-  } else {
-    // UI
-    actions?.classList.add("hidden");
+      // Splash zeigen und dann zum Login
+      showPage("page-start", true);
+      startSplashScreen();
+    }
 
-    clearInterval(logoutTimer);
-    sessionStorage.removeItem(LOGOUT_DEADLINE_KEY);
-    document.body.classList.remove("is-logged-in");
-
-    if (info) info.innerText = "";
-    updateAdminUI_();
-
-    // Splash zeigen und dann zum Login
-    showPage("page-start", true);
-    startSplashScreen();
-  }
-
-  // App sichtbar machen
-  app?.classList.remove("hidden");
-});
+    // App sichtbar machen
+    app?.classList.remove("hidden");
+  });
 })();
 
 const db = getFirestore(fbApp);
@@ -536,6 +620,7 @@ function updateAuthButtons() {
 document.addEventListener("DOMContentLoaded", () => {
   const cb1 = document.getElementById("chkPrivacyAck");
   const cb2 = document.getElementById("chkPrivacyAck2");
+  const fileInput = document.getElementById("request-files");
 
   cb1?.addEventListener("change", updateAuthButtons);
   cb2?.addEventListener("change", updateAuthButtons);
@@ -543,8 +628,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Startzustand: ohne Haken
   if (cb1) cb1.checked = false;
   if (cb2) cb2.checked = false;
+  if (fileInput) {
+    fileInput.addEventListener("change", handleFileUpload);
+  }
 
   updateAuthButtons();
+  renderFileList();
 });
 
 // -----------------------------
@@ -564,14 +653,14 @@ async function registerRequest() {
   if (err) err.innerText = "";
   if (info) info.innerText = "";
 
-  const firma   = (document.getElementById("reg-firma")?.value || "").trim();
-  const name    = (document.getElementById("reg-name")?.value || "").trim();
+  const firma = (document.getElementById("reg-firma")?.value || "").trim();
+  const name = (document.getElementById("reg-name")?.value || "").trim();
   const strasse = (document.getElementById("reg-strasse")?.value || "").trim();
-  const hausnr  = (document.getElementById("reg-hausnr")?.value || "").trim();
-  const plz     = (document.getElementById("reg-plz")?.value || "").trim();
-  const ort     = (document.getElementById("reg-ort")?.value || "").trim();
-  const email   = (document.getElementById("reg-email")?.value || "").trim().toLowerCase();
-  const tel     = (document.getElementById("reg-tel")?.value || "").trim();
+  const hausnr = (document.getElementById("reg-hausnr")?.value || "").trim();
+  const plz = (document.getElementById("reg-plz")?.value || "").trim();
+  const ort = (document.getElementById("reg-ort")?.value || "").trim();
+  const email = (document.getElementById("reg-email")?.value || "").trim().toLowerCase();
+  const tel = (document.getElementById("reg-tel")?.value || "").trim();
 
   // 1) Erst Pflichtfelder prüfen
   const missing = [];
@@ -596,7 +685,15 @@ async function registerRequest() {
     return;
   }
 
- try {
+  // 3) reCAPTCHA prüfen
+  const recaptchaToken = grecaptcha?.getResponse();
+
+  if (!recaptchaToken) {
+    if (err) err.innerText = "Bitte bestätigen Sie: Ich bin kein Roboter.";
+    return;
+  }
+
+  try {
     const cred = await createUserWithEmailAndPassword(auth, email, makeTempPassword());
 
     await setDoc(doc(db, "users", cred.user.uid), {
@@ -612,6 +709,15 @@ async function registerRequest() {
       name,
       createdAt: serverTimestamp(),
       status: "pending"
+    });
+
+    await notifyAdminsAboutRegistration({
+      firma,
+      name,
+      email,
+      tel,
+      ort,
+      plz
     });
 
     await signOut(auth);
@@ -632,13 +738,32 @@ async function registerRequest() {
         err.innerText = "Registrierung fehlgeschlagen. Bitte prüfen und erneut versuchen.";
       }
     }
+    if (window.grecaptcha) {
+      grecaptcha.reset();
+    }
   }
 }
 
 
 window.registerRequest = registerRequest;
 
+// -----------------------------
+// Mailbenachrichtigung bei neuer Registrierung
+// -----------------------------
 
+async function notifyAdminsAboutRegistration(data) {
+  const sendMail = httpsCallable(blazeFunctions, "sendRegistrationNotification");
+
+  await sendMail({
+    adminEmails: ADMIN_EMAILS,
+    firma: data.firma,
+    name: data.name,
+    email: data.email,
+    tel: data.tel,
+    ort: data.ort,
+    plz: data.plz
+  });
+}
 
 // -----------------------------
 // TableHeaderWithImage - Bild neben Spaltenüberschriften einfügen
@@ -660,32 +785,111 @@ function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
   `;
 }
 
+function updateKpNavigation(pageId) {
+  document.querySelectorAll(".kp-nav-item").forEach(btn => {
+    btn.classList.remove("active", "parent-active");
+
+    const target = btn.dataset.page;
+    if (target === pageId) {
+      btn.classList.add("active");
+    }
+  });
+
+  const dcPages = new Set(["page-6", "page-24", "page-23", "page-8", "page-9"]);
+  const acPages = new Set(["page-7", "page-11", "page-14", "page-14-2", "page-21", "page-10", "page-26", "page-18", "page-20", "page-22"]);
+
+  document.querySelectorAll(".kp-subnav").forEach(group => {
+    group.classList.remove("open");
+  });
+
+  if (dcPages.has(pageId)) {
+    document.querySelector('.kp-subnav[data-parent="dc"]')?.classList.add("open");
+
+    if (pageId !== "page-6") {
+      document.querySelector('.kp-nav-item[data-page="page-6"]')?.classList.add("parent-active");
+    }
+  }
+
+  if (acPages.has(pageId)) {
+    document.querySelector('.kp-subnav[data-parent="ac"]')?.classList.add("open");
+
+    if (pageId !== "page-7") {
+      document.querySelector('.kp-nav-item[data-page="page-7"]')?.classList.add("parent-active");
+    }
+  }
+}
+
+const kpSummaryConfig = [
+  { key: "page24Data", label: "Flachdach" },
+  { key: "page23Data", label: "Schrägdach" },
+  { key: "page8Data", label: "Optimierer" },
+  { key: "page9Data", label: "Gerüst" },
+  { key: "page142Data", label: "Wechselrichter" },
+  { key: "page21Data", label: "Zubehör WR" },
+  { key: "page10Data", label: "Speicher BYD" },
+  { key: "page26Data", label: "Speicher Fronius" },
+  { key: "page18Data", label: "Wallbox" },
+  { key: "page20Data", label: "Zählerschränke" },
+  { key: "page25Data", label: "Dienstleistung" },
+  { key: "page22Data", label: "Extras" }
+];
+
+function getKpTotalQty(storageKey) {
+  const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+  return Object.values(data).reduce((sum, value) => {
+    const n = parseFloat(String(value).replace(",", ".")) || 0;
+    return sum + n;
+  }, 0);
+}
+
+function updateKpSelectionSummary() {
+  const box = document.getElementById("kp-selection-summary");
+  if (!box) return;
+
+  let html = "";
+
+  kpSummaryConfig.forEach(item => {
+    const qty = getKpTotalQty(item.key);
+
+    if (qty > 0) {
+      html += `
+        <div class="kp-summary-item">
+          <span>${item.label}</span>
+          <strong>${qty.toLocaleString("de-DE")} Stück</strong>
+        </div>
+      `;
+    }
+  });
+
+  box.innerHTML = html || `<p class="kp-empty-summary">Noch keine Auswahl vorhanden.</p>`;
+}
 
 // -----------------------------
 // showPage
 // -----------------------------
 
 async function showPage(id, fromHistory = false) {
-  
-// Ohne Login nur diese Seiten erlauben:
+
+  // Ohne Login nur diese Seiten erlauben:
   const publicPages = new Set([
-  "page-login",
-  "page-start",
-  "page-register",
-  "page-privacy",
-  "page-imprint",
-  "page-hinweis"
-]);
+    "page-login",
+    "page-start",
+    "page-register",
+    "page-privacy",
+    "page-imprint",
+    "page-hinweis"
+  ]);
 
   if (!isLoggedIn() && !publicPages.has(id)) {
     console.warn("Blocked navigation (not logged in):", id);
     id = "page-login";
   }
 
-// letzte Seite merken (nur für dieses Tab/Fenster)
+  // letzte Seite merken (nur für dieses Tab/Fenster)
   sessionStorage.setItem("lastPage", id);
 
-// Browser-History nur setzen, wenn NICHT durch Zurück/Vor ausgelöst
+  // Browser-History nur setzen, wenn NICHT durch Zurück/Vor ausgelöst
   if (!fromHistory) {
     history.pushState({ page: id }, "", "#" + id);
   }
@@ -693,15 +897,15 @@ async function showPage(id, fromHistory = false) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   const el = document.getElementById(id);
   if (!el) return;           // Sicherheitsnetz
-  el.classList.add("active");  
-  
-if (id === "page-14" || id === "page-14-2") {
-  // wichtig: erst laden, dann anwenden
-  // (falls loadPage14/page142 den Content erst füllt)
-  setTimeout(() => applyWrRecommendation(id), 0);
-}
+  el.classList.add("active");
 
-    if (id === "page-14") loadPage14();
+  if (id === "page-14" || id === "page-14-2") {
+    // wichtig: erst laden, dann anwenden
+    // (falls loadPage14/page142 den Content erst füllt)
+    setTimeout(() => applyWrRecommendation(id), 0);
+  }
+
+  // if (id === "page-14") loadPage14();
   //if (id === "page-14-3") loadPage143();
   if (id === "page-14-2") loadPage142();
   if (id === "page-8") loadPage8();
@@ -713,6 +917,7 @@ if (id === "page-14" || id === "page-14-2") {
   if (id === "page-10") loadPage10();
   if (id === "page-23") loadPage23();
   if (id === "page-24") loadPage24();
+  //if (id === "page-26") loadPage26();
   //if (id === "page-25") loadPage25();
   //if (id === "page-27") loadPage27();
   //if (id === "page-28") loadPage28();
@@ -721,10 +926,10 @@ if (id === "page-14" || id === "page-14-2") {
   //if (id === "page-32") loadPage32();
   //if (id === "page-33") loadPage33();
   //if (id === "page-13") loadPage13();
-    if (id === "page-admin") loadAdminPage();
+  if (id === "page-admin") loadAdminPage();
 
   applyFlowUI(id);
-  
+
   if (id === "page-40") {
     showLoader40(true);
     try {
@@ -734,7 +939,7 @@ if (id === "page-14" || id === "page-14-2") {
       showLoader40(false);
     }
   }
-// Checkboxen beim Seitenwechsel zurücksetzen
+  // Checkboxen beim Seitenwechsel zurücksetzen
   const cb1 = document.getElementById("chkPrivacyAck");
   const cb2 = document.getElementById("chkPrivacyAck2");
 
@@ -742,6 +947,8 @@ if (id === "page-14" || id === "page-14-2") {
   if (cb2) cb2.checked = false;
 
   updateAuthButtons();
+  updateKpNavigation(id);
+  updateKpSelectionSummary();
 }
 
 // -----------------------------
@@ -779,24 +986,24 @@ async function login() {
       time: serverTimestamp()
     });
 
-const udoc = await getDoc(doc(db, "users", currentUser.uid));
-const approved = udoc.exists() && udoc.data().approved === true;
+    const udoc = await getDoc(doc(db, "users", currentUser.uid));
+    const approved = udoc.exists() && udoc.data().approved === true;
 
-if (!approved) {
-  await signOut(auth);
-  currentUser = null;
-  showPage("page-login");
-  loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
-  return;
-}
+    if (!approved) {
+      await signOut(auth);
+      currentUser = null;
+      showPage("page-login");
+      loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
+      return;
+    }
 
     updateAdminUI_();
     startTimer();
     showPage("page-3");
   } catch (e) {
-  console.error("LOGIN ERROR:", e?.code, e?.message, e);
-  loginError.innerText = `Login fehlgeschlagen: ${e?.code || "unknown"}\n${e?.message || ""}`;
-}
+    console.error("LOGIN ERROR:", e?.code, e?.message, e);
+    loginError.innerText = `Login fehlgeschlagen: ${e?.code || "unknown"}\n${e?.message || ""}`;
+  }
 }
 
 function toggleUserMenu() {
@@ -860,9 +1067,9 @@ function goToChange() {
 
 function handleUserAction(val) {
   if (!val) return;
-  
-// ✅ Navigationseinträge
-    if (val.startsWith("nav:")) {
+
+  // ✅ Navigationseinträge
+  if (val.startsWith("nav:")) {
     const pageId = val.replace("nav:", "");
     showPage(pageId);
     const sel = document.getElementById("user-action-select");
@@ -871,10 +1078,10 @@ function handleUserAction(val) {
   }
 
   if (val === "clear") {
-  showConfirm("Alle Eingaben wirklich löschen?", () => {
-    clearInputs();
-  });
-}
+    showConfirm("Alle Eingaben wirklich löschen?", () => {
+      clearInputs();
+    });
+  }
   if (val === "changePw") goToChange();
   if (val === "logout") logout();
 
@@ -914,10 +1121,10 @@ async function savePassword() {
 async function exportLoginLog() {
   const isAdmin = isAdminUser();
 
-if (!isAdmin) {
-  alert("Keine Berechtigung.");
-  return;
-}
+  if (!isAdmin) {
+    alert("Keine Berechtigung.");
+    return;
+  }
 
   const { getDocs, query, orderBy } = await import(
     "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
@@ -929,7 +1136,7 @@ if (!isAdmin) {
   let csv = "time;email;event\n";
   snap.forEach(d => {
     const x = d.data();
-    const time = x.time?.toDate ? x.time.toDate().toISOString() : "";
+    const time = x.time?.toDate ? x.time.toDate().toLocaleString("de-DE") : "";
     csv += `${time};${x.email || ""};${x.event || ""}\n`;
   });
 
@@ -947,7 +1154,7 @@ if (!isAdmin) {
 
 window.exportLoginLog = exportLoginLog;
 
-  
+
 // -----------------------------
 // Admin-Freigabe + Mail auslösen (ohne Backend)
 // -----------------------------
@@ -955,10 +1162,10 @@ window.exportLoginLog = exportLoginLog;
 async function loadPendingUsers() {
   const isAdmin = isAdminUser();
 
-if (!isAdmin) {
-  alert("Keine Berechtigung.");
-  return;
-}
+  if (!isAdmin) {
+    alert("Keine Berechtigung.");
+    return;
+  }
 
   const q = query(collection(db, "users"), where("approved", "==", false));
   const snap = await getDocs(q);
@@ -971,10 +1178,10 @@ if (!isAdmin) {
 async function approveUser(uid, email) {
   const isAdmin = isAdminUser();
 
-if (!isAdmin) {
-  alert("Keine Berechtigung.");
-  return;
-}
+  if (!isAdmin) {
+    alert("Keine Berechtigung.");
+    return;
+  }
 
   // ✅ udoc holen
   const uref = doc(db, "users", uid);
@@ -1121,10 +1328,7 @@ async function autoLogoutNow() {
 function checkLogoutTimer() {
   const deadline = getLogoutDeadline();
 
-  if (!deadline) return;
-
-  const isUserKnown = !!auth.currentUser || !!currentUser;
-  if (!isUserKnown) return;
+  if (!auth.currentUser || !deadline) return;
 
   const diff = deadline - Date.now();
 
@@ -1161,16 +1365,16 @@ function saveSeitenSumme(seitenId, summe) {
   angebotSummen[seitenId] = summe;
   localStorage.setItem("angebotSummen", JSON.stringify(angebotSummen));
 
-//// NEU: Rabatt-Anzeigen automatisch nachziehen
-//  refreshRabattDisplays();
+  //// NEU: Rabatt-Anzeigen automatisch nachziehen
+  //  refreshRabattDisplays();
 }
 
 function getGesamtAngebotssumme() {
-    let total = 0;
-    for (let key in angebotSummen) {
-        total += parseFloat(angebotSummen[key]) || 0;
-    }
-    return total;
+  let total = 0;
+  for (let key in angebotSummen) {
+    total += parseFloat(angebotSummen[key]) || 0;
+  }
+  return total;
 }
 
 // -----------------------------
@@ -1209,56 +1413,194 @@ function getGesamtAngebotssumme() {
 // -----------------------------
 
 function submitPage5() {
-    const fields = [
-        {id: "bv-contact", name: "Kontakt / Ansprechpartner"},
-        {id: "bv-strasse", name: "Straße, Hausnummer"},
-        {id: "bv-ort", name: "PLZ, Ort"},
-        {id: "shk-contact", name: "SHK Ansprechpartner"},
-        {id: "shk-email", name: "SHK E-Mail"},
-        {id: "shk-phone", name: "SHK Telefon-Nr."},
-        {id: "execution-date", name: "Gewünschter Ausführungstermin"},
-        {id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne"},
-        {id: "zeichnung-plaene", name:"Zeichnung / Pläne"},
-        {id: "zaehlerschrank", name:"Standort Zählerschrank"},       
-        {id: "wechselrichter_speicher", name:"Standort Wechselrichter + Speicher"},
-        {id: "jahresstrombedarf", name:"Jahresstrombedarf kWh"},
-        {id: "waermepumpe_strombedarf", name:"Wärmepumpe Strombedarf kWh"},
-        {id: "wallbox", name:"Wallbox"}
-    ];
+  const fields = [
+    { id: "bv-contact", name: "Kontakt / Ansprechpartner" },
+    { id: "bv-strasse", name: "Straße, Hausnummer" },
+    { id: "bv-ort", name: "PLZ, Ort" },
+    { id: "shk-contact", name: "SHK Ansprechpartner" },
+    { id: "shk-email", name: "SHK E-Mail" },
+    { id: "shk-phone", name: "SHK Telefon-Nr." },
+    { id: "execution-date", name: "Gewünschter Ausführungstermin" },
+    { id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne" },
+    { id: "zeichnung-plaene", name: "Zeichnung / Pläne" },
+    { id: "zaehlerschrank", name: "Standort Zählerschrank" },
+    { id: "wechselrichter_speicher", name: "Standort Wechselrichter + Speicher" },
+    { id: "jahresstrombedarf", name: "Jahresstrombedarf kWh" },
+    { id: "waermepumpe_strombedarf", name: "Wärmepumpe Strombedarf kWh" },
+    { id: "wallbox", name: "Wallbox" },
+    { id: "copy-email", name: "E-Mail-Adresse für Kopie" }
+  ];
 
-    let missing = [];
+  let missing = [];
 
-    fields.forEach(f => {
-        const val = document.getElementById(f.id).value.trim();
-        if (!val) missing.push(f.name);
-    });
+  fields.forEach(f => {
+    const val = document.getElementById(f.id).value.trim();
+    if (!val) missing.push(f.name);
+  });
 
-    const errorDiv = document.getElementById("page5-error");
+  const errorDiv = document.getElementById("page5-error");
 
-    if (missing.length > 0) {
-        errorDiv.innerText = "Bitte folgende Felder ausfüllen:\n" + missing.join(", ");
-        return;
-    }
+  if (missing.length > 0) {
+    errorDiv.innerText = "Bitte folgende Felder ausfüllen:\n" + missing.join(", ");
+    return;
+  }
 
-    errorDiv.innerText = "";
+  errorDiv.innerText = "";
 
-    savePage5Data();
-    
-    showPage("page-4");
+  savePage5Data();
+
+  showPage("page-4");
 }
 
 function savePage5Data() {
-    const ids = [
-        "bv-contact", "bv-strasse", "bv-ort", "shk-contact",
-        "shk-email", "shk-phone", "execution-date", "dachpfanne-ausfuehrung", "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf", "waermepumpe_strombedarf", "wallbox"
+  const ids = [
+    "bv-contact", "bv-strasse", "bv-ort", "shk-contact",
+    "shk-email", "shk-phone", "execution-date", "dachpfanne-ausfuehrung", "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf", "waermepumpe_strombedarf", "wallbox", "copy-email"
 
-    ];
+  ];
 
-    const obj = {};
-    ids.forEach(id => obj[id] = (document.getElementById(id)?.value || "").trim());
+  const obj = {};
+  ids.forEach(id => obj[id] = (document.getElementById(id)?.value || "").trim());
 
-    localStorage.setItem("page5Data", JSON.stringify(obj));
+  localStorage.setItem("page5Data", JSON.stringify(obj));
 }
+
+function getRequesterEmail() {
+  return (document.getElementById("shk-email")?.value || "").trim().toLowerCase();
+}
+
+function getRequesterKey() {
+  const mail = getRequesterEmail();
+  return (mail || "unknown").replace(/[^a-z0-9._-]/g, "_");
+}
+
+async function handleFileUpload(event) {
+  const files = Array.from(event.target.files);
+
+  const progressContainer = document.getElementById("upload-progress-container");
+  const progressBar = document.getElementById("upload-progress-bar");
+  const progressText = document.getElementById("upload-progress-text");
+
+  const currentTotal = getUploadedFilesTotalSize();
+  const newFilesTotal = files.reduce((sum, file) => sum + file.size, 0);
+  const maxTotalSize = 10 * 1024 * 1024;
+
+  if (currentTotal + newFilesTotal > maxTotalSize) {
+    showHinweis("Die maximale Gesamtgröße aller hochgeladenen Dateien beträgt 10 MB.");
+    event.target.value = "";
+    return;
+  }
+
+  for (const file of files) {
+    try {
+      const requesterKey = getRequesterKey();
+      const path = `requests/${requesterKey}/attachments/${Date.now()}_${file.name}`;
+      const fileRef = storageRef(blazeStorage, path);
+      const uploadTask = uploadBytesResumable(fileRef, file);
+
+      progressContainer.style.display = "block";
+
+      await new Promise((resolve, reject) => {
+        uploadTask.on(
+          "state_changed",
+          snapshot => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progressBar.style.width = progress + "%";
+            progressText.innerText = Math.round(progress) + " %";
+          },
+          reject,
+          () => {
+            progressBar.style.width = "100%";
+            progressText.innerText = "Upload abgeschlossen";
+            resolve();
+          }
+        );
+      });
+
+      uploadedFiles.push({
+        name: file.name,
+        path,
+        size: file.size
+      });
+
+    } catch (err) {
+      console.error("Upload Fehler:", err);
+      showHinweis("Fehler beim Hochladen: " + file.name);
+    }
+  }
+
+  localStorage.setItem("uploadedFiles", JSON.stringify(uploadedFiles));
+  renderFileList();
+  event.target.value = "";
+
+  setTimeout(() => {
+    progressBar.style.width = "0%";
+    progressText.innerText = "0%";
+    progressContainer.style.display = "none";
+  }, 1000);
+}
+
+function getUploadedFilesTotalSize() {
+  return uploadedFiles.reduce((sum, file) => sum + (file.size || 0), 0);
+}
+
+function renderFileList() {
+  const container = document.getElementById("file-list");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  uploadedFiles.forEach((file, index) => {
+    const div = document.createElement("div");
+    div.className = "file-item";
+    div.innerHTML = `
+      <span class="file-name">${file.name}</span>
+      <button type="button" onclick="removeFile(${index})">Entfernen</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+async function removeFile(index) {
+  const file = uploadedFiles[index];
+
+  try {
+    const fileRef = storageRef(blazeStorage, file.path);
+    await deleteObject(fileRef);
+  } catch (err) {
+    console.warn("Datei konnte nicht gelöscht werden:", err);
+  }
+
+  uploadedFiles.splice(index, 1);
+  localStorage.setItem("uploadedFiles", JSON.stringify(uploadedFiles));
+  renderFileList();
+}
+
+async function clearUploadedFilesFromStorage() {
+  const files = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
+
+  for (const file of files) {
+    if (!file?.path) continue;
+
+    try {
+      const fileRef = storageRef(blazeStorage, file.path);
+      await deleteObject(fileRef);
+    } catch (err) {
+      console.warn("Datei konnte nicht aus Storage gelöscht werden:", file?.name, err);
+    }
+  }
+
+  localStorage.removeItem("uploadedFiles");
+
+  const fileInput = document.getElementById("request-files");
+  if (fileInput) fileInput.value = "";
+
+  uploadedFiles = [];
+  renderFileList();
+}
+
+window.removeFile = removeFile;
+window.clearUploadedFilesFromStorage = clearUploadedFilesFromStorage;
 
 // -----------------------------
 // SEITE 14 – Wechselrichter "strang" (tga4.csv)
@@ -1268,158 +1610,158 @@ let page14Loaded = false;
 
 function loadPage14() {
 
-    if (page14Loaded) return; // nicht doppelt laden
-    page14Loaded = true;
+  if (page14Loaded) return; // nicht doppelt laden
+  page14Loaded = true;
 
-    fetch("tga4.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga4.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            const container = document.getElementById("page14-content");
+      const lines = data.split("\n").slice(1);
+      const container = document.getElementById("page14-content");
 
-            let html = "";
-let headerInserted = false;            
-let gespeicherteWerte = JSON.parse(localStorage.getItem("page14Data") || "{}");
+      let html = "";
+      let headerInserted = false;
+      let gespeicherteWerte = JSON.parse(localStorage.getItem("page14Data") || "{}");
 
-            lines.forEach((line, index) => {
+      lines.forEach((line, index) => {
 
-                if (!line.trim()) return;
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
-    <div class="row beschreibung-fett-row">
-      <div class="col-a"></div>
-      <div class="col-b beschreibung-fett">${colB}</div>
-      <div class="col-c"></div>
-      <div class="col-d"></div>
-      <div class="col-e"></div>
-      <div class="col-f"></div>
-    </div>
-  `;
-  return;
-}
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
+     <div class="row beschreibung-fett-row">
+       <div class="col-a"></div>
+       <div class="col-b beschreibung-fett">${colB}</div>
+       <div class="col-c"></div>
+       <div class="col-d"></div>
+       <div class="col-e"></div>
+       <div class="col-f"></div>
+     </div>
+   `;
+          return;
+        }
 
-                const preisVorhanden = colD && !isNaN(parseFloat(colD.replace(",", ".")));
+        const preisVorhanden = colD && !isNaN(parseFloat(colD.replace(",", ".")));
 
-                if (preisVorhanden) {
+        if (preisVorhanden) {
 
-  if (!headerInserted) {
-    html += `
-      <div class="row table-header">
-        <div class="header-img-cell">
-          <img src="bild3.jpg" class="header-img" alt="Bild">
-        </div>
-        <div>Beschreibung</div>
-        <div>Einheit</div>
-        <div style="text-align:center;">Menge</div>
-        <div style="text-align:right;">Preis / Einheit</div>
-        <div style="text-align:right;">Positionsergebnis</div>
-      </div>
-    `;
-    headerInserted = true;
-  }
+          if (!headerInserted) {
+            html += `
+       <div class="row table-header">
+         <div class="header-img-cell">
+           <img src="bild3.jpg" class="header-img" alt="Bild">
+         </div>
+         <div>Beschreibung</div>
+         <div>Einheit</div>
+         <div style="text-align:center;">Menge</div>
+         <div style="text-align:right;">Preis / Einheit</div>
+         <div style="text-align:right;">Positionsergebnis</div>
+       </div>
+     `;
+            headerInserted = true;
+          }
 
-  // … danach kommen ganz normal die Positionszeilen
+          // … danach kommen ganz normal die Positionszeilen
 
 
-                    const preis = parseFloat(colD.replace(",", "."));
-                    const gespeicherteMenge = gespeicherteWerte[index] || 0;
+          const preis = parseFloat(colD.replace(",", "."));
+          const gespeicherteMenge = gespeicherteWerte[index] || 0;
 
-                    html += `
-                    <div class="row">
-                        <div class="col-a">${colA}</div>
-                        <div class="col-b">${colB}</div>
-                        <div class="col-c">${colC}</div>
-                        <input class="menge-input" 
-                               type="number" min="0" step="any"
-                               value="${gespeicherteMenge}"
-                               oninput="calcRowPage14(this,${preis},${index})">
-                        <div class="col-d">${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €</div>
-                        <div class="col-e">0,00 €</div>
-                    </div>`;
-                } else {
+          html += `
+                     <div class="row">
+                         <div class="col-a">${colA}</div>
+                         <div class="col-b">${colB}</div>
+                         <div class="col-c">${colC}</div>
+                         <input class="menge-input" 
+                                type="number" min="0" step="any"
+                                value="${gespeicherteMenge}"
+                                oninput="calcRowPage14(this,${preis},${index})">
+                         <div class="col-d">${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</div>
+                         <div class="col-e">0,00 €</div>
+                     </div>`;
+        } else {
 
-                    html += `
-                    <div class="row no-price">
-                        <div class="col-a">${colA}</div>
-                        <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-                    </div>`;
-                }
-            });
+          html += `
+                     <div class="row no-price">
+                         <div class="col-a">${colA}</div>
+                         <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                     </div>`;
+        }
+      });
 
-            html += `<div id="gesamtSumme14" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//            html += `<div id="gesamtSumme14Rabatt" class="gesamt rabatt" data-rabatt="angebot">Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €</div>`;
+      html += `<div id="gesamtSumme14" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //            html += `<div id="gesamtSumme14Rabatt" class="gesamt rabatt" data-rabatt="angebot">Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €</div>`;
 
-            container.innerHTML = html;
+      container.innerHTML = html;
 
-            berechneGesamt14();
-            applyWrRecommendation("page-14");
-        });
+      berechneGesamt14();
+      applyWrRecommendation("page-14");
+    });
 }
 
 function calcRowPage14(input, preisWert, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const wert = menge * preisWert;
+  const wert = menge * preisWert;
 
-    ergebnis.innerText =
-        wert.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  ergebnis.innerText =
+    wert.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page14Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page14Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
+  gespeicherteWerte[index] = menge;
 
-    localStorage.setItem("page14Data",
-        JSON.stringify(gespeicherteWerte));
+  localStorage.setItem("page14Data",
+    JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt14();
+  berechneGesamt14();
 }
 
 function berechneGesamt14() {
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-14 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-14 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    // Zwischensumme für Seite 14 speichern
-    saveSeitenSumme("page-14", sum);
+  // Zwischensumme für Seite 14 speichern
+  saveSeitenSumme("page-14", sum);
 
-    // Gesamtsumme über alle Seiten
-    const gesamtDiv = document.getElementById("gesamtSumme14");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  // Gesamtsumme über alle Seiten
+  const gesamtDiv = document.getElementById("gesamtSumme14");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -1595,62 +1937,78 @@ function berechneGesamt14() {
 
 async function loadPage40() {
 
-    const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
-    const titleEl = document.getElementById("page40-title");
-    if (titleEl) {
-        titleEl.innerText = (angebotTyp === "anfrage") ? "Anfrage" : "Kostenvoranschlag";
-    }
+  const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+  const titleEl = document.getElementById("page40-title");
+  if (titleEl) {
+    titleEl.innerText = (angebotTyp === "anfrage") ? "Anfrage" : "Kostenvoranschlag";
+  }
 
-// Anfrage-Daten anzeigen (nur wenn angebotTyp === "anfrage")
-	const anfrageBox = document.getElementById("anfrage-daten");
-	const anfrageContent = document.getElementById("anfrage-daten-content");
+  // Anfrage-Daten anzeigen (nur wenn angebotTyp === "anfrage")
+  const anfrageBox = document.getElementById("anfrage-daten");
+  const anfrageContent = document.getElementById("anfrage-daten-content");
 
-	if (angebotTyp === "anfrage") {
-    		const p5 = JSON.parse(localStorage.getItem("page5Data") || "{}");
+  if (angebotTyp === "anfrage") {
+    const p5 = JSON.parse(localStorage.getItem("page5Data") || "{}");
 
     const labels = {
-        "bv-contact": "Ansprechpartner bei PJ",
-        "bv-strasse": "SHK – PJ-Kunden-Nr.",
-        "bv-ort": "SHK Name/Firma",
-        "shk-contact": "SHK Ansprechpartner",
-        "shk-email": "SHK E-Mail",
-        "shk-phone": "SHK Telefon-Nr.",
-        "execution-date": "Gewünschter Ausführungstermin",
-        "dachpfanne-ausfuehrung": "Ausführung - Dachpfanne",
-        "zeichnung-plaene":"Zeichnung / Pläne",
-        "zaehlerschrank":"Standort Zählerschrank",       
-        "wechselrichter_speicher":"Standort Wechselrichter + Speicher",
-        "jahresstrombedarf":"Jahresstrombedarf kWh",
-        "waermepumpe_strombedarf":"Wärmepumpe Strombedarf kWh",
-        "wallbox":"Wallbox"
+      "bv-contact": "Ansprechpartner BV",
+      "bv-strasse": "Straße Haus-Nr. BV",
+      "bv-ort": "PLZ Ort BV",
+      "shk-contact": "SHK Ansprechpartner",
+      "shk-email": "SHK E-Mail",
+      "shk-phone": "SHK Telefon-Nr.",
+      "execution-date": "Gewünschter Ausführungstermin",
+      "dachpfanne-ausfuehrung": "Ausführung - Dachpfanne",
+      "zeichnung-plaene": "Zeichnung / Pläne",
+      "zaehlerschrank": "Standort Zählerschrank",
+      "wechselrichter_speicher": "Standort Wechselrichter + Speicher",
+      "jahresstrombedarf": "Jahresstrombedarf kWh",
+      "waermepumpe_strombedarf": "Wärmepumpe Strombedarf kWh",
+      "wallbox": "Wallbox"
 
     };
 
+    const uploadedFilesSection = document.getElementById("uploaded-files-section");
+    const uploadedFilesSummary = document.getElementById("uploaded-files-summary");
+
+    if (uploadedFilesSection && uploadedFilesSummary) {
+      const files = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
+
+      if (files.length > 0) {
+        uploadedFilesSummary.innerHTML = files
+          .map(file => `<div style="margin:6px 0;">• ${file.name}</div>`)
+          .join("");
+        uploadedFilesSection.style.display = "block";
+      } else {
+        uploadedFilesSummary.innerHTML = "";
+        uploadedFilesSection.style.display = "none";
+      }
+    }
 
     let html = "";
     Object.keys(labels).forEach(id => {
-        const val = (p5[id] || "").trim();
-        if (val) {
-            html += `<div style="margin:6px 0;"><strong>${labels[id]}:</strong> ${val}</div>`;
-        }
+      const val = (p5[id] || "").trim();
+      if (val) {
+        html += `<div style="margin:6px 0;"><strong>${labels[id]}:</strong> ${val}</div>`;
+      }
     });
 
     if (anfrageBox && anfrageContent) {
-        anfrageContent.innerHTML = html || "<div>Keine Anfrage-Daten vorhanden.</div>";
-        anfrageBox.style.display = "block";
+      anfrageContent.innerHTML = html || "<div>Keine Anfrage-Daten vorhanden.</div>";
+      anfrageBox.style.display = "block";
     }
-} else {
+  } else {
     if (anfrageBox) anfrageBox.style.display = "none";
-}
+  }
 
-    const container = document.getElementById("summary-content");
-    const hinweiseContainer = document.getElementById("hinweise-content");
-    if (!container || !hinweiseContainer) return;
+  const container = document.getElementById("summary-content");
+  const hinweiseContainer = document.getElementById("hinweise-content");
+  if (!container || !hinweiseContainer) return;
 
-    container.innerHTML = "";
-    hinweiseContainer.innerHTML = "";
+  container.innerHTML = "";
+  hinweiseContainer.innerHTML = "";
 
-container.innerHTML += `
+  container.innerHTML += `
   <div class="row table-header">
     <div></div>
     <div>Beschreibung</div>
@@ -1661,162 +2019,163 @@ container.innerHTML += `
   </div>
 `;
 
-    let gesamt = 0;
+  let gesamt = 0;
 
-    const seitenConfig = [
-        { key: "page14Data",  csv: "tga4.csv" },
-        { key: "page142Data", csv: "tga5.csv" },
-        { key: "page8Data", csv: "tga10.csv" },
-        { key: "page18Data", csv: "tga8.csv" },
-        { key: "page20Data", csv: "tga9.csv" },
-        { key: "page21Data", csv: "tga7.csv" },
-        { key: "page22Data", csv: "tga11.csv" },
-        { key: "page9Data", csv: "tga3.csv" },
-        { key: "page10Data", csv: "tga6.csv" },
-        { key: "page23Data", csv: "tga1.csv" },
-        { key: "page24Data", csv: "tga2.csv" }
- //       { key: "page25Data", csv: "xxx.csv" },
- //       { key: "page27Data", csv: "xxx.csv" },
- //       { key: "page28Data", csv: "xxx.csv" },
- //       { key: "page30Data", csv: "xxx.csv" },
- //       { key: "page31Data", csv: "xxx.csv" },
- //       { key: "page32Data", csv: "xxx.csv" },
- //       { key: "page33Data", csv: "xxx.csv" },
- //       { key: "page13Data", csv: "xxx.csv" },
- //       { key: "page143Data", csv: "xxx.csv" }
-    ];
+  const seitenConfig = [
+    { key: "page14Data", csv: "tga4.csv" },
+    { key: "page142Data", csv: "tga5.csv" },
+    { key: "page8Data", csv: "tga10.csv" },
+    { key: "page18Data", csv: "tga8.csv" },
+    { key: "page20Data", csv: "tga9.csv" },
+    { key: "page21Data", csv: "tga7.csv" },
+    { key: "page22Data", csv: "tga11.csv" },
+    { key: "page9Data", csv: "tga3.csv" },
+    { key: "page10Data", csv: "tga6.csv" },
+    { key: "page23Data", csv: "tga1.csv" },
+    { key: "page24Data", csv: "tga2.csv" },
+    //{ key: "page26Data", csv: "tga15.csv" },
+    //{ key: "page25Data", csv: "xxx.csv" }
+    //       { key: "page27Data", csv: "xxx.csv" },
+    //       { key: "page28Data", csv: "xxx.csv" },
+    //       { key: "page30Data", csv: "xxx.csv" },
+    //       { key: "page31Data", csv: "xxx.csv" },
+    //       { key: "page32Data", csv: "xxx.csv" },
+    //       { key: "page33Data", csv: "xxx.csv" },
+    //       { key: "page13Data", csv: "xxx.csv" },
+    //       { key: "page143Data", csv: "xxx.csv" }
+  ];
 
-    for (const seite of seitenConfig) {
+  for (const seite of seitenConfig) {
 
-        const data = JSON.parse(localStorage.getItem(seite.key) || "{}");
+    const data = JSON.parse(localStorage.getItem(seite.key) || "{}");
 
-        const response = await fetch(seite.csv);
-        const csvText = await response.text();
-        const lines = csvText.split("\n").slice(1);
+    const response = await fetch(seite.csv);
+    const csvText = await response.text();
+    const lines = csvText.split("\n").slice(1);
 
-        lines.forEach((line, index) => {
+    lines.forEach((line, index) => {
 
-            if (!line.trim()) return;
+      if (!line.trim()) return;
 
-            const cols = line.split(";");
-            const colA = cols[0]?.trim();
-            const colB = cols[1]?.trim();
-            const colC = cols[2]?.trim();
-            const colD = cols[3]?.trim();
+      const cols = line.split(";");
+      const colA = cols[0]?.trim();
+      const colB = cols[1]?.trim();
+      const colC = cols[2]?.trim();
+      const colD = cols[3]?.trim();
 
-            const menge = parseFloat(data[index] || 0);
-            const preis = parseFloat(colD?.replace(",", ".") || 0);
+      const menge = parseFloat(data[index] || 0);
+      const preis = parseFloat(colD?.replace(",", ".") || 0);
 
-            if (
-                colA !== "Titel" &&
-                colA !== "Untertitel" &&
-                colA !== "Zwischentitel" &&
-                colA !== "Beschreibung_fett" &&
-                menge > 0
-            ) {
+      if (
+        colA !== "Titel" &&
+        colA !== "Untertitel" &&
+        colA !== "Zwischentitel" &&
+        colA !== "Beschreibung_fett" &&
+        menge > 0
+      ) {
 
-                const zeile = document.createElement("div");
-                zeile.className = "row summary-row";
-                zeile.innerHTML = `
+        const zeile = document.createElement("div");
+        zeile.className = "row summary-row";
+        zeile.innerHTML = `
                     <div class="col-a">${colA}</div>
                     <div class="col-b">${colB}</div>
                     <div class="col-c">${colC}</div>
                     <div class="col-d">${menge.toLocaleString("de-DE", { minimumFractionDigits: 0 })}</div>
-                    <div class="col-e">${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €</div>
-                    <div class="col-f">${(menge * preis).toLocaleString("de-DE",{minimumFractionDigits:2})} €</div>
+                    <div class="col-e">${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</div>
+                    <div class="col-f">${(menge * preis).toLocaleString("de-DE", { minimumFractionDigits: 2 })} €</div>
                 `;
 
-                container.appendChild(zeile);
-                gesamt += menge * preis;
-            }
+        container.appendChild(zeile);
+        gesamt += menge * preis;
+      }
 
-        });
-    }
-
-// ===== Optimierer-Hinweis nur unter bestimmten Bedingungen =====
-
-// true, wenn in einem Page-Storage (page23Data/page24Data) irgendein Wert > 0 ist
-function hasAnyPositiveInput(storageKey) {
-  const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
-  return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
-}
-// ===== Wechselrichter-Hinweis in Seite 40 =====
-const wrMismatch = localStorage.getItem("wrMismatch") === "1";
-const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
-const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
-
-let wrHinweis = document.getElementById("wr-hinweis-print");
-if (!wrHinweis) {
-  wrHinweis = document.createElement("div");
-  wrHinweis.id = "wr-hinweis-print";
-  wrHinweis.style.display = "none";
-  wrHinweis.style.marginTop = "20px";
-  wrHinweis.style.color = "darkred";
-  wrHinweis.style.fontWeight = "700";
-
-  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
-  const opt = document.getElementById("optimierer-hinweis-print");
-  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
-  else {
-    const preis = document.getElementById("angebotspreis");
-    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
+    });
   }
-}
 
-if (wrMismatch && wrRecoSize && wrRecoModules) {
-  wrHinweis.innerHTML =
-    `Achtung!<br>` +
-    `Wechselrichter nicht passend!<br>` +
-    `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
-  wrHinweis.style.display = "block";
-} else {
-  wrHinweis.style.display = "none";
-}
-const optimiererSelected = isOptimiererSelected(); // Seite 8
-const hasInput23 = hasAnyPositiveInput("page23Data"); // Schrägdach
-const hasInput24 = hasAnyPositiveInput("page24Data"); // Flachdach
+  // ===== Optimierer-Hinweis nur unter bestimmten Bedingungen =====
 
-const shouldShowOptimiererHinweis = (!optimiererSelected) && (hasInput23 || hasInput24);
+  // true, wenn in einem Page-Storage (page23Data/page24Data) irgendein Wert > 0 ist
+  function hasAnyPositiveInput(storageKey) {
+    const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
+    return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
+  }
+  // ===== Wechselrichter-Hinweis in Seite 40 =====
+  const wrMismatch = localStorage.getItem("wrMismatch") === "1";
+  const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
+  const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
 
-const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
-if (optimiererHinweis) {
-  optimiererHinweis.style.display = shouldShowOptimiererHinweis ? "block" : "none";
-}
+  let wrHinweis = document.getElementById("wr-hinweis-print");
+  if (!wrHinweis) {
+    wrHinweis = document.createElement("div");
+    wrHinweis.id = "wr-hinweis-print";
+    wrHinweis.style.display = "none";
+    wrHinweis.style.marginTop = "20px";
+    wrHinweis.style.color = "darkred";
+    wrHinweis.style.fontWeight = "700";
 
-    const angebotspreisEl = document.getElementById("angebotspreis");
-    if (angebotspreisEl) {
-        angebotspreisEl.innerText =
-            "Gesamtpreis: " + gesamt.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
+    const opt = document.getElementById("optimierer-hinweis-print");
+    if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
+    else {
+      const preis = document.getElementById("angebotspreis");
+      if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
     }
+  }
 
-// refreshRabattDisplays();
+  if (wrMismatch && wrRecoSize && wrRecoModules) {
+    wrHinweis.innerHTML =
+      `Achtung!<br>` +
+      `Wechselrichter nicht passend!<br>` +
+      `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
+    wrHinweis.style.display = "block";
+  } else {
+    wrHinweis.style.display = "none";
+  }
+  const optimiererSelected = isOptimiererSelected(); // Seite 8
+  const hasInput23 = hasAnyPositiveInput("page23Data"); // Schrägdach
+  const hasInput24 = hasAnyPositiveInput("page24Data"); // Flachdach
 
-// Hinweise laden (tga12.csv)
-    try {
-        const hinweisRes = await fetch("tga12.csv");
-        const hinweisText = await hinweisRes.text();
-        const hinweisLines = hinweisText.split("\n").slice(1);
+  const shouldShowOptimiererHinweis = (!optimiererSelected) && (hasInput23 || hasInput24);
 
-        let html = "";
-        hinweisLines.forEach(line => {
-            if (!line.trim()) return;
+  const optimiererHinweis = document.getElementById("optimierer-hinweis-print");
+  if (optimiererHinweis) {
+    optimiererHinweis.style.display = shouldShowOptimiererHinweis ? "block" : "none";
+  }
 
-            const cols = line.split(";");
-            const colA = cols[0]?.trim();
-            const colB = cols[1]?.trim();
+  const angebotspreisEl = document.getElementById("angebotspreis");
+  if (angebotspreisEl) {
+    angebotspreisEl.innerText =
+      "Gesamtpreis: " + gesamt.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 
-            if (colA === "Titel") html += `<div class="title">${colB}</div>`;
-            else if (colA === "Untertitel") html += `<div class="subtitle">${colB}</div>`;
-            else if (colA === "Zwischentitel") html += `<div class="midtitle">${colB}</div>`;
-            else if (colA === "Beschreibung_fett") html += `<div class="beschreibung-fett">${colB}</div>`;
-            else html += `<div class="hinweis-row">${colB}</div>`;
-        });
+  // refreshRabattDisplays();
 
-        hinweiseContainer.innerHTML = html;
+  // Hinweise laden (tga12.csv)
+  try {
+    const hinweisRes = await fetch("tga12.csv");
+    const hinweisText = await hinweisRes.text();
+    const hinweisLines = hinweisText.split("\n").slice(1);
 
-    } catch (e) {
-        console.error("Fehler beim Laden der Hinweise (tga12.csv):", e);
-    }
+    let html = "";
+    hinweisLines.forEach(line => {
+      if (!line.trim()) return;
+
+      const cols = line.split(";");
+      const colA = cols[0]?.trim();
+      const colB = cols[1]?.trim();
+
+      if (colA === "Titel") html += `<div class="title">${colB}</div>`;
+      else if (colA === "Untertitel") html += `<div class="subtitle">${colB}</div>`;
+      else if (colA === "Zwischentitel") html += `<div class="midtitle">${colB}</div>`;
+      else if (colA === "Beschreibung_fett") html += `<div class="beschreibung-fett">${colB}</div>`;
+      else html += `<div class="hinweis-row">${colB}</div>`;
+    });
+
+    hinweiseContainer.innerHTML = html;
+
+  } catch (e) {
+    console.error("Fehler beim Laden der Hinweise (tga12.csv):", e);
+  }
 }
 
 // -----------------------------
@@ -1825,24 +2184,24 @@ if (optimiererHinweis) {
 
 function direktZumAngebot() {
 
-    const fields = [
-        "bv-contact", "bv-strasse", "bv-ort", "shk-contact",
-        "shk-email", "shk-phone", "execution-date", "dachpfanne-ausfuehrung", "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf", "waermepumpe_strombedarf", "wallbox"
-    ];
+  const fields = [
+    "bv-contact", "bv-strasse", "bv-ort", "shk-contact",
+    "shk-email", "shk-phone", "execution-date", "dachpfanne-ausfuehrung", "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf", "waermepumpe_strombedarf", "wallbox"
+  ];
 
-    const alleAusgefüllt = fields.every(id => {
-        const val = document.getElementById(id)?.value?.trim();
-        return val && val.length > 0;
-    });
+  const alleAusgefüllt = fields.every(id => {
+    const val = document.getElementById(id)?.value?.trim();
+    return val && val.length > 0;
+  });
 
-    if (alleAusgefüllt) {
-        savePage5Data();
-        localStorage.setItem("angebotTyp", "anfrage");
-        showPage("page-40");
-    } else {
-        localStorage.setItem("angebotTyp", "kv");
-        showPage("page-41");
-    }
+  if (alleAusgefüllt) {
+    savePage5Data();
+    localStorage.setItem("angebotTyp", "anfrage");
+    showPage("page-40");
+  } else {
+    localStorage.setItem("angebotTyp", "kv");
+    showPage("page-41");
+  }
 }
 
 // -----------------------------
@@ -1859,24 +2218,36 @@ function printPage40() {
 
 function sendMailPage40() {
 
-    const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+  const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
 
-    let subject = "";
-    let mailAdresse = "";
+  let subject = "";
+  let mailAdresse = "";
 
-    if (angebotTyp === "anfrage") {
-        subject = "Anfrage";
-        mailAdresse = "info@tga-nord.de";
-    } else {
-        subject = `Kostenvoranschlag - TGA - ${new Date().toLocaleDateString("de-DE")}`;
-        mailAdresse = "";
-    }
+  if (angebotTyp === "anfrage") {
+    subject = "Anfrage";
+    mailAdresse = "info@tga-nord.de";
+  } else {
+    subject = `Kostenvoranschlag - TGA - ${new Date().toLocaleDateString("de-DE")}`;
+    mailAdresse = "";
+  }
 
-    const body = encodeURIComponent(document.getElementById("page-40").innerText);
+  const body = encodeURIComponent(document.getElementById("page-40").innerText);
 
-    window.location.href =
-        `mailto:${mailAdresse}?subject=${encodeURIComponent(subject)}&body=${body}`;
+  window.location.href =
+    `mailto:${mailAdresse}?subject=${encodeURIComponent(subject)}&body=${body}`;
 }
+
+function sendPage40MailByType() {
+  const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+
+  if (angebotTyp === "anfrage") {
+    sendRequestPdfByEmail();
+  } else {
+    sendMailPage40();
+  }
+}
+
+window.sendPage40MailByType = sendPage40MailByType;
 
 // -----------------------------
 // clearInputs - Button "Eingaben löschen"
@@ -1884,129 +2255,134 @@ function sendMailPage40() {
 
 function clearInputs() {
 
-optimiererVerwendet = false;
+  optimiererVerwendet = false;
   clearKomplettFlow();
-updateKomplettIndicator();
+  updateKomplettIndicator();
 
-// localStorage komplett löschen
-    localStorage.clear();
+  // localStorage komplett löschen
+  localStorage.clear();
 
-// Eingabefelder im DOM leeren
-    document.querySelectorAll("input").forEach(inp => inp.value = "");
+  // Eingabefelder im DOM leeren
+  document.querySelectorAll("input").forEach(inp => inp.value = "");
 
-// Dynamische Inhalte leeren (damit nichts „stehen bleibt“)
-    const idsToClear = [
-        "page14-content",
-//       "content-14-3",
-        "content-14-2",
-        "content-8",
-        "content-18",
-        "content-20",
-        "content-21",
-        "content-22",
-	"content-9",
-        "content-10",
-        "content-23",
-	"content-24",
-//       "content-25",
-//       "content-27",
-//       "content-28",
-//       "content-30",
-//	"content-31",
-//       "content-32",
-//       "content-33",
-//        "content-13",
-        "summary-content",
-        "hinweise-content"
-    ];
-    idsToClear.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = "";
-    });
+  // Dynamische Inhalte leeren (damit nichts „stehen bleibt“)
+  const idsToClear = [
+    "page14-content",
+    //       "content-14-3",
+    "content-14-2",
+    "content-8",
+    "content-18",
+    "content-20",
+    "content-21",
+    "content-22",
+    "content-9",
+    "content-10",
+    "content-23",
+    "content-24",
+    //"content-26",
+    //"content-25",
+    //       "content-27",
+    //       "content-28",
+    //       "content-30",
+    //	"content-31",
+    //       "content-32",
+    //       "content-33",
+    //        "content-13",
+    "summary-content",
+    "hinweise-content"
+  ];
+  idsToClear.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = "";
+  });
 
-// Summen-Anzeige zurücksetzen
-    const angebotspreis = document.getElementById("angebotspreis");
-    if (angebotspreis) angebotspreis.innerText = "Gesamtsumme: 0,00 €";
+  // Summen-Anzeige zurücksetzen
+  const angebotspreis = document.getElementById("angebotspreis");
+  if (angebotspreis) angebotspreis.innerText = "Gesamtsumme: 0,00 €";
 
-    const sum14 = document.getElementById("gesamtSumme14");
-    if (sum14) sum14.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum14 = document.getElementById("gesamtSumme14");
+  if (sum14) sum14.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum143 = document.getElementById("gesamtSumme143");
-    if (sum143) sum143.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum143 = document.getElementById("gesamtSumme143");
+  if (sum143) sum143.innerText = "Gesamtsumme Angebot: 0,00 €";
 
   //  const sum142 = document.getElementById("gesamtSumme142");
   //  if (sum142) sum142.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum8 = document.getElementById("gesamtSumme8");
-    if (sum8) sum8.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum8 = document.getElementById("gesamtSumme8");
+  if (sum8) sum8.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum18 = document.getElementById("gesamtSumme18");
-    if (sum18) sum18.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum18 = document.getElementById("gesamtSumme18");
+  if (sum18) sum18.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum20 = document.getElementById("gesamtSumme20");
-    if (sum20) sum20.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum20 = document.getElementById("gesamtSumme20");
+  if (sum20) sum20.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum21 = document.getElementById("gesamtSumme21");
-    if (sum21) sum21.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum21 = document.getElementById("gesamtSumme21");
+  if (sum21) sum21.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum22 = document.getElementById("gesamtSumme22");
-    if (sum22) sum22.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum22 = document.getElementById("gesamtSumme22");
+  if (sum22) sum22.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum9 = document.getElementById("gesamtSumme9");
-    if (sum9) sum9.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum9 = document.getElementById("gesamtSumme9");
+  if (sum9) sum9.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum10 = document.getElementById("gesamtSumme10");
-    if (sum10) sum10.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum10 = document.getElementById("gesamtSumme10");
+  if (sum10) sum10.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum23 = document.getElementById("gesamtSumme23");
-    if (sum23) sum23.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum23 = document.getElementById("gesamtSumme23");
+  if (sum23) sum23.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-    const sum24 = document.getElementById("gesamtSumme24");
-    if (sum24) sum24.innerText = "Gesamtsumme Angebot: 0,00 €";
+  const sum24 = document.getElementById("gesamtSumme24");
+  if (sum24) sum24.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum25 = document.getElementById("gesamtSumme25");
-   // if (sum25) sum25.innerText = "Gesamtsumme Angebot: 0,00 €";
+  //const sum26 = document.getElementById("gesamtSumme26");
+  //if (sum26) sum26.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum27 = document.getElementById("gesamtSumme27");
-   // if (sum27) sum27.innerText = "Gesamtsumme Angebot: 0,00 €";
+  //const sum25 = document.getElementById("gesamtSumme25");
+  //if (sum25) sum25.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum28 = document.getElementById("gesamtSumme28");
-   // if (sum28) sum28.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum27 = document.getElementById("gesamtSumme27");
+  // if (sum27) sum27.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum30 = document.getElementById("gesamtSumme30");
-   // if (sum30) sum30.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum28 = document.getElementById("gesamtSumme28");
+  // if (sum28) sum28.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum31 = document.getElementById("gesamtSumme31");
-   // if (sum31) sum31.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum30 = document.getElementById("gesamtSumme30");
+  // if (sum30) sum30.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum32 = document.getElementById("gesamtSumme32");
-   // if (sum32) sum32.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum31 = document.getElementById("gesamtSumme31");
+  // if (sum31) sum31.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum33 = document.getElementById("gesamtSumme33");
-   // if (sum33) sum33.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum32 = document.getElementById("gesamtSumme32");
+  // if (sum32) sum32.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum13 = document.getElementById("gesamtSumme13");
-   // if (sum13) sum13.innerText = "Gesamtsumme Angebot: 0,00 €";
+  // const sum33 = document.getElementById("gesamtSumme33");
+  // if (sum33) sum33.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-// Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
-    page14Loaded = false;
+  // const sum13 = document.getElementById("gesamtSumme13");
+  // if (sum13) sum13.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-// Seite 14.3 hat kein Flag, daher reicht Container leeren
+  // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
+  // page14Loaded = false;
 
-// Angebots-Summen Objekt zurücksetzen (falls du es im RAM nutzt)
-    angebotSummen = {};
+  // Seite 14.3 hat kein Flag, daher reicht Container leeren
 
-    updateAdminUI_();
+  // Angebots-Summen Objekt zurücksetzen (falls du es im RAM nutzt)
+  angebotSummen = {};
 
-//document.querySelectorAll('[data-rabatt="angebot"]').forEach(el => {
-//  el.innerText = "Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €";
-//});
+  updateAdminUI_();
 
-//const p40r = document.getElementById("angebotspreisRabatt");
-//if (p40r) p40r.innerText = "Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €";
+  //document.querySelectorAll('[data-rabatt="angebot"]').forEach(el => {
+  //  el.innerText = "Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €";
+  //});
 
-// zurück zu "page-3"
-    showPage("page-3");
+  //const p40r = document.getElementById("angebotspreisRabatt");
+  //if (p40r) p40r.innerText = "Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €";
+
+  // zurück zu "page-3"
+  updateKpSelectionSummary();
+  showPage("page-3");
 }
 
 // -----------------------------
@@ -2015,45 +2391,45 @@ updateKomplettIndicator();
 
 function loadPage142() {
 
-    const container = document.getElementById("content-14-2");
-    if (!container) return;
+  const container = document.getElementById("content-14-2");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga5.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga5.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page142Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page142Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -2063,14 +2439,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild3.jpg" class="header-img" alt="Bild">
@@ -2082,12 +2458,12 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -2099,71 +2475,71 @@ if (!headerInserted) {
                                    oninput="calcRow142(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme142" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-  //          html += `<div id="gesamtSumme142Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-  //       </div>`;
+      html += `<div id="gesamtSumme142" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //          html += `<div id="gesamtSumme142Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //       </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt142();
-            applyWrRecommendation("page-14-2");
-        });
+      container.innerHTML = html;
+      berechneGesamt142();
+      applyWrRecommendation("page-14-2");
+    });
 }
 
 function calcRow142(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page142Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page142Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page142Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page142Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt142();
+  berechneGesamt142();
 }
 function berechneGesamt142() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-14-2 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-14-2 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-14-2", sum);
+  saveSeitenSumme("page-14-2", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme142");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme142");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -2172,45 +2548,45 @@ function berechneGesamt142() {
 
 function loadPage8() {
 
-    const container = document.getElementById("content-8");
-    if (!container) return;
+  const container = document.getElementById("content-8");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga10.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga10.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
- 		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page8Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page8Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -2220,14 +2596,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild2.jpg" class="header-img" alt="Bild">
@@ -2239,11 +2615,11 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
-                    const menge = gespeicherteWerte[index] || 0;
+            headerInserted = true;
+          }
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -2255,28 +2631,28 @@ if (!headerInserted) {
                                    oninput="calcRow8(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme8" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-  //          html += `<div id="gesamtSumme8Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-  //       </div>`;
+      html += `<div id="gesamtSumme8" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //          html += `<div id="gesamtSumme8Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //       </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt8();
-        });
+      container.innerHTML = html;
+      berechneGesamt8();
+    });
 }
 
 function hasAnyPositiveInput(storageKey) {
@@ -2326,45 +2702,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function calcRow8(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page8Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page8Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page8Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page8Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt8();
+  berechneGesamt8();
 }
 
 function berechneGesamt8() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-8 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-8 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-8", sum);
+  saveSeitenSumme("page-8", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme8");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme8");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -2373,45 +2749,45 @@ function berechneGesamt8() {
 
 function loadPage18() {
 
-    const container = document.getElementById("content-18");
-    if (!container) return;
+  const container = document.getElementById("content-18");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga8.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga8.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page18Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page18Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -2421,14 +2797,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild4.jpg" class="header-img" alt="Bild">
@@ -2440,12 +2816,12 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -2457,76 +2833,72 @@ if (!headerInserted) {
                                    oninput="calcRow18(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme18" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-   //         html += `<div id="gesamtSumme18Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-   //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-   //      </div>`;
+      html += `<div id="gesamtSumme18" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //         html += `<div id="gesamtSumme18Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //      </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt18();
-        });
+      container.innerHTML = html;
+      berechneGesamt18();
+    });
 }
 
 function calcRow18(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page18Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page18Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page18Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page18Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt18();
+  berechneGesamt18();
 }
 
 function berechneGesamt18() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-18 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-18 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-18", sum);
+  saveSeitenSumme("page-18", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme18");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme18");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
-
-// -----------------------------
-// SEITE 20 – Zählerschrank (tga9.csv)
-// -----------------------------
 
 // -----------------------------
 // SEITE 20 – Zählerschrank (tga9.csv)
@@ -2562,8 +2934,8 @@ function loadPage20() {
       }
 
       // Header-HTML (links nur leere Zelle für Bild-Spalte)
-    function renderHeader20(imgSrc) {
-  return `
+      function renderHeader20(imgSrc) {
+        return `
     <div class="row table-header">
       <div class="header-img-cell">
         ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
@@ -2575,7 +2947,7 @@ function loadPage20() {
       <div style="text-align:right;">Positionsergebnis</div>
     </div>
   `;
-}
+      }
 
       lines.forEach((line, index) => {
         if (!line.trim()) return;
@@ -2604,30 +2976,30 @@ function loadPage20() {
           return;
         }
         if (colA === "Beschreibung_fett") {
-  html += `
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
     </div>
   `;
-  headerInserted = false;
-  return;
-}
+          headerInserted = false;
+          return;
+        }
 
         const preis = parseFloat((colD || "").replace(",", "."));
         const preisVorhanden = !isNaN(preis);
 
         if (preisVorhanden) {
 
-  // Bild passend zur Position (z.B. über colA = Artikelnummer/Pos)
-  const imgSrc = resolvePosImg(colImg);
+          // Bild passend zur Position (z.B. über colA = Artikelnummer/Pos)
+          const imgSrc = resolvePosImg(colImg);
 
-  // Header + Bild DIREKT vor dieser Position
-  html += renderHeader20(imgSrc);
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader20(imgSrc);
 
-  const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-  html += `
+          html += `
     <div class="row">
       <div class="col-a">${colA}</div>
       <div class="col-b">${colB}</div>
@@ -2639,27 +3011,27 @@ function loadPage20() {
              oninput="calcRow20(this, ${preis}, ${index})">
 
       <div class="col-d">
-        ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+        ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
       </div>
 
       <div class="col-e">0,00 €</div>
     </div>
   `;
-} else {
-  html += `
+        } else {
+          html += `
     <div class="row no-price">
       <div class="col-a">${colA}</div>
       <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
     </div>
   `;
-  headerInserted = false;
-}
+          headerInserted = false;
+        }
       });
 
       html += `<div id="gesamtSumme20" class="gesamt">Gesamtsumme: 0,00 €</div>`;
- //     html += `<div id="gesamtSumme20Rabatt" class="gesamt rabatt" data-rabatt="angebot">
- //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
- //     </div>`;
+      //     html += `<div id="gesamtSumme20Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //     </div>`;
 
       container.innerHTML = html;
       berechneGesamt20();
@@ -2668,45 +3040,45 @@ function loadPage20() {
 
 function calcRow20(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page20Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page20Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page20Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page20Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt20();
+  berechneGesamt20();
 }
 
 function berechneGesamt20() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-20 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-20 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-20", sum);
+  saveSeitenSumme("page-20", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme20");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme20");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -2840,9 +3212,9 @@ function loadPage21() {
       });
 
       html += `<div id="gesamtSumme21" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-  //    html += `<div id="gesamtSumme21Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //      Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-  //    </div>`;
+      //    html += `<div id="gesamtSumme21Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //      Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //    </div>`;
 
       container.innerHTML = html;
       berechneGesamt21();
@@ -2851,45 +3223,45 @@ function loadPage21() {
 
 function calcRow21(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page21Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page21Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page21Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page21Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt21();
+  berechneGesamt21();
 }
 
 function berechneGesamt21() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-21 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-21 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-21", sum);
+  saveSeitenSumme("page-21", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme21");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme21");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -3022,9 +3394,9 @@ function loadPage22() {
       });
 
       html += `<div id="gesamtSumme22" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-  //    html += `<div id="gesamtSumme22Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //      Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-  //    </div>`;
+      //    html += `<div id="gesamtSumme22Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //      Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //    </div>`;
 
       container.innerHTML = html;
       berechneGesamt22();
@@ -3033,45 +3405,45 @@ function loadPage22() {
 
 function calcRow22(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page22Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page22Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page22Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page22Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt22();
+  berechneGesamt22();
 }
 
 function berechneGesamt22() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-22 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-22 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-22", sum);
+  saveSeitenSumme("page-22", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme22");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme22");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -3080,45 +3452,45 @@ function berechneGesamt22() {
 
 function loadPage9() {
 
-    const container = document.getElementById("content-9");
-    if (!container) return;
+  const container = document.getElementById("content-9");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga3.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga3.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page9Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page9Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -3128,14 +3500,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div></div>
             <div>Beschreibung</div>
@@ -3145,12 +3517,12 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -3162,118 +3534,118 @@ if (!headerInserted) {
                                    oninput="calcRow9(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme9" class="gesamt">Gesamtsumme: 0,00 €</div>`;
- //           html += `<div id="gesamtSumme9Rabatt" class="gesamt rabatt" data-rabatt="angebot">
- //         Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
- //        </div>`;
+      html += `<div id="gesamtSumme9" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //           html += `<div id="gesamtSumme9Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //         Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //        </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt9();
-        });
+      container.innerHTML = html;
+      berechneGesamt9();
+    });
 }
 
 function calcRow9(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page9Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page9Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page9Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page9Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt9();
+  berechneGesamt9();
 }
 
 function berechneGesamt9() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-9 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-9 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-9", sum);
+  saveSeitenSumme("page-9", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme9");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme9");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
-// SEITE 10 – Speicher (tga6.csv)
+// SEITE 10 – Speicher BYD (tga6.csv)
 // -----------------------------
 
 function loadPage10() {
 
-    const container = document.getElementById("content-10");
-    if (!container) return;
+  const container = document.getElementById("content-10");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga6.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga6.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page10Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page10Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -3283,14 +3655,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild10.jpg" class="header-img" alt="Bild">
@@ -3302,12 +3674,12 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -3319,72 +3691,229 @@ if (!headerInserted) {
                                    oninput="calcRow10(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme10" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-  //          html += `<div id="gesamtSumme10Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-  //       </div>`;
+      html += `<div id="gesamtSumme10" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //          html += `<div id="gesamtSumme10Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //       </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt10();
-        });
+      container.innerHTML = html;
+      berechneGesamt10();
+    });
 }
 
 function calcRow10(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page10Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page10Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page10Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page10Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt10();
+  berechneGesamt10();
 }
 
 function berechneGesamt10() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-10 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-10 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-10", sum);
+  saveSeitenSumme("page-10", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme10");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme10");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
+
+// -----------------------------
+// SEITE 26 – Speicher Fronius (tga15.csv)
+// -----------------------------
+//
+//function loadPage26() {
+//
+//  const container = document.getElementById("content-26");
+//  if (!container) return;
+//
+//  if (container.innerHTML.trim() !== "") return;
+//
+//  fetch("tga15.csv")
+//    .then(response => response.text())
+//    .then(data => {
+//
+//      const lines = data.split("\n").slice(1);
+//      let html = "";
+//      let headerInserted = false;
+//
+//      const gespeicherteWerte =
+//        JSON.parse(localStorage.getItem("page26Data") || "{}");
+//
+//      lines.forEach((line, index) => {
+//        if (!line.trim()) return;
+//
+//        const cols = line.split(";");
+//        const colA = cols[0]?.trim();
+//        const colB = cols[1]?.trim();
+//        const colC = cols[2]?.trim();
+//        const colD = cols[3]?.trim();
+//
+//        if (colA === "Titel") {
+//          html += `<div class="title">${colB}</div>`;
+//         return;
+//       }
+//        if (colA === "Untertitel") {
+//          html += `<div class="subtitle">${colB}</div>`;
+//          return;
+//        }
+//        if (colA === "Zwischentitel") {
+//          html += `<div class="midtitle">${colB}</div>`;
+//          return;
+//        }
+//        if (colA === "Beschreibung_fett") {
+//          html += `
+//    <div class="row beschreibung-fett-row">
+//      <div class="col-a"></div>
+//      <div class="col-b beschreibung-fett">${colB}</div>
+//     <div class="col-c"></div>
+//      <div class="col-d"></div>
+//      <div class="col-e"></div>
+//      <div class="col-f"></div>
+//    </div>
+//  `;
+//          return;
+//        }
+//
+//       const preis = parseFloat(colD?.replace(",", "."));
+//        if (!isNaN(preis)) {
+//
+//          if (!headerInserted) {
+//            html += `
+//         <div class="row table-header">
+//           <div class="header-img-cell">
+//          <img src="bild24.jpg" class="header-img" alt="Bild">
+//        </div>
+//            <div>Beschreibung</div>
+//            <div>Einheit</div>
+//            <div style="text-align:center;">Menge</div>
+//            <div style="text-align:right;">Preis / Einheit</div>
+//           <div style="text-align:right;">Positionsergebnis</div>
+//         </div>
+//       `;
+//            headerInserted = true;
+//          }
+//
+//          const menge = gespeicherteWerte[index] || 0;
+//
+//          html += `
+//                        <div class="row">
+//                            <div class="col-a">${colA}</div>
+//                            <div class="col-b">${colB}</div>
+//                            <div class="col-c">${colC}</div>
+//
+//                            <input class="menge-input"
+//                                  type="number" min="0" step="any"
+//                                  value="${menge}"
+//                                  oninput="calcRow26(this, ${preis}, ${index})">
+//
+//                            <div class="col-d">
+//                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+//                            </div>
+//
+//                            <div class="col-e">0,00 €</div>
+//                        </div>`;
+//        } else {
+//         html += `
+//                       <div class="row no-price">
+//                           <div class="col-a">${colA}</div>
+//                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+//                        </div>`;
+//        }
+//      });
+//
+//      html += `<div id="gesamtSumme10" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+//      //          html += `<div id="gesamtSumme10Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+//      //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+//     //       </div>`;
+//
+//     container.innerHTML = html;
+//      berechneGesamt26();
+//    });
+//}
+//
+//function calcRow26(input, preis, index) {
+//
+//  const row = input.parentElement;
+//  const ergebnis = row.querySelector(".col-e");
+//  const menge = parseFloat(input.value.replace(",", ".")) || 0;
+//
+//  const sum = menge * preis;
+//  ergebnis.innerText =
+//    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+//
+//  let gespeicherteWerte =
+//    JSON.parse(localStorage.getItem("page26Data") || "{}");
+//
+//  gespeicherteWerte[index] = menge;
+//  localStorage.setItem("page26Data", JSON.stringify(gespeicherteWerte));
+//
+//  berechneGesamt26();
+//}
+//
+//function berechneGesamt26() {
+//
+//  let sum = 0;
+//
+//  document.querySelectorAll("#page-26 .col-e").forEach(el => {
+//    const wert = parseFloat(
+//      el.innerText.replace("€", "")
+//        .replace(/\./g, "")
+//        .replace(",", ".")
+//        .trim()
+//    ) || 0;
+//    sum += wert;
+//  });
+//
+//  saveSeitenSumme("page-26", sum);
+//
+//  const gesamtDiv = document.getElementById("gesamtSumme26");
+//  if (gesamtDiv) {
+//    gesamtDiv.innerText =
+//      "Gesamtsumme Angebot: " +
+//      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+//  }
+//}
 
 // -----------------------------
 // SEITE 23 – Schrägdach (tga1.csv)
@@ -3392,45 +3921,45 @@ function berechneGesamt10() {
 
 function loadPage23() {
 
-    const container = document.getElementById("content-23");
-    if (!container) return;
+  const container = document.getElementById("content-23");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga1.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga1.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page23Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page23Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -3440,14 +3969,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild1.jpg" class="header-img" alt="Bild">
@@ -3459,13 +3988,13 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -3477,71 +4006,71 @@ if (!headerInserted) {
                                    oninput="calcRow23(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme23" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-   //         html += `<div id="gesamtSumme23Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-  //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-   //      </div>`;
+      html += `<div id="gesamtSumme23" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //         html += `<div id="gesamtSumme23Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //      </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt23();
-        });
+      container.innerHTML = html;
+      berechneGesamt23();
+    });
 }
 
 function calcRow23(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page23Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page23Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page23Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page23Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt23();
+  berechneGesamt23();
 }
 
 function berechneGesamt23() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-23 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-23 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-23", sum);
+  saveSeitenSumme("page-23", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme23");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme23");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
@@ -3550,45 +4079,45 @@ function berechneGesamt23() {
 
 function loadPage24() {
 
-    const container = document.getElementById("content-24");
-    if (!container) return;
+  const container = document.getElementById("content-24");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga2.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga2.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
+      let headerInserted = false;
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page24Data") || "{}");
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page24Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          return;
+        }
+        if (colA === "Beschreibung_fett") {
+          html += `
     <div class="row beschreibung-fett-row">
       <div class="col-a"></div>
       <div class="col-b beschreibung-fett">${colB}</div>
@@ -3598,14 +4127,14 @@ if (colA === "Beschreibung_fett") {
       <div class="col-f"></div>
     </div>
   `;
-  return;
-}
+          return;
+        }
 
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
+        const preis = parseFloat(colD?.replace(",", "."));
+        if (!isNaN(preis)) {
 
-if (!headerInserted) {
-        html += `
+          if (!headerInserted) {
+            html += `
           <div class="row table-header">
             <div class="header-img-cell">
           <img src="bild1.jpg" class="header-img" alt="Bild">
@@ -3617,13 +4146,13 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+            headerInserted = true;
+          }
 
 
-                    const menge = gespeicherteWerte[index] || 0;
+          const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
+          html += `
                         <div class="row">
                             <div class="col-a">${colA}</div>
                             <div class="col-b">${colB}</div>
@@ -3635,230 +4164,230 @@ if (!headerInserted) {
                                    oninput="calcRow24(this, ${preis}, ${index})">
 
                             <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
                             </div>
 
                             <div class="col-e">0,00 €</div>
                         </div>`;
-                } else {
-                    html += `
+        } else {
+          html += `
                         <div class="row no-price">
                             <div class="col-a">${colA}</div>
                             <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
                         </div>`;
-                }
-            });
+        }
+      });
 
-            html += `<div id="gesamtSumme24" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-   //         html += `<div id="gesamtSumme24Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-   //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-   //      </div>`;
+      html += `<div id="gesamtSumme24" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      //         html += `<div id="gesamtSumme24Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+      //       Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      //      </div>`;
 
-            container.innerHTML = html;
-            berechneGesamt24();
-        });
+      container.innerHTML = html;
+      berechneGesamt24();
+    });
 }
 
 function calcRow24(input, preis, index) {
 
-    const row = input.parentElement;
-    const ergebnis = row.querySelector(".col-e");
-    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+  const row = input.parentElement;
+  const ergebnis = row.querySelector(".col-e");
+  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const sum = menge * preis;
-    ergebnis.innerText =
-        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+  const sum = menge * preis;
+  ergebnis.innerText =
+    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 
-    let gespeicherteWerte =
-        JSON.parse(localStorage.getItem("page24Data") || "{}");
+  let gespeicherteWerte =
+    JSON.parse(localStorage.getItem("page24Data") || "{}");
 
-    gespeicherteWerte[index] = menge;
-    localStorage.setItem("page24Data", JSON.stringify(gespeicherteWerte));
+  gespeicherteWerte[index] = menge;
+  localStorage.setItem("page24Data", JSON.stringify(gespeicherteWerte));
 
-    berechneGesamt24();
+  berechneGesamt24();
 }
 
 function berechneGesamt24() {
 
-    let sum = 0;
+  let sum = 0;
 
-    document.querySelectorAll("#page-24 .col-e").forEach(el => {
-        const wert = parseFloat(
-            el.innerText.replace("€","")
-                       .replace(/\./g,"")
-                       .replace(",",".")
-                       .trim()
-        ) || 0;
-        sum += wert;
-    });
+  document.querySelectorAll("#page-24 .col-e").forEach(el => {
+    const wert = parseFloat(
+      el.innerText.replace("€", "")
+        .replace(/\./g, "")
+        .replace(",", ".")
+        .trim()
+    ) || 0;
+    sum += wert;
+  });
 
-    saveSeitenSumme("page-24", sum);
+  saveSeitenSumme("page-24", sum);
 
-    const gesamtDiv = document.getElementById("gesamtSumme24");
-    if (gesamtDiv) {
-        gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " +
-            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-    }
+  const gesamtDiv = document.getElementById("gesamtSumme24");
+  if (gesamtDiv) {
+    gesamtDiv.innerText =
+      "Gesamtsumme Angebot: " +
+      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+  }
 }
 
 // -----------------------------
-// SEITE 25 –  (xxx.csv)
+// SEITE 25 – Dienstleistungen  (tga16.csv)
 // -----------------------------
 //
 //function loadPage25() {
 //
-//    const container = document.getElementById("content-25");
-//    if (!container) return;
+// const container = document.getElementById("content-25");
+// if (!container) return;
 //
-//    if (container.innerHTML.trim() !== "") return;
+// if (container.innerHTML.trim() !== "") return;
 //
-//    fetch("xxx.csv")
-//        .then(response => response.text())
-//        .then(data => {
+// fetch("tga16.csv")
+//    .then(response => response.text())
+//    .then(data => {
 //
-//            const lines = data.split("\n").slice(1);
-//            let html = "";
-//		let headerInserted = false;
+//      const lines = data.split("\n").slice(1);
+//     let html = "";
+//      let headerInserted = false;
 //
-//            const gespeicherteWerte =
-//                JSON.parse(localStorage.getItem("page25Data") || "{}");
+//      const gespeicherteWerte =
+//        JSON.parse(localStorage.getItem("page25Data") || "{}");
 //
-//            lines.forEach((line, index) => {
-//               if (!line.trim()) return;
+//      lines.forEach((line, index) => {
+//        if (!line.trim()) return;
 //
-//                const cols = line.split(";");
-//                const colA = cols[0]?.trim();
-//                const colB = cols[1]?.trim();
-//                const colC = cols[2]?.trim();
-//                const colD = cols[3]?.trim();
+//       const cols = line.split(";");
+//       const colA = cols[0]?.trim();
+//       const colB = cols[1]?.trim();
+//        const colC = cols[2]?.trim();
+//        const colD = cols[3]?.trim();
 //
-//                if (colA === "Titel") {
-//                    html += `<div class="title">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Untertitel") {
-//                    html += `<div class="subtitle">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Zwischentitel") {
-//                    html += `<div class="midtitle">${colB}</div>`;
-//                    return;
-//                }
-//if (colA === "Beschreibung_fett") {
-//  html += `
-//    <div class="row beschreibung-fett-row">
+//       if (colA === "Titel") {
+//         html += `<div class="title">${colB}</div>`;
+//         return;
+//       }
+//       if (colA === "Untertitel") {
+//         html += `<div class="subtitle">${colB}</div>`;
+//         return;
+//       }
+//       if (colA === "Zwischentitel") {
+//         html += `<div class="midtitle">${colB}</div>`;
+//         return;
+//        }
+//       if (colA === "Beschreibung_fett") {
+//         html += `
+//   <div class="row beschreibung-fett-row">
 //      <div class="col-a"></div>
-//      <div class="col-b beschreibung-fett">${colB}</div>
-//      <div class="col-c"></div>
+//     <div class="col-b beschreibung-fett">${colB}</div>
+//     <div class="col-c"></div>
 //      <div class="col-d"></div>
 //      <div class="col-e"></div>
 //      <div class="col-f"></div>
 //    </div>
 //  `;
-//  return;
-//}
+//          return;
+//       }
 //
 //
-//                const preis = parseFloat(colD?.replace(",", "."));
-//                if (!isNaN(preis)) {
+//       const preis = parseFloat(colD?.replace(",", "."));
+//       if (!isNaN(preis)) {
 //
 //
-//if (!headerInserted) {
-//       html += `
-//          <div class="row table-header">
-//            <div class="header-img-cell">
-//        <img src="xxx.jpg" class="header-img" alt="Bild">
-//        </div>
-//            <div>Beschreibung</div>
-//            <div>Einheit</div>
-//            <div style="text-align:center;">Menge</div>
-//            <div style="text-align:right;">Preis / Einheit</div>
-//            <div style="text-align:right;">Positionsergebnis</div>
-//          </div>
-//        `;
-//        headerInserted = true;
-//}
+//    if (!headerInserted) {
+//      html += `
+//    <div class="row table-header">
+//      <div class="header-img-cell">
+//  <img src="xxx.jpg" class="header-img" alt="Bild">
+//  </div>
+//     <div>Beschreibung</div>
+//     <div>Einheit</div>
+//     <div style="text-align:center;">Menge</div>
+//     <div style="text-align:right;">Preis / Einheit</div>
+//     <div style="text-align:right;">Positionsergebnis</div>
+//   </div>
+// `;
+//     headerInserted = true;
+//   }
 //
-//                    const menge = gespeicherteWerte[index] || 0;
+//         const menge = gespeicherteWerte[index] || 0;
 //
-//                    html += `
-//                        <div class="row">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b">${colB}</div>
-//                            <div class="col-c">${colC}</div>
+//         html += `
+//                       <div class="row">
+//                           <div class="col-a">${colA}</div>
+//                           <div class="col-b">${colB}</div>
+//                           <div class="col-c">${colC}</div>
 //
-//                            <input class="menge-input"
+//                           <input class="menge-input"
 //                                   type="number" min="0" step="any"
-//                                   value="${menge}"
-//                                   oninput="calcRow25(this, ${preis}, ${index})">
+//                                  value="${menge}"
+//                                  oninput="calcRow25(this, ${preis}, ${index})">
 //
-//                            <div class="col-d">
-//                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-//                            </div>
+//                           <div class="col-d">
+//                                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+//                           </div>
 //
-//                            <div class="col-e">0,00 €</div>
-//                        </div>`;
-//                } else {
-//                    html += `
-//                        <div class="row no-price">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-//                        </div>`;
-//                }
-//            });
+//                           <div class="col-e">0,00 €</div>
+//                       </div>`;
+//       } else {
+//         html += `
+//                       <div class="row no-price">
+//                           <div class="col-a">${colA}</div>
+//                           <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+//                       </div>`;
+//       }
+//     });
 //
-//            html += `<div id="gesamtSumme25" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//            html += `<div id="gesamtSumme25Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-//          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-//         </div>`;
+//     html += `<div id="gesamtSumme25" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+// html += `<div id="gesamtSumme25Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+// Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+// </div>`;
 //
-//            container.innerHTML = html;
-//            berechneGesamt25();
-//        });
+//      container.innerHTML = html;
+//     berechneGesamt25();
+//    });
 //}
 //
 //function calcRow25(input, preis, index) {
 //
-//    const row = input.parentElement;
-//    const ergebnis = row.querySelector(".col-e");
-//    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+//  const row = input.parentElement;
+//  const ergebnis = row.querySelector(".col-e");
+//  const menge = parseFloat(input.value.replace(",", ".")) || 0;
 //
-//    const sum = menge * preis;
-//    ergebnis.innerText =
-//        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+//  const sum = menge * preis;
+//  ergebnis.innerText =
+//    sum.toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
 //
-//    let gespeicherteWerte =
-//        JSON.parse(localStorage.getItem("page25Data") || "{}");
+//  let gespeicherteWerte =
+//    JSON.parse(localStorage.getItem("page25Data") || "{}");
 //
-//    gespeicherteWerte[index] = menge;
-//    localStorage.setItem("page25Data", JSON.stringify(gespeicherteWerte));
+//  gespeicherteWerte[index] = menge;
+//  localStorage.setItem("page25Data", JSON.stringify(gespeicherteWerte));
 //
-//    berechneGesamt25();
+//  berechneGesamt25();
 //}
 //
 //function berechneGesamt25() {
 //
-//   let sum = 0;
+// let sum = 0;
 //
-//    document.querySelectorAll("#page-25 .col-e").forEach(el => {
-//        const wert = parseFloat(
-//            el.innerText.replace("€","")
-//                       .replace(/\./g,"")
-//                       .replace(",",".")
-//                       .trim()
-//        ) || 0;
-//       sum += wert;
-//   });
+// document.querySelectorAll("#page-25 .col-e").forEach(el => {
+//    const wert = parseFloat(
+//      el.innerText.replace("€", "")
+//        .replace(/\./g, "")
+//        .replace(",", ".")
+//        .trim()
+//   ) || 0;
+//    sum += wert;
+//  });
 //
-//    saveSeitenSumme("page-25", sum);
+//  saveSeitenSumme("page-25", sum);
 //
-//    const gesamtDiv = document.getElementById("gesamtSumme25");
-//    if (gesamtDiv) {
-//        gesamtDiv.innerText =
-//            "Gesamtsumme Angebot: " +
-//            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//    }
+// const gesamtDiv = document.getElementById("gesamtSumme25");
+// if (gesamtDiv) {
+//   gesamtDiv.innerText =
+//     "Gesamtsumme Angebot: " +
+//      getGesamtAngebotssumme().toLocaleString("de-DE", { minimumFractionDigits: 2 }) + " €";
+//  }
 //}
 
 // -----------------------------
@@ -4178,26 +4707,26 @@ function berechneGesamt24() {
 // Eingabefelder - 0 entfernen bei Eingabe
 // -----------------------------
 
-     function setupAutoClearZeroInputs() {
-       document.addEventListener("focusin", (e) => {
-         const el = e.target;
-         if (el && el.classList && el.classList.contains("menge-input")) {
-           if (el.value === "0") el.value = "";
-         }
-       });
-
-// Optional: falls man mit Wheel/Arrow Keys aus Versehen wieder 0 reinbekommt
-      document.addEventListener("input", (e) => {
-        const el = e.target;
-        if (el && el.classList && el.classList.contains("menge-input")) {
-          if (el.value === "0") {
-// wenn wirklich 0 eingegeben wurde, lassen wir es drin -> daher NICHT löschen
-          }
-        }
-      });
+function setupAutoClearZeroInputs() {
+  document.addEventListener("focusin", (e) => {
+    const el = e.target;
+    if (el && el.classList && el.classList.contains("menge-input")) {
+      if (el.value === "0") el.value = "";
     }
+  });
 
-    setupAutoClearZeroInputs();
+  // Optional: falls man mit Wheel/Arrow Keys aus Versehen wieder 0 reinbekommt
+  document.addEventListener("input", (e) => {
+    const el = e.target;
+    if (el && el.classList && el.classList.contains("menge-input")) {
+      if (el.value === "0") {
+        // wenn wirklich 0 eingegeben wurde, lassen wir es drin -> daher NICHT löschen
+      }
+    }
+  });
+}
+
+setupAutoClearZeroInputs();
 
 // -----------------------------
 // Spaltenüberschriften
@@ -4221,11 +4750,11 @@ function renderTableHeader() {
 // -----------------------------
 
 async function sharePdf() {
-// ---- Mobile-Fix: html2canvas rendert sonst gerne "aus der Mitte" ----
+  // ---- Mobile-Fix: html2canvas rendert sonst gerne "aus der Mitte" ----
   const oldScrollX = window.scrollX || 0;
   const oldScrollY = window.scrollY || 0;
 
-// Seite nach ganz oben, damit Canvas sauber rendert
+  // Seite nach ganz oben, damit Canvas sauber rendert
   window.scrollTo(0, 0);
   await new Promise(r => requestAnimationFrame(r));
 
@@ -4238,10 +4767,10 @@ async function sharePdf() {
 
   const el = document.getElementById("page-40");
 
-// Warten bis Seite 40 komplett aufgebaut ist (wichtig fürs Smartphone!)
+  // Warten bis Seite 40 komplett aufgebaut ist (wichtig fürs Smartphone!)
   if (typeof page40Promise !== "undefined" && page40Promise) {
     await page40Promise;
-// kurzer Render-Puffer
+    // kurzer Render-Puffer
     await new Promise(r => setTimeout(r, 150));
   }
 
@@ -4259,7 +4788,7 @@ async function sharePdf() {
 
   document.body.classList.add("pdf-mode");
 
-// Logo nur fürs PDF in Seite 40 klonen
+  // Logo nur fürs PDF in Seite 40 klonen
   let tempLogo = null;
   const existingLogo = document.querySelector("img.logo");
   if (existingLogo) {
@@ -4270,7 +4799,7 @@ async function sharePdf() {
 
   await new Promise(r => requestAnimationFrame(r));
 
-// Desktop-Erkennung: hier KEIN navigator.share() verwenden
+  // Desktop-Erkennung: hier KEIN navigator.share() verwenden
   const isMobile =
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
     (navigator.maxTouchPoints > 1 && window.matchMedia("(max-width: 1024px)").matches);
@@ -4299,7 +4828,7 @@ async function sharePdf() {
     const blob = pdf.output("blob");
     const file = new File([blob], filename, { type: "application/pdf" });
 
- // 1) NUR AUF MOBILE teilen versuchen (damit auf Windows nicht dieses Share-Fenster aufgeht)
+    // 1) NUR AUF MOBILE teilen versuchen (damit auf Windows nicht dieses Share-Fenster aufgeht)
     if (isMobile && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
       try {
         await navigator.share({ title: filename, text: "PDF", files: [file] });
@@ -4310,13 +4839,13 @@ async function sharePdf() {
       }
     }
 
- // 2) Fallback: Öffnen + Download (Desktop immer, Mobile wenn Share nicht geht)
+    // 2) Fallback: Öffnen + Download (Desktop immer, Mobile wenn Share nicht geht)
     const url = URL.createObjectURL(blob);
 
- // Öffnen ist oft der bequemste Weg, um danach in Outlook/WhatsApp manuell anzuhängen
+    // Öffnen ist oft der bequemste Weg, um danach in Outlook/WhatsApp manuell anzuhängen
     window.open(url, "_blank", "noopener");
 
- // Download als verlässlicher Pfad (vor allem für Outlook)
+    // Download als verlässlicher Pfad (vor allem für Outlook)
     const a = document.createElement("a");
     a.href = url;
     a.download = filename;
@@ -4337,6 +4866,148 @@ async function sharePdf() {
 }
 
 window.sharePdf = sharePdf;
+
+async function buildPage40PdfBlob() {
+  const oldScrollX = window.scrollX || 0;
+  const oldScrollY = window.scrollY || 0;
+
+  window.scrollTo(0, 0);
+  await new Promise(r => requestAnimationFrame(r));
+
+  const h2p = window.html2pdf;
+  if (!h2p) {
+    window.scrollTo(oldScrollX, oldScrollY);
+    throw new Error("html2pdf ist nicht geladen.");
+  }
+
+  const el = document.getElementById("page-40");
+  if (!el) {
+    window.scrollTo(oldScrollX, oldScrollY);
+    throw new Error("Seite 40 nicht gefunden.");
+  }
+
+  if (typeof page40Promise !== "undefined" && page40Promise) {
+    await page40Promise;
+    await new Promise(r => setTimeout(r, 150));
+  }
+
+  const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+  const datum = new Date().toLocaleDateString("de-DE").replaceAll(".", "-");
+  const filename = (angebotTyp === "anfrage")
+    ? `Anfrage_TGA_${datum}.pdf`
+    : `Kostenvoranschlag_TGA_${datum}.pdf`;
+
+  document.body.classList.add("pdf-mode");
+
+  let tempLogo = null;
+  const existingLogo = document.querySelector("img.logo");
+  if (existingLogo) {
+    tempLogo = existingLogo.cloneNode(true);
+    tempLogo.classList.add("temp-pdf-logo");
+    el.insertBefore(tempLogo, el.firstChild);
+  }
+
+  await new Promise(r => requestAnimationFrame(r));
+
+  try {
+    const opt = {
+      margin: 10,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: document.documentElement.scrollWidth,
+        windowHeight: document.documentElement.scrollHeight
+      },
+      pagebreak: { mode: ["css", "legacy"] },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    };
+
+    const worker = h2p().set(opt).from(el).toPdf();
+    const pdf = await worker.get("pdf");
+    if (!pdf) throw new Error("PDF-Objekt ist null.");
+
+    const blob = pdf.output("blob");
+    return { blob, filename };
+
+  } finally {
+    if (tempLogo) tempLogo.remove();
+    document.body.classList.remove("pdf-mode");
+    window.scrollTo(oldScrollX, oldScrollY);
+  }
+}
+
+async function sendRequestPdfByEmail() {
+  const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
+  if (angebotTyp !== "anfrage") {
+    showHinweis("Der PDF-Versand ist nur für Anfragen vorgesehen.");
+    return;
+  }
+
+  const page5Data = JSON.parse(localStorage.getItem("page5Data") || "{}");
+  const requesterEmail = (page5Data["copy-email"] || "").trim().toLowerCase();
+
+  if (!requesterEmail) {
+    showHinweis("Bitte geben Sie auf Seite 5 eine Mail-Adresse für die Kopie der Anfrage an.");
+    return;
+  }
+
+  try {
+    showLoader40(true);
+
+    const { blob, filename } = await buildPage40PdfBlob();
+
+    const requesterKey = requesterEmail.replace(/[^a-z0-9._-]/g, "_");
+    const path = `requests/${requesterKey}/${Date.now()}_${filename}`;
+
+    const fileRef = storageRef(blazeStorage, path);
+    await uploadBytes(fileRef, blob, {
+      contentType: "application/pdf"
+    });
+
+    const uploadedFiles = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
+
+    const sendPdfMail = httpsCallable(blazeFunctions, "sendRequestPdfMail");
+    await sendPdfMail({
+      toolName: "TGA KalkPro2.0",
+      storagePath: path,
+      filename,
+      to: "info@tga-nord.de",
+      cc: requesterEmail,
+      requesterEmail,
+      angebotTyp,
+      shkName: "",
+      shkContact: page5Data["shk-contact"] || "",
+      shkEmail: page5Data["shk-email"] || "",
+      siteAddress: [
+        page5Data["bv-contact"] || "",
+        page5Data["bv-strasse"] || "",
+        page5Data["bv-ort"] || ""
+      ].filter(Boolean).join(", "),
+      offerDate: "",
+      executionDate: page5Data["execution-date"] || "",
+      attachmentFiles: uploadedFiles
+    });
+
+    showHinweis("Anfrage erfolgreich versendet.", async () => {
+      await clearUploadedFilesFromStorage();
+      clearInputs();
+      showPage("page-3");
+    });
+
+  } catch (err) {
+    console.error("sendRequestPdfByEmail Fehler:", err);
+    showHinweis("Die Anfrage konnte nicht versendet werden:\n" + (err?.message || err));
+  } finally {
+    showLoader40(false);
+  }
+}
+
+window.buildPage40PdfBlob = buildPage40PdfBlob;
+window.sendRequestPdfByEmail = sendRequestPdfByEmail;
 
 // -----------------------------
 // showLoader40 - EIERUHR 
@@ -4387,7 +5058,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 window.addEventListener("focus", checkLogoutTimer);
-		
+
 // -----------------------------
 // Funktionen für HTML global verfügbar machen
 // -----------------------------
@@ -4445,6 +5116,9 @@ window.berechneGesamt23 = berechneGesamt23;
 window.loadPage24 = loadPage24;
 window.calcRow24 = calcRow24;
 window.berechneGesamt24 = berechneGesamt24;
+//window.loadPage26 = loadPage26;
+//window.calcRow26 = calcRow26;
+//window.berechneGesamt26 = berechneGesamt26;
 //window.loadPage25 = loadPage25;
 //window.calcRow25 = calcRow25;
 //window.berechneGesamt25 = berechneGesamt25;
